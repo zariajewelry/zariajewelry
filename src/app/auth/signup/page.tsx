@@ -17,7 +17,7 @@ export default function SignUp() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
-  
+
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -77,56 +77,60 @@ export default function SignUp() {
   const validateForm = () => {
     const validationErrors = validateSignUpForm(formData, acceptTerms);
     setErrors(validationErrors);
-    
-    return !Object.values(validationErrors).some(error => error !== "");
+
+    return !Object.values(validationErrors).some((error) => error !== "");
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    if (validateForm()) {
+      setIsSubmitting(true);
 
-  if (validateForm()) {
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          acceptNewsletter
-        })
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        if (data.code === "EMAIL_EXISTS") {
-          setErrors(prev => ({ ...prev, email: "Este email ya está en uso" }));
-          return;
+      try {
+        const response = await fetch("/api/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+            acceptNewsletter,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (data.code === "EMAIL_EXISTS") {
+            setErrors((prev) => ({
+              ...prev,
+              email: "Este email ya está en uso",
+            }));
+            return;
+          }
+
+          throw new Error(data.error || "Error al registrar usuario");
         }
 
-        throw new Error(data.error || "Error al registrar usuario");
+        localStorage.setItem("pendingVerificationEmail", formData.email);
+
+        router.push("/auth/registration-success");
+      } catch (error: any) {
+        console.error("Error:", error.message);
+
+        if (error.message.includes("email")) {
+          setErrors((prev) => ({
+            ...prev,
+            email: "Este email ya está en uso",
+          }));
+        }
+      } finally {
+        setIsSubmitting(false);
       }
-      
-      localStorage.setItem("pendingVerificationEmail", formData.email);
-      
-      router.push('/auth/registration-success');
-      
-    } catch (error: any) {
-      console.error("Error:", error.message);
-      
-      if (error.message.includes("email")) {
-        setErrors(prev => ({ ...prev, email: "Este email ya está en uso" }));
-      }
-    } finally {
-      setIsSubmitting(false);
     }
-  }
-};
+  };
 
   const handleGoogleSignIn = () => {
     setIsGoogleSubmitting(true);
@@ -138,11 +142,14 @@ const handleSubmit = async (e: React.FormEvent) => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side - Form */}
-      <div className="w-full md:w-1/2 flex flex-col items-center p-6 md:p-12 bg-white order-2 md:order-1">
-        <div className="pt-4 md:pt-8 md:pb-4 px-6 md:px-12 flex justify-center items-center">
-          <h1 className="font-serif text-3xl">ZARIA</h1>
+      <div className="w-full md:w-1/2 flex flex-col items-center p-4 sm:p-5 lg:p-3 xl:p-4 2xl:p-12 bg-white order-2 md:order-1">
+        <div className="pt-4 lg:pt-3 xl:pt-4 2xl:pt-8 pb-2 lg:pb-2 xl:pb-2 2xl:pb-4 px-4 lg:px-6 xl:px-8 2xl:px-12 flex justify-center items-center">
+          <h1 className="font-serif text-2xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+            ZARIA
+          </h1>
         </div>
-        
+  
+        {/* El resto del componente SignUpForm se mantiene igual */}
         <SignUpForm
           formData={formData}
           errors={errors}
@@ -156,7 +163,9 @@ const handleSubmit = async (e: React.FormEvent) => {
           onSubmit={handleSubmit}
           onChange={handleInputChange}
           onTogglePassword={() => setShowPassword(!showPassword)}
-          onToggleConfirmPassword={() => setShowConfirmPassword(!showConfirmPassword)}
+          onToggleConfirmPassword={() =>
+            setShowConfirmPassword(!showConfirmPassword)
+          }
           onTermsChange={(checked) => {
             setAcceptTerms(checked);
             if (checked) {
@@ -166,15 +175,16 @@ const handleSubmit = async (e: React.FormEvent) => {
           onNewsletterChange={(checked) => setAcceptNewsletter(checked)}
           onGoogleSignIn={handleGoogleSignIn}
         />
-        
-        <Copyright className="mt-8" />
+  
+        <Copyright className="mt-8 lg:mt-4 xl:mt-5 2xl:mt-8" />
       </div>
-
+  
       {/* Right side - Image */}
       <AuthHero
         title="Únete a ZARIA"
         subtitle="Crea tu cuenta para acceder a colecciones exclusivas, ofertas personalizadas y una experiencia de compra premium."
         imageSrc="https://kzmgdmv1zd295sepvy2b.lite.vusercontent.net/placeholder.svg?height=1200&width=800&text=LUXE+Jewelry"
+        className="" 
       />
     </div>
   );

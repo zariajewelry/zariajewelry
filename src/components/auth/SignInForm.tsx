@@ -64,8 +64,8 @@ export default function SignInForm({
         animation="fadeSlideUp"
         className="mb-8 text-center md:text-left"
       >
-        <h2 className="font-mono text-3xl mb-2">Iniciar Sesión</h2>
-        <p className="text-gray-600 font-light">
+        <h2 className="font-mono text-2xl md:w-3xl mb-2">Iniciar Sesión</h2>
+        <p className="text-gray-600 font-light text-sm">
           Accede a tu cuenta para descubrir nuestras últimas colecciones
         </p>
       </AnimatedSection>
