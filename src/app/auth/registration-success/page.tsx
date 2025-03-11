@@ -107,42 +107,42 @@ export default function RegistrationSuccessPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Top section for logo */}
-      <div className="pt-10 md:pt-20 px-6 md:px-12 flex justify-center items-center">
+      <div className="pt-10 lg:pt-8 xl:pt-10 2xl:pt-20 px-6 lg:px-8 xl:px-10 2xl:px-12 flex justify-center items-center">
         <AnimatedSection animation="fadeSlideUp">
-          <h1 className="font-serif text-3xl">ZARIA</h1>
+          <h1 className="font-serif text-3xl lg:text-2xl xl:text-2xl 2xl:text-3xl">ZARIA</h1>
         </AnimatedSection>
       </div>
 
       {/* Middle section with success message */}
-      <div className="flex-grow flex items-center justify-center p-6 md:px-12 pt-10 md:pt-0">
+      <div className="flex-grow flex items-center justify-center p-6 lg:p-4 xl:p-5 2xl:p-6 md:px-12">
         <div className="w-full max-w-md">
-          <AnimatedSection animation="fadeSlideUp" className="mb-8 text-center">
-            <div className="flex mb-6 justify-center">
+          <AnimatedSection animation="fadeSlideUp" className="mb-8 lg:mb-5 xl:mb-6 2xl:mb-8 text-center">
+            <div className="flex mb-6 lg:mb-4 xl:mb-5 2xl:mb-6 justify-center">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-[#81D8D0]/20 animate-pulse" />
                 <Check
-                  className="h-16 w-16 text-[#81D8D0] drop-shadow-md"
+                  className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md"
                   strokeWidth={1.5}
                 />
               </div>
             </div>
-            <h2 className="font-mono text-3xl mb-2">¡Registro completado!</h2>
-            <p className="text-gray-600 font-light mb-2">
+            <h2 className="font-mono text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl mb-2 lg:mb-1.5 xl:mb-1.5 2xl:mb-2">¡Registro completado!</h2>
+            <p className="text-gray-600 font-light text-base lg:text-sm xl:text-sm 2xl:text-base mb-2 lg:mb-1.5 xl:mb-1.5 2xl:mb-2">
               Te hemos enviado un email de verificación a{" "}
               <span className="font-medium text-gray-800">{email}</span>
             </p>
-            <p className="text-gray-600 font-light">
+            <p className="text-gray-600 font-light text-sm lg:text-sm xl:text-sm 2xl:text-base">
               Por favor, revisa tu bandeja de entrada y haz clic en el enlace
               para activar tu cuenta.
             </p>
           </AnimatedSection>
 
-          <AnimatedSection animation="fadeSlideUp" delay={0.1} className="mb-6">
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+          <AnimatedSection animation="fadeSlideUp" delay={0.1} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
+            <div className="bg-gray-50 p-4 lg:p-3 xl:p-3.5 2xl:p-4 rounded-lg border border-gray-100">
               <div className="flex items-start">
-                <Mail className="w-5 h-5 text-[#81D8D0] mt-0.5 mr-3 flex-shrink-0" />
-                <div className="text-sm text-gray-600">
-                  <p className="mb-2">
+                <Mail className="w-5 h-5 lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 text-[#81D8D0] mt-0.5 mr-3 flex-shrink-0" />
+                <div className="text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">
+                  <p className="mb-2 lg:mb-1 xl:mb-1.5 2xl:mb-2">
                     <span className="font-medium text-gray-800">
                       No olvides revisar tu carpeta de spam
                     </span>{" "}
@@ -155,10 +155,10 @@ export default function RegistrationSuccessPage() {
           </AnimatedSection>
 
           {showSuccessMessage && (
-            <AnimatedSection animation="fadeSlideUp" className="mb-4">
-              <div className="bg-green-50 border border-green-100 p-4 rounded-md flex items-center text-green-800">
-                <Check className="h-5 w-5 text-[#81D8D0] mr-3 flex-shrink-0" />
-                <p className="text-sm">
+            <AnimatedSection animation="fadeSlideUp" className="mb-4 lg:mb-3 xl:mb-3.5 2xl:mb-4">
+              <div className="bg-green-50 border border-green-100 p-4 lg:p-3 xl:p-3.5 2xl:p-4 rounded-md flex items-center text-green-800">
+                <Check className="h-5 w-5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 2xl:h-5 2xl:w-5 text-[#81D8D0] mr-3 flex-shrink-0" />
+                <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm">
                   Email reenviado correctamente. Por favor revisa tu bandeja de
                   entrada.
                 </p>
@@ -167,24 +167,24 @@ export default function RegistrationSuccessPage() {
           )}
 
           {errorMessage && (
-            <AnimatedSection animation="fadeSlideUp" className="mb-4">
-              <div className="bg-red-50 border border-red-100 p-4 rounded-md flex items-center text-red-800">
-                <Mail className="h-5 w-5 text-red-500 mr-3 flex-shrink-0" />
-                <p className="text-sm">{errorMessage}</p>
+            <AnimatedSection animation="fadeSlideUp" className="mb-4 lg:mb-3 xl:mb-3.5 2xl:mb-4">
+              <div className="bg-red-50 border border-red-100 p-4 lg:p-3 xl:p-3.5 2xl:p-4 rounded-md flex items-center text-red-800">
+                <Mail className="h-5 w-5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 2xl:h-5 2xl:w-5 text-red-500 mr-3 flex-shrink-0" />
+                <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm">{errorMessage}</p>
               </div>
             </AnimatedSection>
           )}
 
-          <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6">
+          <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
             <Button
               variant="outline"
-              className="w-full h-12 relative overflow-hidden group border-[#81D8D0] text-[#81D8D0] hover:text-white hover:bg-[#81D8D0] rounded-none cursor-pointer transition-all duration-300"
+              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 relative overflow-hidden group border-[#81D8D0] text-[#81D8D0] hover:text-white hover:bg-[#81D8D0] rounded-none cursor-pointer transition-all duration-300"
               onClick={handleResendEmail}
               disabled={isCountingDown || isResending}
             >
               <span className="flex items-center justify-center">
                 <RefreshCw
-                  className={`w-4 h-4 mr-2 ${
+                  className={`w-4 h-4 lg:w-3.5 lg:h-3.5 xl:w-3.5 xl:h-3.5 2xl:w-4 2xl:h-4 mr-2 ${
                     isResending ? "animate-spin" : "group-hover:animate-spin"
                   }`}
                 />
@@ -197,15 +197,15 @@ export default function RegistrationSuccessPage() {
             </Button>
           </AnimatedSection>
 
-          <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6">
+          <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
             <Button
               asChild
-              className="w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
             >
               <Link href="/">
                 <span className="flex items-center justify-center">
                   Volver a la página principal
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-4 h-4 lg:w-3.5 lg:h-3.5 xl:w-3.5 xl:h-3.5 2xl:w-4 2xl:h-4 ml-2" />
                 </span>
               </Link>
             </Button>
@@ -216,7 +216,7 @@ export default function RegistrationSuccessPage() {
             delay={0.4}
             className="text-center"
           >
-            <p className="text-sm text-gray-600">
+            <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">
               ¿Necesitas ayuda?{" "}
               <Link
                 href="/contact"
@@ -230,7 +230,7 @@ export default function RegistrationSuccessPage() {
       </div>
 
       {/* Bottom section with copyright */}
-      <div className="pb-6 md:pb-10 px-6 md:px-12">
+      <div className="pb-6 lg:pb-4 xl:pb-5 2xl:pb-10 px-6 lg:px-8 xl:px-10 2xl:px-12">
         <Copyright />
       </div>
     </div>

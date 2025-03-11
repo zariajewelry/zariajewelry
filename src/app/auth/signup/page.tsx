@@ -144,7 +144,7 @@ export default function SignUp() {
       {/* Left side - Form */}
       <div className="w-full md:w-1/2 flex flex-col items-center p-4 sm:p-5 lg:p-3 xl:p-4 2xl:p-12 bg-white order-2 md:order-1">
         <div className="pt-4 lg:pt-3 xl:pt-4 2xl:pt-8 pb-2 lg:pb-2 xl:pb-2 2xl:pb-4 px-4 lg:px-6 xl:px-8 2xl:px-12 flex justify-center items-center">
-          <h1 className="font-serif text-2xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+          <h1 className="font-serif text-3xl lg:text-xl xl:text-2xl 2xl:text-3xl">
             ZARIA
           </h1>
         </div>

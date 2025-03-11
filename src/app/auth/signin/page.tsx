@@ -61,19 +61,20 @@ export default function SignIn() {
         title="ZARIA"
         subtitle="Bienvenido de nuevo a nuestra colección de joyería exclusiva, donde cada pieza cuenta una historia de elegancia atemporal."
         imageSrc="https://kzmgdmv1zd295sepvy2b.lite.vusercontent.net/placeholder.svg?height=1200&width=800&text=LUXE+Jewelry"
+        className=""
       />
 
       {/* Right side - Form */}
       <div className="w-full h-screen md:w-1/2 flex flex-col bg-white">
         {/* Top section for logo */}
-        <div className="pt-10 md:pt-20 px-6 md:px-12 flex justify-center items-center">
+        <div className="pt-10 lg:pt-6 xl:pt-8 2xl:pt-20 px-6 lg:px-8 xl:px-10 2xl:px-12 flex justify-center items-center">
           <AnimatedSection animation="fadeSlideUp">
-            <h1 className="font-serif text-3xl">ZARIA</h1>
+            <h1 className="font-serif text-3xl lg:text-2xl xl:text-2xl 2xl:text-3xl">ZARIA</h1>
           </AnimatedSection>
         </div>
 
         {/* Middle section with form */}
-        <div className="flex-grow flex items-center justify-center p-6 md:px-12">
+        <div className="flex-grow flex items-center justify-center p-6 lg:p-4 xl:p-5 2xl:p-12 md:px-12 lg:px-8 xl:px-10 2xl:px-12">
           <SignInForm
             onSubmit={handleCredentialsSignIn}
             onGoogleSignIn={handleGoogleSignIn}
@@ -84,7 +85,7 @@ export default function SignIn() {
         </div>
 
         {/* Bottom section with copyright */}
-        <div className="pb-6 md:pb-10 px-6 md:px-12">
+        <div className="pb-6 lg:pb-4 xl:pb-6 2xl:pb-10 px-6 lg:px-8 xl:px-10 2xl:px-12">
           <Copyright />
         </div>
       </div>

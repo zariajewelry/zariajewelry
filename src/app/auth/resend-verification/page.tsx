@@ -89,30 +89,30 @@ export default function ResendVerificationPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Top section for logo */}
-      <div className="pt-10 md:pt-20 px-6 md:px-12 flex justify-center items-center">
+      <div className="pt-10 lg:pt-6 xl:pt-8 2xl:pt-20 px-6 lg:px-8 xl:px-10 2xl:px-12 flex justify-center items-center">
         <AnimatedSection animation="fadeSlideUp">
-          <h1 className="font-serif text-3xl">ZARIA</h1>
+          <h1 className="font-serif text-3xl lg:text-2xl xl:text-2xl 2xl:text-3xl">ZARIA</h1>
         </AnimatedSection>
       </div>
 
       {/* Middle section with content */}
-      <div className="flex-grow flex items-center justify-center p-6 md:px-12">
+      <div className="flex-grow flex items-center justify-center p-6 lg:p-4 xl:p-5 2xl:p-12 md:px-12">
         <div className="w-full max-w-md">
-          <AnimatedSection animation="fadeSlideUp" className="mb-8 text-center">
-            <div className="flex mb-6 justify-center">
+          <AnimatedSection animation="fadeSlideUp" className="mb-8 lg:mb-6 xl:mb-7 2xl:mb-8 text-center">
+            <div className="flex mb-6 lg:mb-4 xl:mb-5 2xl:mb-6 justify-center">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-white animate-pulse" />
                 {isSuccess ? (
-                  <Check className="h-16 w-16 text-[#81D8D0] drop-shadow-md" />
+                  <Check className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md" />
                 ) : (
-                  <Mail className="h-16 w-16 text-[#81D8D0] drop-shadow-md" />
+                  <Mail className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md" />
                 )}
               </div>
             </div>
-            <h2 className="font-mono text-3xl mb-2">
+            <h2 className="font-mono text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl mb-2 lg:mb-1 xl:mb-1.5 2xl:mb-2">
               {isSuccess ? "Email Enviado" : "Reenviar Verificación"}
             </h2>
-            <p className="text-gray-600 font-light">
+            <p className="text-gray-600 font-light text-sm lg:text-sm xl:text-sm 2xl:text-base">
               {isSuccess
                 ? `Hemos enviado un nuevo enlace de verificación a ${email}. Por favor, revise su bandeja de entrada y siga las instrucciones.`
                 : "Ingrese su dirección de correo electrónico para recibir un nuevo enlace de verificación."}
@@ -124,12 +124,12 @@ export default function ResendVerificationPage() {
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.1}
-                className="mb-6"
+                className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6"
               >
-                <div className="mb-6">
+                <div className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium mb-1"
+                    className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
                   >
                     Correo Electrónico
                   </label>
@@ -139,7 +139,7 @@ export default function ResendVerificationPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ejemplo@correo.com"
-                    className={`h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+                    className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
                       error ? "border-red-500" : ""
                     }`}
                   />
@@ -147,7 +147,7 @@ export default function ResendVerificationPage() {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-500 text-sm mt-1"
+                      className="text-red-500 text-sm lg:text-xs xl:text-xs 2xl:text-sm mt-1 lg:mt-0.5"
                     >
                       {error}
                     </motion.p>
@@ -157,15 +157,17 @@ export default function ResendVerificationPage() {
                   {verifiedMessage && (
                     <AnimatedSection
                       animation="fadeSlideUp"
-                      className="mb-4 mt-2"
+                      className="mb-4 lg:mb-3 xl:mb-3 2xl:mb-4 mt-2 lg:mt-1 xl:mt-1.5 2xl:mt-2"
                     >
-                      <div className="bg-green-50 border border-green-100 p-4 rounded-md flex items-center text-green-800">
-                        <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                      <div className="bg-green-50 border border-green-100 p-4 lg:p-3 xl:p-3 2xl:p-4 rounded-md flex items-center text-green-800">
+                        <Check className="h-5 w-5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 2xl:h-5 2xl:w-5 text-green-500 mr-3 flex-shrink-0" />
                         <div>
-                          <p className="text-sm font-medium">
+                          <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium">
                             Email verificado
                           </p>
-                          <p className="text-xs mt-1">{verifiedMessage}</p>
+                          <p className="text-xs lg:text-[10px] xl:text-[10px] 2xl:text-xs mt-1 lg:mt-0.5">
+                            {verifiedMessage}
+                          </p>
                         </div>
                       </div>
                     </AnimatedSection>
@@ -176,12 +178,12 @@ export default function ResendVerificationPage() {
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.2}
-                className="mb-4"
+                className="mb-4 lg:mb-3 xl:mb-3 2xl:mb-4"
               >
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300 ${
+                  className={`w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300 ${
                     isLoading ? "opacity-50" : ""
                   }`}
                 >
@@ -192,7 +194,7 @@ export default function ResendVerificationPage() {
                     </>
                   ) : (
                     <>
-                      <Send className="mr-2 h-4 w-4" />
+                      <Send className="mr-2 h-4 w-4 lg:h-3.5 lg:w-3.5 xl:h-3.5 xl:w-3.5 2xl:h-4 2xl:w-4" />
                       Enviar Enlace
                     </>
                   )}
@@ -202,16 +204,16 @@ export default function ResendVerificationPage() {
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.3}
-                className="mb-6"
+                className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6"
               >
                 <Button
                   asChild
                   variant="outline"
                   type="button"
-                  className="w-full h-12 border-gray-300 hover:bg-gray-100 text-black cursor-pointer rounded-none transition-all duration-300"
+                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 border-gray-300 hover:bg-gray-100 text-black cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/auth/signin">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    <ArrowLeft className="mr-2 h-4 w-4 lg:h-3.5 lg:w-3.5 xl:h-3.5 xl:w-3.5 2xl:h-4 2xl:w-4" />
                     Volver a Iniciar Sesión
                   </Link>
                 </Button>
@@ -223,11 +225,11 @@ export default function ResendVerificationPage() {
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.2}
-                className="mb-6"
+                className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6"
               >
                 <Button
                   asChild
-                  className="w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/auth/signin">Iniciar Sesión</Link>
                 </Button>
@@ -236,12 +238,12 @@ export default function ResendVerificationPage() {
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.3}
-                className="mb-6"
+                className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6"
               >
                 <Button
                   asChild
                   variant="outline"
-                  className="w-full h-12 border-gray-300 hover:bg-gray-50 text-black cursor-pointer rounded-none transition-all duration-300"
+                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 border-gray-300 hover:bg-gray-50 text-black cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/">Volver al Inicio</Link>
                 </Button>
@@ -254,7 +256,7 @@ export default function ResendVerificationPage() {
             delay={0.4}
             className="text-center"
           >
-            <p className="text-sm text-gray-600">
+            <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">
               ¿Necesita ayuda?{" "}
               <Link
                 href="/contact"
@@ -268,7 +270,7 @@ export default function ResendVerificationPage() {
       </div>
 
       {/* Bottom section with copyright */}
-      <div className="pb-6 md:pb-10 px-6 md:px-12">
+      <div className="pb-6 lg:pb-4 xl:pb-5 2xl:pb-10 px-6 lg:px-8 xl:px-10 2xl:px-12">
         <Copyright />
       </div>
     </div>
