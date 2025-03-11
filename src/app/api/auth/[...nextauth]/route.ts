@@ -1,22 +1,17 @@
-import NextAuth, { Session, type AuthOptions } from 'next-auth';
+import NextAuth, { type AuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { prisma } from '@/lib/db';
-import { type JWT } from 'next-auth/jwt';
 import config from '@/config';
 import logger from '@/utils/logger';
 
-interface CustomJWT extends JWT {
-  id?: string;
-  role?: string;
-}
 
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
-  secret: config.oauth.google.clientSecret,
+  secret: config.nextAuth.secret,
   providers: [
     GoogleProvider({
       clientId: config.oauth.google.clientId,
@@ -43,15 +38,20 @@ export const authOptions: AuthOptions = {
           return {
             id: user.id,
             email: user.email,
-            name: user.name,
-            role: user.role
+            fullName: `${user.firstName || ''} ${user.lastName || ''}`.trim() || null,
+            role: user.role,
+            firstName: user.firstName,
+            lastName: user.lastName,
           };
         }
       }),
   ],
   session: {
     strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60,
+    maxAge: 30 * 24 * 60 * 60, 
+  },
+  jwt: {
+    maxAge: 7 * 24 * 60 * 60,
   },
   cookies: {
     sessionToken: {
@@ -70,27 +70,57 @@ export const authOptions: AuthOptions = {
     verifyRequest: '/auth/verify-request',
   },
   callbacks: {
-    async jwt({ token, user }: { token: CustomJWT; user?: any }): Promise<CustomJWT> {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.role = user.role || 'USER';
       }
       return token;
     },
-    async session({ session, token }: { session: Session; token: CustomJWT }): Promise<Session> {
+    async session({ session, token }) {
       return {
         ...session,
         user: {
           ...session.user,
-          id: token.id, 
-          role: token.role, 
-        } as Session["user"],  
+          id: token.id,
+          role: token.role,
+        },
       };
     },
   },
   events: {
     async signIn(message) {
       logger.info(`User ${message.user.email} signed in`);
+      
+      if (message.account?.provider === "google" && message.user.name) {
+
+        await prisma.user.update({
+          where: { id: message.user.id },
+          data: { 
+            firstName: message.user.name?.split(' ')[0] || '',
+            lastName: message.user.name?.split(' ').slice(1).join(' ') || '',
+            isVerified: true,
+            emailVerified: new Date(),
+            emailVerificationToken: null,
+            emailVerificationExpiry: null
+          }
+        });
+      }
+    },
+    
+    async createUser(message) {
+      if (message.user.email && message.user.emailVerified) {
+        const nameParts = message.user.name?.split(' ') || [''];
+        
+        await prisma.user.update({
+          where: { id: message.user.id },
+          data: { 
+            firstName: nameParts[0] || '',
+            lastName: nameParts.slice(1).join(' ') || '',
+            isVerified: true,
+          }
+        });
+      }
     },
     async signOut(message) {
       logger.info(`User ${message.token.email} signed out`);

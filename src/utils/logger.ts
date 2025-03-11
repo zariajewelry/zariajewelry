@@ -26,7 +26,7 @@ winston.addColors(colors);
 const format = winston.format.combine(
   winston.format.timestamp({ format: 'ISO8601' }),  
   winston.format.errors({ stack: true }),  
-  config.env === 'development' 
+  config.app.env === 'development' 
     ? winston.format.colorize({ all: true })
     : winston.format.uncolorize(),
   winston.format.printf((info) => {
