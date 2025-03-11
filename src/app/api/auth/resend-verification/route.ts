@@ -3,9 +3,20 @@ import { prisma } from "@/lib/db";
 import { emailService } from "@/lib/email/email-service";
 import logger from "@/utils/logger";
 import crypto from "crypto";
+import { rateLimit } from "@/middlewares/rate-limiting.middleware";
 
 export async function POST(request: NextRequest) {
   try {
+
+    const rateLimitResult = await rateLimit(request, {
+      limit: 3,       // Solo 3 intentos
+      window: 60 * 15 // En una ventana de 15 minutos
+    });
+
+    if (rateLimitResult instanceof NextResponse) {
+      return rateLimitResult;
+    }
+
     const { email } = await request.json();
     
     if (!email) {
@@ -61,11 +72,13 @@ export async function POST(request: NextRequest) {
         verificationToken
       );
     
+    const headers = rateLimitResult.headers;
+
     if (success) {
       logger.info(`Verification email resent to: ${email}`);
       return NextResponse.json(
         { message: "Email de verificación reenviado" },
-        { status: 200 }
+        { status: 200, headers }
       );
     } else {
       throw new Error("Failed to send email");

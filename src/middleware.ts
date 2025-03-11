@@ -7,14 +7,16 @@ export async function middleware(request: NextRequest) {
   
   const protectedPaths = ['/dashboard', '/profile', '/orders', '/checkout'];
   
-  const authRoutes = ['/auth/signin', '/auth/signup', '/auth/forgot-password'];
-  
   const isPathProtected = protectedPaths.some((path) => 
     pathname === path || pathname.startsWith(`${path}/`)
   );
   
-
-  const isAuthRoute = authRoutes.some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  const isAuthRoute = pathname.startsWith('/auth/');
+  
+  // Bypass para la ruta de prueba
+  if (pathname === '/test') {
+    return NextResponse.next();
+  }
   
   const token = await getToken({ 
     req: request,
@@ -28,7 +30,7 @@ export async function middleware(request: NextRequest) {
   }
   
   if (isAuthRoute && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/', request.url));
   }
   
   return NextResponse.next();
@@ -40,11 +42,11 @@ export const config = {
     '/profile/:path*', 
     '/orders/:path*',
     '/checkout/:path*',
-    // Apply middleware to auth routes
     '/auth/:path*',
-    // The dashboard index route
+    '/test',
     '/dashboard',
-    // The profile index route
     '/profile', 
+    '/orders',
+    '/checkout',
   ],
 };

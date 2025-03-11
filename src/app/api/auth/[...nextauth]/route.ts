@@ -55,7 +55,7 @@ export const authOptions: AuthOptions = {
   },
   cookies: {
     sessionToken: {
-      name: `__Secure-next-auth.session-token`,
+      name: `next-auth.session-token`,
       options: {
         httpOnly: true,
         sameSite: 'lax',
@@ -73,7 +73,11 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.email = user.email || token.email;
+        token.name = user.name || token.name;
         token.role = user.role || 'USER';
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
       }
       return token;
     },
@@ -83,7 +87,11 @@ export const authOptions: AuthOptions = {
         user: {
           ...session.user,
           id: token.id,
+          name: token.name,
+          email: token.email,
           role: token.role,
+          firstName: token.firstName,
+          lastName: token.lastName,
         },
       };
     },
