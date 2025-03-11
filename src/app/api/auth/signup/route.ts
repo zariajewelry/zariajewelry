@@ -6,6 +6,7 @@ import logger from "@/utils/logger";
 import { signupSchema } from "@/lib/validations";
 import { emailService } from "@/lib/email/email-service";
 import crypto from "crypto";
+import { normalizeName } from "@/lib/utils";
 
 export async function POST(request: NextRequest) {
   const rateLimitResult = await rateLimit(request, {
@@ -65,8 +66,8 @@ export async function POST(request: NextRequest) {
 
     const user = await prisma.user.create({
       data: {
-        firstName,
-        lastName,
+        firstName: normalizeName(firstName),
+        lastName: normalizeName(lastName),
         email,
         password: hashedPassword,
         name: `${firstName} ${lastName}`.trim(),

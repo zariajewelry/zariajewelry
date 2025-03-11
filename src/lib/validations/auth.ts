@@ -41,6 +41,16 @@ export function validatePassword(password: string): string {
   return "";
 }
 
+/**
+ * Validates password for login (only checks if empty)
+ * @param password - Password string to validate
+ * @returns Error message string or empty string if valid
+ */
+export function validateLoginPassword(password: string): string {
+  if (!password) return "La contraseña es requerida";
+  return "";
+}
+
 export function validateSignUpForm(data: SignUpFormData, acceptTerms: boolean): ValidationErrors {
   const errors: ValidationErrors = {
     firstName: "",

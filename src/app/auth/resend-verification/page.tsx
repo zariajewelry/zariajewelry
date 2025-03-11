@@ -1,43 +1,90 @@
-"use client"
+// src/app/auth/resend-verification/page.tsx
+"use client";
 
-import { useState } from "react"
-import { Mail, Send, ArrowLeft, CheckCircle } from "lucide-react"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import AnimatedSection from "@/components/customs/animated/Animated-section"
-import Copyright from "@/components/common/Copyright"
+import { useState, useEffect } from "react";
+import { Mail, Send, ArrowLeft, Check } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import AnimatedSection from "@/components/customs/animated/Animated-section";
+import Copyright from "@/components/common/Copyright";
+import { toast } from "sonner";
 
 export default function ResendVerificationPage() {
-  const [email, setEmail] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [error, setError] = useState("")
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [verifiedMessage, setVerifiedMessage] = useState("");
+  const [error, setError] = useState("");
 
-  // Simulate sending verification email
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setError("")
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("pendingVerificationEmail");
+    if (savedEmail) {
+      setEmail(savedEmail);
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
 
     if (!email) {
-      setError("Por favor, ingrese su dirección de correo electrónico.")
-      return
+      setError("Por favor, ingrese su dirección de correo electrónico.");
+      return;
     }
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setError("Por favor, ingrese una dirección de correo electrónico válida.")
-      return
+      setError(
+        "Por favor, ingrese una dirección de correo electrónico válida."
+      );
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      setIsSuccess(true)
-    }, 2000)
-  }
+    try {
+      const response = await fetch("/api/auth/resend-verification", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("pendingVerificationEmail", email);
+        setIsSuccess(true);
+        toast.success("Correo enviado con éxito", {
+          description:
+            "Te hemos reenviado el email de verificación. Revisa tu bandeja de entrada.",
+          position: "top-center",
+        });
+      } else {
+        if (data.code === "ALREADY_VERIFIED") {
+          setVerifiedMessage(
+            "Tu email ya ha sido verificado. Serás redirigido para iniciar sesión."
+          );
+          toast.success("El email ya ha sido verificado", {
+            description: "Serás redirigido para iniciar sesión.",
+            position: "top-center",
+          });
+
+          setTimeout(() => {
+            window.location.href = "/auth/signin";
+          }, 8000);
+          return;
+        }
+
+        setError(data.error || "No se pudo enviar el email de verificación.");
+      }
+    } catch (error) {
+      console.error("Error al enviar solicitud:", error);
+      setError("Ocurrió un error de conexión. Por favor, inténtelo de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -56,7 +103,7 @@ export default function ResendVerificationPage() {
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-white animate-pulse" />
                 {isSuccess ? (
-                  <CheckCircle className="h-16 w-16 text-[#81D8D0] drop-shadow-md" />
+                  <Check className="h-16 w-16 text-[#81D8D0] drop-shadow-md" />
                 ) : (
                   <Mail className="h-16 w-16 text-[#81D8D0] drop-shadow-md" />
                 )}
@@ -72,11 +119,18 @@ export default function ResendVerificationPage() {
             </p>
           </AnimatedSection>
 
-          {!isSuccess && (
-            <AnimatedSection animation="fadeSlideUp" delay={0.1} className="mb-6">
-              <form onSubmit={handleSubmit}>
+          {!isSuccess ? (
+            <form onSubmit={handleSubmit}>
+              <AnimatedSection
+                animation="fadeSlideUp"
+                delay={0.1}
+                className="mb-6"
+              >
                 <div className="mb-6">
-                  <label htmlFor="email" className="block text-sm font-medium mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-1"
+                  >
                     Correo Electrónico
                   </label>
                   <Input
@@ -98,39 +152,38 @@ export default function ResendVerificationPage() {
                       {error}
                     </motion.p>
                   )}
+
+                  {/* Mensaje de email ya verificado */}
+                  {verifiedMessage && (
+                    <AnimatedSection
+                      animation="fadeSlideUp"
+                      className="mb-4 mt-2"
+                    >
+                      <div className="bg-green-50 border border-green-100 p-4 rounded-md flex items-center text-green-800">
+                        <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium">
+                            Email verificado
+                          </p>
+                          <p className="text-xs mt-1">{verifiedMessage}</p>
+                        </div>
+                      </div>
+                    </AnimatedSection>
+                  )}
                 </div>
-              </form>
-            </AnimatedSection>
-          )}
-
-          {isSuccess ? (
-            <>
-              <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6">
-                <Button
-                  asChild
-                  className="w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
-                >
-                  <Link href="/auth/signin">Iniciar Sesión</Link>
-                </Button>
               </AnimatedSection>
 
-              <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6">
+              <AnimatedSection
+                animation="fadeSlideUp"
+                delay={0.2}
+                className="mb-4"
+              >
                 <Button
-                  asChild
-                  variant="outline"
-                  className="w-full h-12 border-gray-300 hover:bg-gray-50 text-black cursor-pointer rounded-none transition-all duration-300"
-                >
-                  <Link href="/">Volver al Inicio</Link>
-                </Button>
-              </AnimatedSection>
-            </>
-          ) : (
-            <>
-              <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-4">
-                <Button
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isLoading}
-                  className="w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+                  className={`w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300 ${
+                    isLoading ? "opacity-50" : ""
+                  }`}
                 >
                   {isLoading ? (
                     <>
@@ -146,10 +199,15 @@ export default function ResendVerificationPage() {
                 </Button>
               </AnimatedSection>
 
-              <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6">
+              <AnimatedSection
+                animation="fadeSlideUp"
+                delay={0.3}
+                className="mb-6"
+              >
                 <Button
                   asChild
                   variant="outline"
+                  type="button"
                   className="w-full h-12 border-gray-300 hover:bg-gray-100 text-black cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/auth/signin">
@@ -158,10 +216,44 @@ export default function ResendVerificationPage() {
                   </Link>
                 </Button>
               </AnimatedSection>
+            </form>
+          ) : (
+            // Botones para estado de éxito
+            <>
+              <AnimatedSection
+                animation="fadeSlideUp"
+                delay={0.2}
+                className="mb-6"
+              >
+                <Button
+                  asChild
+                  className="w-full h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+                >
+                  <Link href="/auth/signin">Iniciar Sesión</Link>
+                </Button>
+              </AnimatedSection>
+
+              <AnimatedSection
+                animation="fadeSlideUp"
+                delay={0.3}
+                className="mb-6"
+              >
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full h-12 border-gray-300 hover:bg-gray-50 text-black cursor-pointer rounded-none transition-all duration-300"
+                >
+                  <Link href="/">Volver al Inicio</Link>
+                </Button>
+              </AnimatedSection>
             </>
           )}
 
-          <AnimatedSection animation="fadeSlideUp" delay={0.4} className="text-center">
+          <AnimatedSection
+            animation="fadeSlideUp"
+            delay={0.4}
+            className="text-center"
+          >
             <p className="text-sm text-gray-600">
               ¿Necesita ayuda?{" "}
               <Link
@@ -180,5 +272,5 @@ export default function ResendVerificationPage() {
         <Copyright />
       </div>
     </div>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-// src/app/auth/resend-verification/loading.tsx
+
 export default function ResendVerificationLoading() {
   return (
     <div className="min-h-screen flex flex-col bg-white">

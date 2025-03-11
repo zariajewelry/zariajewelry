@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/customs/animated/Animated-section";
-import { validateEmail, validatePassword } from "@/lib/validations";
+import { validateEmail, validateLoginPassword } from "@/lib/validations";
 import SocialAuthButton from "./SocialAuthButton";
 
 interface SignInFormProps {
@@ -39,14 +39,14 @@ export default function SignInForm({
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
-    setErrors({ ...errors, password: validatePassword(value) });
+    setErrors({ ...errors, password: validateLoginPassword(value) });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const emailError = validateEmail(email);
-    const passwordError = validatePassword(password);
+    const passwordError = validateLoginPassword(password);
 
     setErrors({
       email: emailError,

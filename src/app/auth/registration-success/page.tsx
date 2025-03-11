@@ -178,7 +178,7 @@ export default function RegistrationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6">
             <Button
               variant="outline"
-              className="w-full h-12 relative overflow-hidden group border-[#81D8D0] text-[#81D8D0] hover:text-white hover:bg-[#81D8D0] rounded-none transition-all duration-300"
+              className="w-full h-12 relative overflow-hidden group border-[#81D8D0] text-[#81D8D0] hover:text-white hover:bg-[#81D8D0] rounded-none cursor-pointer transition-all duration-300"
               onClick={handleResendEmail}
               disabled={isCountingDown || isResending}
             >
