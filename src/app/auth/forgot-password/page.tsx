@@ -212,7 +212,7 @@ export default function ForgotPassword() {
                 spam o{" "}
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                  className="text-[#81D8D0] hover:text-[#5fb5ae] transition-colors cursor-pointer"
                 >
                   intenta de nuevo
                 </button>
