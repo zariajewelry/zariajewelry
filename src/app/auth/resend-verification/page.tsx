@@ -243,7 +243,7 @@ export default function ResendVerificationPage() {
                 <Button
                   asChild
                   variant="outline"
-                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 border-gray-300 hover:bg-gray-50 text-black cursor-pointer rounded-none transition-all duration-300"
+                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 border-gray-300 hover:border-[#81D8D0] hover:bg-[#81D8D0]/10  text-black cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/">Volver al Inicio</Link>
                 </Button>

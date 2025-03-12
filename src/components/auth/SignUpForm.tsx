@@ -67,13 +67,13 @@ export default function SignUpForm({
   onGoogleSignIn,
 }: SignUpFormProps) {
   return (
-    <div className="w-full max-w-md mt-6 lg:mt-3 xl:mt-4 2xl:mt-12">
+    <div className="w-full max-w-md mt-6 lg:mt-3 xl:mt-12 2xl:mt-12">
       <AnimatedSection
         animation="fadeSlideUp"
         className="mb-8 lg:mb-4 xl:mb-6 2xl:mb-8 text-center md:text-left"
       >
-        <h2 className="font-mono text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl mb-2 lg:mb-1">Crear Cuenta</h2>
-        <p className="text-gray-600 font-light text-sm lg:text-sm xl:text-sm 2xl:text-base">
+        <h2 className="font-mono text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl mb-2 lg:mb-1">Crear Cuenta</h2>
+        <p className="text-gray-600 font-light text-sm lg:text-sm xl:text-xs 2xl:text-sm" >
           Únete a ZARIA para disfrutar de una experiencia de compra exclusiva
         </p>
       </AnimatedSection>
@@ -84,7 +84,7 @@ export default function SignUpForm({
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
+                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
               >
                 Nombre
               </label>
@@ -113,7 +113,7 @@ export default function SignUpForm({
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
+                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
               >
                 Apellido
               </label>
@@ -143,7 +143,7 @@ export default function SignUpForm({
 
         <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
           <div>
-            <label htmlFor="email" className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1">
+            <label htmlFor="email" className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono">
               Email
             </label>
             <Input
@@ -171,7 +171,7 @@ export default function SignUpForm({
 
         <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
           <div>
-            <label htmlFor="password" className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1">
+            <label htmlFor="password" className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono">
               Contraseña
             </label>
             <div className="relative">
@@ -227,7 +227,7 @@ export default function SignUpForm({
           <div>
             <label
               htmlFor="confirmPassword"
-              className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
+              className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
             >
               Confirmar Contraseña
             </label>
@@ -324,7 +324,7 @@ export default function SignUpForm({
           </div>
         </AnimatedSection>
 
-        <AnimatedSection animation="fadeSlideUp" delay={0.6} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+        <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6">
           <Button
             type="submit"
             disabled={isSubmitting}
@@ -335,7 +335,7 @@ export default function SignUpForm({
         </AnimatedSection>
       </form>
 
-      <AnimatedSection animation="fadeSlideUp" delay={0.7} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+      <AnimatedSection animation="fadeSlideUp" delay={0.4} className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6">
         <div className="relative flex items-center justify-center">
           <div className="border-t border-gray-300 absolute w-full"></div>
           <div className="bg-white px-4 relative z-10 text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-500">
@@ -346,7 +346,7 @@ export default function SignUpForm({
 
       <AnimatedSection
         animation="fadeSlideUp"
-        delay={0.8}
+        delay={0.5}
         className="grid grid-cols-1 gap-3 lg:gap-2 xl:gap-2 2xl:gap-3 mb-8 lg:mb-4 xl:mb-5 2xl:mb-8"
       >
         <SocialAuthButton
@@ -360,7 +360,7 @@ export default function SignUpForm({
 
       <AnimatedSection
         animation="fadeSlideUp"
-        delay={0.9}
+        delay={0.6}
         className="text-center"
       >
         <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">

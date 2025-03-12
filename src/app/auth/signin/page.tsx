@@ -60,7 +60,7 @@ export default function SignIn() {
       <AuthHero
         title="ZARIA"
         subtitle="Bienvenido de nuevo a nuestra colección de joyería exclusiva, donde cada pieza cuenta una historia de elegancia atemporal."
-        imageSrc="https://kzmgdmv1zd295sepvy2b.lite.vusercontent.net/placeholder.svg?height=1200&width=800&text=LUXE+Jewelry"
+        imageSrc="https://i.ibb.co/HDGGCYFS/zaria-auth-banner.png"
         className=""
       />
 

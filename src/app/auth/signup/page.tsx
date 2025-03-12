@@ -176,7 +176,7 @@ export default function SignUp() {
           onGoogleSignIn={handleGoogleSignIn}
         />
   
-        <Copyright className="mt-8 lg:mt-4 xl:mt-5 2xl:mt-8" />
+        <Copyright className="mt-8 lg:mt-4 xl:mt-5 2xl:mt-8" delay={0.5} />
       </div>
   
       {/* Right side - Image */}

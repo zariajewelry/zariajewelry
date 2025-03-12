@@ -6,9 +6,9 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   
   compress: true,
-  
+
   images: {
-    domains: ['i.pinimg.com'], 
+    domains: ['i.ibb.co'], 
   },
 
   async headers() {

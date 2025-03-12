@@ -80,7 +80,7 @@ export default function SignInForm({
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
+                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
               >
                 Email
               </label>
@@ -108,7 +108,7 @@ export default function SignInForm({
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
+                className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
               >
                 Contraseña
               </label>
@@ -180,7 +180,7 @@ export default function SignInForm({
         <AnimatedSection
           animation="fadeSlideUp"
           delay={0.3}
-          className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6"
+          className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6"
         >
           <Button
             type="submit"
@@ -195,7 +195,7 @@ export default function SignInForm({
       <AnimatedSection
         animation="fadeSlideUp"
         delay={0.4}
-        className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6"
+        className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6"
       >
         <div className="relative flex items-center justify-center">
           <div className="border-t border-gray-300 absolute w-full"></div>
