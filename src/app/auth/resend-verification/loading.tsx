@@ -1,5 +1,8 @@
+export default function Loading() {
+  return <ResendVerificationLoading />;
+}
 
-export default function ResendVerificationLoading() {
+function ResendVerificationLoading() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Top section for logo */}

@@ -37,7 +37,7 @@ export default function VerificationSuccessPage() {
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
       router.push('/auth/signin');
-    }, 15000); 
+    }, 8000); 
     
     return () => clearTimeout(redirectTimer);
   }, []);

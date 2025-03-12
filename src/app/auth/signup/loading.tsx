@@ -1,4 +1,8 @@
-export default function SignUpLoading() {
+export default function Loading() {
+  return <SignUpLoading />;
+}
+
+function SignUpLoading() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side - Form Skeleton */}

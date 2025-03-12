@@ -226,7 +226,7 @@ export default function ForgotPassword() {
       <div className="hidden md:block md:w-1/2 relative">
         <div className="absolute inset-0 bg-black/30 z-10" />
         <Image
-          src="/images/auth/forgot-password-banner.jpg"
+          src="https://i.ibb.co/6jFrYXn/zaria-auth-banner-forgot-password.png"
           alt="ZARIA Support"
           fill
           className="object-cover"

@@ -1,4 +1,8 @@
-export default function SignInLoading() {
+export default function Loading() {
+  return <SignInLoading />;
+}
+ 
+ function SignInLoading() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left side skeleton */}

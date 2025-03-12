@@ -149,7 +149,6 @@ export default function SignUp() {
           </h1>
         </div>
   
-        {/* El resto del componente SignUpForm se mantiene igual */}
         <SignUpForm
           formData={formData}
           errors={errors}
@@ -183,7 +182,7 @@ export default function SignUp() {
       <AuthHero
         title="Únete a ZARIA"
         subtitle="Crea tu cuenta para acceder a colecciones exclusivas, ofertas personalizadas y una experiencia de compra premium."
-        imageSrc="https://kzmgdmv1zd295sepvy2b.lite.vusercontent.net/placeholder.svg?height=1200&width=800&text=LUXE+Jewelry"
+        imageSrc="https://i.ibb.co/PsHq0grv/zaria-auth-banner-register-4.png"
         className="" 
       />
     </div>

@@ -129,7 +129,7 @@ export default function ResendVerificationPage() {
                 <div className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
                   <label
                     htmlFor="email"
-                    className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1"
+                    className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
                   >
                     Correo Electrónico
                   </label>

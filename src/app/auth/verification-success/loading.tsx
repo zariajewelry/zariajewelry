@@ -1,5 +1,8 @@
+export default function Loading() {
+  return <VerificationSuccessLoading />;
+}
 
-export default function VerificationSuccessLoading() {
+function VerificationSuccessLoading() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Top section for logo */}

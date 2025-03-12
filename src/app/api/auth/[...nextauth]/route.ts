@@ -110,7 +110,8 @@ export const authOptions: AuthOptions = {
             isVerified: true,
             emailVerified: new Date(),
             emailVerificationToken: null,
-            emailVerificationExpiry: null
+            emailVerificationExpiry: null,
+            isSubscribedToNewsletter: true
           }
         });
       }

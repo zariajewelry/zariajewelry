@@ -164,11 +164,11 @@ export default function ResetPassword() {
       setIsSubmitting(false);
     }
   };
+  
 
   if (errors.token) {
     return (
       <div className="min-h-screen flex flex-col md:flex-row">
-        {/* Contenedor centrado para error de token */}
         <div className="w-full h-screen md:h-auto md:w-1/2 flex items-center justify-center py-10 px-6 md:py-0 md:p-10 lg:p-12 xl:p-10 2xl:p-12 bg-white">
           <div className="w-full max-w-md">
             <AnimatedSection animation="fadeSlideUp" className="mb-2">
@@ -195,7 +195,7 @@ export default function ResetPassword() {
                 {errors.token}
               </p>
               <Link href="/auth/forgot-password">
-                <Button className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none transition-all duration-300">
+                <Button className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none cursor-pointer transition-all duration-300">
                   Solicitar nuevo enlace
                 </Button>
               </Link>
@@ -259,16 +259,15 @@ export default function ResetPassword() {
 
           {!isSubmitted ? (
             <form onSubmit={handleSubmit}>
-              {/* Campo de contraseña */}
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.1}
-                className="mb-5 md:mb-6 xl:mb-5 2xl:mb-6"
+                className="mb-5 md:mb-6 xl:mb-4 2xl:mb-6"
               >
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium mb-1"
+                    className="block text-sm font-medium mb-1 font-mono"
                   >
                     Nueva Contraseña
                   </label>
@@ -307,7 +306,6 @@ export default function ResetPassword() {
                     </motion.p>
                   )}
 
-                  {/* Indicador de fortaleza */}
                   {formState.password && (
                     <div className="mt-2 md:mt-3 xl:mt-2 2xl:mt-3">
                       <div className="flex justify-between items-center mb-1">
@@ -335,7 +333,6 @@ export default function ResetPassword() {
                         ></div>
                       </div>
 
-                      {/* Requisitos de contraseña */}
                       <div className="grid grid-cols-2 gap-x-2 gap-y-1 mt-2 md:mt-3 xl:mt-2 2xl:mt-3">
                         <div className="flex items-center text-xs">
                           <Check
@@ -418,8 +415,7 @@ export default function ResetPassword() {
                   )}
                 </div>
               </AnimatedSection>
-
-              {/* Campo de confirmación de contraseña */}
+              
               <AnimatedSection
                 animation="fadeSlideUp"
                 delay={0.2}
@@ -428,7 +424,7 @@ export default function ResetPassword() {
                 <div>
                   <label
                     htmlFor="confirmPassword"
-                    className="block text-sm font-medium mb-1"
+                    className="block text-sm font-medium mb-1 font-mono"
                   >
                     Confirmar Contraseña
                   </label>
@@ -479,7 +475,7 @@ export default function ResetPassword() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none transition-all duration-300"
+                  className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none cursor-pointer transition-all duration-300"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">

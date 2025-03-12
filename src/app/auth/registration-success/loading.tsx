@@ -1,5 +1,7 @@
-
-export default function RegistrationSuccessLoading() {
+export default function Loading() {
+  return <RegistrationSuccessLoading />
+}
+function RegistrationSuccessLoading() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Top section for logo */}
