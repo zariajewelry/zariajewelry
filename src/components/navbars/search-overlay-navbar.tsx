@@ -58,7 +58,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               stiffness: 300,
               opacity: { duration: 0.2 },
             }}
-            className="h-[260px] 2xl:h-[200px] fixed top-0 inset-x-0 bg-white shadow-lg z-50"
+            className="h-[260px] lg:h-[210px] 2xl:h-[200px] fixed top-0 inset-x-0 bg-white shadow-lg z-50"
           >
             {/* Elemento decorativo */}
             <div className="absolute left-0 top-0 w-full h-1 bg-gradient-to-r from-transparent via-zaria to-transparent opacity-70"></div>
@@ -77,7 +77,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 
             {/* Contenedor principal centrado verticalmente */}
             <div
-              className="container mx-auto px-4 py-5 mt-10 xl:mt-0 flex flex-col items-center justify-center"
+              className="container mx-auto px-4 py-5 mt-10 lg:mt-0 flex flex-col items-center justify-center"
               style={{ height: "200px" }}
             >
               {/* Título centrado */}

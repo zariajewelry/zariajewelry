@@ -11,13 +11,13 @@ export default function CartHeader({ onClose }: CartHeaderProps) {
     <div className="relative overflow-hidden bg-white border-b border-gray-100 flex-shrink-0">
       <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-zaria/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/3"></div>
 
-      <div className="px-8 py-3 md:py-4 lg:py-2 xl:py-5 relative bg-gray-50">
+      <div className="px-8 py-3 md:py-4 lg:py-2 2xl:py-5 relative bg-gray-50">
         <div className="flex items-center justify-between">
           {/* Logo y título */}
           <div className="flex items-center">
             <div className="relative mr-4">
               <ShoppingBag
-                className="h-4 w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 xl:h-5 xl:w-5 text-black"
+                className="h-4 w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:h-5 2xl:w-5 text-black"
                 strokeWidth={1.25}
               />
             </div>

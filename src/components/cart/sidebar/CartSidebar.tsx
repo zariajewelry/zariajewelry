@@ -13,6 +13,7 @@ import CartActions from "./ui/ActionButtons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { closeCart } from "@/store/slices/uiSlice";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 interface CartItem {
   id: number;
@@ -76,7 +77,7 @@ export default function CartSidebar() {
 
   const isEmpty = cartItems.length === 0;
 
-  
+  useScrollLock(isOpen);
 
 
   return (
@@ -107,7 +108,7 @@ export default function CartSidebar() {
               sm:w-[420px] 
               md:w-[450px]
               lg:w-[400px]
-              xl:w-[450px]
+              2xl:w-[450px]
               bg-white shadow-2xl z-[101] flex flex-col max-h-screen"
           >
             {/* Header */}
@@ -125,7 +126,7 @@ export default function CartSidebar() {
             {/* Gift Bag */}
             {!isEmpty && (
               <div className="border-t border-gray-100 flex-shrink-0">
-                <div className="px-6 sm:px-8 py-3 sm:py-5 lg:py-1.5 xl:py-5">
+                <div className="px-6 sm:px-8 py-3 sm:py-5 lg:py-1.5 2xl:py-5">
                   <GiftBagContainer />
                 </div>
               </div>
@@ -134,7 +135,7 @@ export default function CartSidebar() {
             {/* Order Summary */}
             {!isEmpty && (
               <div className="border-t border-gray-100 bg-gray-50 flex-shrink-0">
-                <div className="px-6 sm:px-8 py-1 sm:py-2 lg:py-1 xl:py-2 space-y-1 md:space-y-2 lg:space-y-1 xl:space-y-2">
+                <div className="px-6 sm:px-8 py-1 sm:py-2 lg:py-1 2xl:py-2 space-y-1 md:space-y-2 lg:space-y-1 2xl:space-y-2">
                   {/* Código Promocional */}
                   <PromoCodeContainer />
 
@@ -149,12 +150,12 @@ export default function CartSidebar() {
                 </div>
 
                 {/* Price Summary */}
-                <div className="border-t border-gray-100 px-4 sm:px-6 py-3 md:py-3 lg:py-1 xl:py-4">
+                <div className="border-t border-gray-100 px-4 sm:px-6 py-3 md:py-3 lg:py-1 2xl:py-4">
                   <OrderSummaryContainer />
                 </div>
 
                 {/* Action Buttons */}
-                <div className="border-t border-gray-100 px-4 sm:px-6 py-3 sm:py-4 lg:py-1.5 xl:py-4">
+                <div className="border-t border-gray-100 px-4 sm:px-6 py-3 sm:py-4 lg:py-1.5 2xl:py-4">
                   <CartActions onClose={handleClose} />
                 </div>
               </div>

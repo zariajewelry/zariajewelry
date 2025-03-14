@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef, RefObject } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Menu, Search, UserRound, X } from "lucide-react";
+import { Heart, Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import CartButton from "../buttons/cart-button";
@@ -18,7 +18,6 @@ import {
   FaShoppingCart,
   FaHeart,
 } from "react-icons/fa";
-
 
 const MAIN_NAVIGATION = [
   { href: "/products", label: "Colecciones" },
@@ -242,7 +241,7 @@ export default function FloatingNavbar() {
 
               <CartButton
                 className={cn(
-                  "flex items-center justify-center", 
+                  "flex items-center justify-center",
                   scrolled ? "text-gray-800" : "text-white"
                 )}
               />
@@ -252,6 +251,7 @@ export default function FloatingNavbar() {
       </motion.header>
 
       {/* Mobile Menu */}
+      {/* Mobile Menu - Versión Compacta */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -259,150 +259,286 @@ export default function FloatingNavbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Menú de navegación"
-            initial={{ opacity: 0, x: "-100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "-100%" }} //
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-50 flex flex-col bg-gradient-to-b from-white to-[#F8F9FC]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50"
           >
-            {/* Elementos decorativos (sin cambios) */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-zaria/5 -translate-y-1/2 translate-x-1/2" />
-              <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-zaria/5 translate-y-1/2 -translate-x-1/2" />
-              <div className="absolute top-1/3 left-0 w-1 h-16 bg-gradient-to-b from-transparent via-zaria/30 to-transparent" />
-              <div className="absolute top-2/3 right-0 w-1 h-16 bg-gradient-to-b from-transparent via-zaria/30 to-transparent" />
-            </div>
-
-            {/* Cabecera del menú móvil (sin cambios) */}
+            {/* Fondo premium con efecto de cristal */}
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="flex items-center justify-between p-5 border-b border-gray-100 relative bg-white/90 backdrop-blur-lg"
-            >
-              {/* Botón de cierre (sin cambios) */}
-              <button
-                onClick={toggleMobileMenu}
-                aria-label="Cerrar menú"
-                className="relative group p-2"
-              >
-                <span className="absolute inset-0 rounded-full bg-gray-100/0 group-hover:bg-gray-100/80 transition-all duration-300" />
-                <X className="h-5 w-5 text-gray-700 group-hover:text-zaria transition-colors duration-300" />
-              </button>
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/75 backdrop-blur-lg"
+              onClick={toggleMobileMenu}
+            />
 
-              {/* Logo centrado (sin cambios) */}
-              <div className="absolute left-1/2 transform -translate-x-1/2">
-                <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <div className="relative">
-                    <h1 className="font-serif text-2xl tracking-wider text-gray-800">
-                      ZARIA
-                    </h1>
-                    <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-px bg-gradient-to-r from-transparent via-zaria to-transparent" />
-                  </div>
-                </Link>
-              </div>
-
-              {/* Espacio para equilibrar el diseño (sin cambios) */}
-              <div className="w-5" />
-            </motion.div>
-
-            {/* Contenido del menú con MOBILE_NAVIGATION */}
-            <div className="flex-1 overflow-auto py-8 px-7">
-              <nav className="space-y-1 max-w-sm mx-auto">
-                {MOBILE_NAVIGATION.map((item, index) => {
-                  // Determinamos el icono según la etiqueta o href
-                  let icon;
-                  if (item.href === "/products")
-                    icon = <FaGem className="text-xl text-zaria" />;
-                  else if (item.href === "#new")
-                    icon = <FaStar className="text-xl text-zaria" />;
-                  else if (item.href === "#gifts")
-                    icon = <FaGift className="text-xl text-zaria" />;
-                  else if (item.href === "/account")
-                    icon = <FaUser className="text-lg" />;
-                  else if (item.href === "/cart")
-                    icon = <FaShoppingCart className="text-lg" />;
-                  else if (item.href === "#wishlist")
-                    icon = <FaHeart className="text-lg" />;
-                  else icon = <FaGem className="text-xl" />; 
-
-                 
-                  const isMainNav = index < 3;
-
-                  return (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.15 + index * 0.1 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`flex items-center py-${
-                          isMainNav ? "4" : "3"
-                        } px-3 text-${
-                          isMainNav
-                            ? "xl font-serif text-gray-800"
-                            : "base text-gray-600"
-                        } hover:text-zaria group relative`}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span className="absolute inset-0 rounded-lg bg-gray-50/0 group-hover:bg-gray-50/80 transition-all duration-300" />
-                        <span
-                          className={`w-8 flex justify-center relative z-10 mr-4 text-${
-                            isMainNav ? "zaria/70" : "gray-400"
-                          } group-hover:text-zaria`}
-                        >
-                          {icon}
-                        </span>
-                        <span className="relative z-10">{item.label}</span>
-                        {isMainNav && (
-                          <span className="ml-auto relative z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M6 12L10 8L6 4"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                        )}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-
-                {/* Separador (opcional - lo mantengo para respetar el diseño) */}
-                <motion.div
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={{ opacity: 1, scaleX: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-3"
-                />
-              </nav>
-            </div>
-
-            {/* Firma de marca (sin cambios) */}
+            {/* Panel principal - Más compacto */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="p-6 flex justify-center items-center"
+              exit={{ opacity: 0, y: 5 }}
+              transition={{
+                type: "spring",
+                damping: 30,
+                stiffness: 300,
+              }}
+              className="relative h-full w-full flex flex-col"
             >
-              <div className="relative">
-                <span className="inline-block w-3 h-3 rounded-full border border-zaria/30 absolute -left-6 top-1/2 -translate-y-1/2" />
-                <span className="text-xs uppercase tracking-widest text-gray-400">
-                  ZARIA
-                </span>
-                <span className="inline-block w-3 h-3 rounded-full border border-zaria/30 absolute -right-6 top-1/2 -translate-y-1/2" />
+              {/* Elementos decorativos refinados - Más sutiles */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 opacity-5">
+                  <div className="pattern-diamonds w-full h-full"></div>
+                </div>
+                <div className="absolute top-24 right-6 w-0.5 h-28 bg-gradient-to-b from-transparent via-zaria/20 to-transparent"></div>
+                <div className="absolute top-[15%] left-6 w-12 h-12 rounded-full opacity-5 border border-zaria"></div>
+                <div className="absolute bottom-[15%] right-6 w-14 h-14 rounded-full opacity-5 border border-zaria"></div>
+              </div>
+
+              {/* Botón de cierre - Posición ajustada */}
+              <button
+                onClick={toggleMobileMenu}
+                aria-label="Cerrar menú"
+                className="absolute right-4 top-4 z-20 group"
+              >
+                <div className="p-1.5 rounded-full bg-white shadow-sm group-hover:shadow-md transition-all duration-300">
+                  <X className="h-4 w-4 text-gray-700 group-hover:text-zaria transition-all duration-300" />
+                </div>
+              </button>
+
+              {/* Contenido principal - Con menos padding */}
+              <div className="flex-1 flex flex-col pt-10 pb-4 px-5 max-w-5xl mx-auto w-full justify-between h-full">
+                <div className="space-y-4">
+                  {/* Cabecera elegante - Más pequeña */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-center mb-8"
+                  >
+                    {/* Logo principal - Tamaño reducido */}
+                    <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+                      <motion.div
+                        initial={{ scale: 0.95 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 150,
+                          delay: 0.2,
+                        }}
+                        className="relative inline-block"
+                      >
+                        <h1 className="font-serif text-3xl tracking-wider text-gray-800">
+                          ZARIA
+                        </h1>
+                        <motion.span
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ delay: 0.3, duration: 0.7 }}
+                          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-px bg-gradient-to-r from-transparent via-zaria to-transparent"
+                        />
+                      </motion.div>
+                    </Link>
+                  </motion.div>
+
+                  {/* Sección principal - Más compacta */}
+                  <div className="mb-5">
+                    {/* Título de sección - Más pequeño */}
+                    <motion.h2
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-[10px] uppercase tracking-wider text-gray-400 mb-2.5 text-center"
+                    >
+                      Explorar
+                    </motion.h2>
+
+                    {/* Menú principal - Tarjetas más compactas */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="bg-white/60 backdrop-blur-sm rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+                    >
+                      {MOBILE_NAVIGATION.slice(0, 3).map((item, index) => {
+                        // Iconos principales
+                        let icon;
+                        if (item.href === "/products")
+                          icon = <FaGem className="text-base text-zaria" />;
+                        else if (item.href === "#new")
+                          icon = <FaStar className="text-base text-zaria" />;
+                        else if (item.href === "#gifts")
+                          icon = <FaGift className="text-base text-zaria" />;
+
+                        return (
+                          <motion.div
+                            key={item.label}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 + index * 0.1 }}
+                            className={cn(
+                              "relative",
+                              index !== 0 && "border-t border-gray-100"
+                            )}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-center py-3 px-5 relative"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {/* Efecto de hover */}
+                              <span className="absolute inset-0 opacity-0 bg-gradient-to-r from-white/70 via-white/80 to-white/70 group-hover:opacity-100 transition-opacity duration-300" />
+
+                              {/* Ícono */}
+                              <motion.span
+                                whileHover={{ rotate: 5, scale: 1.05 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-8 h-8 flex items-center justify-center relative z-10 mr-3"
+                              >
+                                {icon}
+                              </motion.span>
+
+                              {/* Texto */}
+                              <div className="relative z-10 flex-1">
+                                <p className="font-serif text-[16px] text-gray-800 group-hover:text-zaria transition-colors duration-300">
+                                  {item.label}
+                                </p>
+                              </div>
+
+                              {/* Flecha elegante */}
+                              <motion.span
+                                initial={{ opacity: 0.4 }}
+                                whileHover={{ opacity: 1 }}
+                                className="relative z-10 text-zaria ml-1"
+                              >
+                                <svg
+                                  width="14"
+                                  height="14"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M6.5 4L11 8L6.5 12"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </motion.span>
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                  </div>
+
+                  {/* Separador decorativo - Más pequeño */}
+                  <motion.div
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    transition={{ delay: 0.5, duration: 0.7 }}
+                    className="relative h-px w-full my-4 max-w-xs mx-auto"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                      <div className="w-1 h-1 rounded-full border border-zaria/30 bg-white"></div>
+                    </div>
+                  </motion.div>
+
+                  {/* Links secundarios - Compactados */}
+                  <div className="mt-4">
+                    {/* Título de sección */}
+                    <motion.h2
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                      className="text-[10px] uppercase tracking-wider text-gray-400 mb-2.5 text-center"
+                    >
+                      Mi Cuenta
+                    </motion.h2>
+
+                    {/* Grid de 2 columnas - Tarjetas más pequeñas */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {/* Elemento Mi Cuenta */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.6 }}
+                      >
+                        <Link
+                          href="/account"
+                          className="flex flex-col items-center justify-center h-full group py-3 px-3 relative bg-white/60 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span className="w-8 h-8 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 text-gray-500 group-hover:text-zaria transition-colors duration-300">
+                            <UserRound className="h-5 w-5" />
+                          </span>
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+                            Mi Cuenta
+                          </span>
+                        </Link>
+                      </motion.div>
+
+                      {/* Elemento Carrito */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.65 }}
+                      >
+                        <Link
+                          href="/cart"
+                          className="flex flex-col items-center justify-center h-full group py-3 px-3 relative bg-white/60 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span className="w-8 h-8 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 text-gray-500 group-hover:text-zaria transition-colors duration-300">
+                            <ShoppingBag className="h-5 w-5" />
+                          </span>
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+                            Carrito
+                          </span>
+                        </Link>
+                      </motion.div>
+
+                      {/* Elemento Lista de Deseos */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.7 }}
+                        className="col-span-2" // Ocupa ambas columnas
+                      >
+                        <Link
+                          href="#wishlist"
+                          className="flex flex-col items-center justify-center group py-3 px-3 relative bg-white/60 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span className="w-8 h-8 flex items-center justify-center mb-2 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 text-gray-500 group-hover:text-zaria transition-colors duration-300">
+                            <Heart className="h-5 w-5" />
+                          </span>
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+                            Lista de Deseos
+                          </span>
+                        </Link>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer elegante - Más compacto */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="pt-4"
+                >
+                  <div className="flex items-center justify-center border-t border-gray-100 pt-3">
+                    <div className="text-[10px] text-gray-400 tracking-wide font-light">
+                      © ZARIA 2025
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>

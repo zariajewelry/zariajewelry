@@ -16,7 +16,7 @@ const initialState: GiftBagState = {
       price: 0,
       selected: false,
       image:
-        "https://ar.isadoraonline.com/media/catalog/product/4/5/45389802_0_1_20230303210200.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=985&width=770&canvas=770:985",
+        "https://www.ginifab.com/custom_boxes/img/paper_bracelet_box_1.jpg",
     },
     {
       id: 2,
