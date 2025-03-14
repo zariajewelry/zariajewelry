@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   
   const isAuthRoute = pathname.startsWith('/auth/');
   
-  // Bypass para la ruta de prueba
+  
   if (pathname === '/test') {
     return NextResponse.next();
   }

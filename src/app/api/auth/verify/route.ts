@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import logger from "@/utils/logger";
-import config from "@/config";
+import config from "@/config/env";
 
 export async function GET(request: NextRequest) {
   try {

@@ -2,11 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import AnimatedSection from "@/components/customs/animated/Animated-section";
 import SocialAuthButton from "./SocialAuthButton";
+import { LoadingButton } from "../customs/Loading-button";
 
 export interface FormData {
   firstName: string;
@@ -72,14 +72,20 @@ export default function SignUpForm({
         animation="fadeSlideUp"
         className="mb-8 lg:mb-4 xl:mb-6 2xl:mb-8 text-center md:text-left"
       >
-        <h2 className="font-mono text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl mb-2 lg:mb-1">Crear Cuenta</h2>
-        <p className="text-gray-600 font-light text-sm lg:text-sm xl:text-xs 2xl:text-sm" >
+        <h2 className="font-mono text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl mb-2 lg:mb-1">
+          Crear Cuenta
+        </h2>
+        <p className="text-gray-600 font-light text-sm lg:text-sm xl:text-xs 2xl:text-sm">
           Únete a ZARIA para disfrutar de una experiencia de compra exclusiva
         </p>
       </AnimatedSection>
 
       <form onSubmit={onSubmit}>
-        <AnimatedSection animation="fadeSlideUp" delay={0.1} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+        <AnimatedSection
+          animation="fadeSlideUp"
+          delay={0.1}
+          className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6"
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-2 xl:gap-3 2xl:gap-4">
             <div>
               <label
@@ -95,7 +101,7 @@ export default function SignUpForm({
                 value={formData.firstName}
                 onChange={onChange}
                 placeholder="Teresa"
-                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 ${
                   errors.firstName ? "border-red-500" : ""
                 }`}
               />
@@ -124,7 +130,7 @@ export default function SignUpForm({
                 value={formData.lastName}
                 onChange={onChange}
                 placeholder="Barberena"
-                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 ${
                   errors.lastName ? "border-red-500" : ""
                 }`}
               />
@@ -141,9 +147,16 @@ export default function SignUpForm({
           </div>
         </AnimatedSection>
 
-        <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+        <AnimatedSection
+          animation="fadeSlideUp"
+          delay={0.2}
+          className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6"
+        >
           <div>
-            <label htmlFor="email" className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono">
+            <label
+              htmlFor="email"
+              className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
+            >
               Email
             </label>
             <Input
@@ -153,7 +166,7 @@ export default function SignUpForm({
               value={formData.email}
               onChange={onChange}
               placeholder="example@email.com"
-              className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+              className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 ${
                 errors.email ? "border-red-500" : ""
               }`}
             />
@@ -169,9 +182,16 @@ export default function SignUpForm({
           </div>
         </AnimatedSection>
 
-        <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+        <AnimatedSection
+          animation="fadeSlideUp"
+          delay={0.3}
+          className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6"
+        >
           <div>
-            <label htmlFor="password" className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono">
+            <label
+              htmlFor="password"
+              className="block text-sm lg:text-xs xl:text-xs 2xl:text-sm font-medium mb-1 font-mono"
+            >
               Contraseña
             </label>
             <div className="relative">
@@ -182,7 +202,7 @@ export default function SignUpForm({
                 value={formData.password}
                 onChange={onChange}
                 placeholder="••••••••"
-                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 ${
                   errors.password ? "border-red-500" : ""
                 }`}
               />
@@ -191,7 +211,17 @@ export default function SignUpForm({
                 onClick={onTogglePassword}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
               >
-                {showPassword ? <EyeOff size={18} className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]" /> : <Eye size={18} className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]" />}
+                {showPassword ? (
+                  <EyeOff
+                    size={18}
+                    className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]"
+                  />
+                ) : (
+                  <Eye
+                    size={18}
+                    className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]"
+                  />
+                )}
               </button>
             </div>
             {errors.password && (
@@ -223,7 +253,11 @@ export default function SignUpForm({
           </div>
         </AnimatedSection>
 
-        <AnimatedSection animation="fadeSlideUp" delay={0.4} className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+        <AnimatedSection
+          animation="fadeSlideUp"
+          delay={0.4}
+          className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6"
+        >
           <div>
             <label
               htmlFor="confirmPassword"
@@ -239,7 +273,7 @@ export default function SignUpForm({
                 value={formData.confirmPassword}
                 onChange={onChange}
                 placeholder="••••••••"
-                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+                className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 ${
                   errors.confirmPassword ? "border-red-500" : ""
                 }`}
               />
@@ -248,7 +282,17 @@ export default function SignUpForm({
                 onClick={onToggleConfirmPassword}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
               >
-                {showConfirmPassword ? <EyeOff size={18} className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]" /> : <Eye size={18} className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]" />}
+                {showConfirmPassword ? (
+                  <EyeOff
+                    size={18}
+                    className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]"
+                  />
+                ) : (
+                  <Eye
+                    size={18}
+                    className="lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-[18px] 2xl:h-[18px]"
+                  />
+                )}
               </button>
             </div>
             {errors.confirmPassword && (
@@ -274,7 +318,7 @@ export default function SignUpForm({
                 id="terms"
                 checked={acceptTerms}
                 onCheckedChange={(checked) => onTermsChange(checked as boolean)}
-                className="h-4 w-4 lg:h-3 lg:w-3 xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 border-gray-300 rounded text-[#81D8D0] focus:ring-[#81D8D0]"
+                className="h-4 w-4 lg:h-3 lg:w-3 xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 border-gray-300 rounded text-zaria focus:ring-zaria"
               />
             </div>
             <div className="ml-3 text-sm lg:text-xs xl:text-xs 2xl:text-sm">
@@ -282,14 +326,14 @@ export default function SignUpForm({
                 Acepto los{" "}
                 <Link
                   href="/terms"
-                  className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                  className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
                 >
                   Términos y Condiciones
                 </Link>{" "}
                 y la{" "}
                 <Link
                   href="/privacy"
-                  className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                  className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
                 >
                   Política de Privacidad
                 </Link>
@@ -311,8 +355,10 @@ export default function SignUpForm({
               <Checkbox
                 id="newsletter"
                 checked={acceptNewsletter}
-                onCheckedChange={(checked) => onNewsletterChange(checked as boolean)}
-                className="h-4 w-4 lg:h-3 lg:w-3 xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 border-gray-300 rounded text-[#81D8D0] focus:ring-[#81D8D0]"
+                onCheckedChange={(checked) =>
+                  onNewsletterChange(checked as boolean)
+                }
+                className="h-4 w-4 lg:h-3 lg:w-3 xl:h-3 xl:w-3 2xl:h-4 2xl:w-4 border-gray-300 rounded text-zaria focus:ring-zaria"
               />
             </div>
             <div className="ml-3 text-sm lg:text-xs xl:text-xs 2xl:text-sm">
@@ -324,18 +370,27 @@ export default function SignUpForm({
           </div>
         </AnimatedSection>
 
-        <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6">
-          <Button
+        <AnimatedSection
+          animation="fadeSlideUp"
+          delay={0.3}
+          className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6"
+        >
+          <LoadingButton
             type="submit"
-            disabled={isSubmitting}
-            className={`w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300 ${isSubmitting ? "opacity-50" : ""}`}
+            isLoading={isSubmitting}
+            spinnerSize='lg'
+            className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white cursor-pointer rounded-none transition-all duration-300"
           >
-            {isSubmitting ? "Creando cuenta..." : "Crear Cuenta"}
-          </Button>
+            Crear Cuenta
+          </LoadingButton>
         </AnimatedSection>
       </form>
 
-      <AnimatedSection animation="fadeSlideUp" delay={0.4} className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6">
+      <AnimatedSection
+        animation="fadeSlideUp"
+        delay={0.4}
+        className="mb-4 lg:mb-3 xl:mb-4 2xl:mb-6"
+      >
         <div className="relative flex items-center justify-center">
           <div className="border-t border-gray-300 absolute w-full"></div>
           <div className="bg-white px-4 relative z-10 text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-500">
@@ -367,7 +422,7 @@ export default function SignUpForm({
           ¿Ya tienes una cuenta?{" "}
           <Link
             href="/auth/signin"
-            className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+            className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
           >
             Inicia sesión
           </Link>

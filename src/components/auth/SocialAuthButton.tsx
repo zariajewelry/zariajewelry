@@ -75,7 +75,7 @@ export default function SocialAuthButton({
   return (
     <Button
       variant="outline"
-      className={`h-12 rounded-none border-gray-300 hover:border-[#81D8D0] hover:bg-[#81D8D0]/10 transition-all cursor-pointer ${className}`}
+      className={`h-12 rounded-none border-gray-300 hover:border-zaria hover:bg-zaria/10 transition-all cursor-pointer ${className}`}
       onClick={onClick}
       disabled={disabled}
     >

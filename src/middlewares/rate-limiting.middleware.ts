@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Redis } from '@upstash/redis';
-import * as configEnv from '@/config';
+import * as configEnv from '@/config/env';
 
 type RateLimitConfig = {
   limit: number;

@@ -119,9 +119,9 @@ export default function RegistrationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" className="mb-8 lg:mb-5 xl:mb-6 2xl:mb-8 text-center">
             <div className="flex mb-6 lg:mb-4 xl:mb-5 2xl:mb-6 justify-center">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#81D8D0]/20 animate-pulse" />
+                <div className="absolute inset-0 rounded-full bg-zaria/20 animate-pulse" />
                 <Check
-                  className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md"
+                  className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-zaria drop-shadow-md"
                   strokeWidth={1.5}
                 />
               </div>
@@ -140,7 +140,7 @@ export default function RegistrationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" delay={0.1} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
             <div className="bg-gray-50 p-4 lg:p-3 xl:p-3.5 2xl:p-4 rounded-lg border border-gray-100">
               <div className="flex items-start">
-                <Mail className="w-5 h-5 lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 text-[#81D8D0] mt-0.5 mr-3 flex-shrink-0" />
+                <Mail className="w-5 h-5 lg:w-4 lg:h-4 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 text-zaria mt-0.5 mr-3 flex-shrink-0" />
                 <div className="text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">
                   <p className="mb-2 lg:mb-1 xl:mb-1.5 2xl:mb-2">
                     <span className="font-medium text-gray-800">
@@ -157,7 +157,7 @@ export default function RegistrationSuccessPage() {
           {showSuccessMessage && (
             <AnimatedSection animation="fadeSlideUp" className="mb-4 lg:mb-3 xl:mb-3.5 2xl:mb-4">
               <div className="bg-green-50 border border-green-100 p-4 lg:p-3 xl:p-3.5 2xl:p-4 rounded-md flex items-center text-green-800">
-                <Check className="h-5 w-5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 2xl:h-5 2xl:w-5 text-[#81D8D0] mr-3 flex-shrink-0" />
+                <Check className="h-5 w-5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 2xl:h-5 2xl:w-5 text-zaria mr-3 flex-shrink-0" />
                 <p className="text-sm lg:text-xs xl:text-xs 2xl:text-sm">
                   Email reenviado correctamente. Por favor revisa tu bandeja de
                   entrada.
@@ -178,7 +178,7 @@ export default function RegistrationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
             <Button
               variant="outline"
-              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 relative overflow-hidden group border-[#81D8D0] text-[#81D8D0] hover:text-white hover:bg-[#81D8D0] rounded-none cursor-pointer transition-all duration-300"
+              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 relative overflow-hidden group border-zaria text-zaria hover:text-white hover:bg-zaria rounded-none cursor-pointer transition-all duration-300"
               onClick={handleResendEmail}
               disabled={isCountingDown || isResending}
             >
@@ -200,7 +200,7 @@ export default function RegistrationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" delay={0.3} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
             <Button
               asChild
-              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white cursor-pointer rounded-none transition-all duration-300"
             >
               <Link href="/">
                 <span className="flex items-center justify-center">
@@ -220,7 +220,7 @@ export default function RegistrationSuccessPage() {
               ¿Necesitas ayuda?{" "}
               <Link
                 href="/contact"
-                className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
               >
                 Contáctanos
               </Link>

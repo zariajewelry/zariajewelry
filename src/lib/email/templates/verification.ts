@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { EmailTemplate } from '../types';
-import config from '@/config';
+import config from '@/config/env';
 
 interface VerificationTemplateData {
   name: string;

@@ -103,9 +103,9 @@ export default function ResendVerificationPage() {
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-white animate-pulse" />
                 {isSuccess ? (
-                  <Check className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md" />
+                  <Check className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-zaria drop-shadow-md" />
                 ) : (
-                  <Mail className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md" />
+                  <Mail className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-zaria drop-shadow-md" />
                 )}
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function ResendVerificationPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ejemplo@correo.com"
-                    className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 ${
+                    className={`h-12 lg:h-9 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 ${
                       error ? "border-red-500" : ""
                     }`}
                   />
@@ -183,7 +183,7 @@ export default function ResendVerificationPage() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300 ${
+                  className={`w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white cursor-pointer rounded-none transition-all duration-300 ${
                     isLoading ? "opacity-50" : ""
                   }`}
                 >
@@ -229,7 +229,7 @@ export default function ResendVerificationPage() {
               >
                 <Button
                   asChild
-                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/auth/signin">Iniciar Sesión</Link>
                 </Button>
@@ -243,7 +243,7 @@ export default function ResendVerificationPage() {
                 <Button
                   asChild
                   variant="outline"
-                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 border-gray-300 hover:border-[#81D8D0] hover:bg-[#81D8D0]/10  text-black cursor-pointer rounded-none transition-all duration-300"
+                  className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 border-gray-300 hover:border-zaria hover:bg-zaria/10  text-black cursor-pointer rounded-none transition-all duration-300"
                 >
                   <Link href="/">Volver al Inicio</Link>
                 </Button>
@@ -260,7 +260,7 @@ export default function ResendVerificationPage() {
               ¿Necesita ayuda?{" "}
               <Link
                 href="/contact"
-                className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
               >
                 Contáctenos
               </Link>

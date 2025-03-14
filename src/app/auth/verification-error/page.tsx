@@ -89,7 +89,7 @@ export default function VerificationErrorPage() {
             <Button
               onClick={handleResendVerification}
               disabled={isLoading}
-              className={`w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300 ${
+              className={`w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white cursor-pointer rounded-none transition-all duration-300 ${
                 isLoading ? "opacity-50" : ""
               }`}
             >
@@ -126,7 +126,7 @@ export default function VerificationErrorPage() {
               ¿Necesita ayuda?{" "}
               <Link
                 href="/contact"
-                className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
               >
                 Contáctenos
               </Link>

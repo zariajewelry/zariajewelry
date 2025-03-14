@@ -6,4 +6,10 @@
     exclude: ;
     prefix: ;
     logs: true;
-  }
+}
+
+
+@theme {
+  --color-zaria: #81D8D0;
+  --color-deathzone: #0009
+}

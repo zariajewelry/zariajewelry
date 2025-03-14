@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import { EmailOptions, EmailTransporter } from "../types";
-import config from "@/config";
+import config from "@/config/env";
 import logger from "@/utils/logger";
 
 export class NodemailerTransporter implements EmailTransporter {

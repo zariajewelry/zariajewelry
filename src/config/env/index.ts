@@ -1,5 +1,6 @@
 import envVarsSchema from "./validation";
 
+
 const { value: envVars, error } = envVarsSchema
   .prefs({ errors: { label: "key" } })
   .validate(process.env);

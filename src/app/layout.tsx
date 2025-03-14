@@ -1,8 +1,10 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
+import ReduxProvider from "@/components/providers/redux-provider";
+import CartSidebar from "@/components/cart/sidebar/CartSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +31,10 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AuthProvider>
           <Toaster />
-          {children}
+          <ReduxProvider>
+            {children}
+            <CartSidebar />
+            </ReduxProvider>
         </AuthProvider>
       </body>
     </html>

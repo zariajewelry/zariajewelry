@@ -57,8 +57,8 @@ export default function VerificationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" className="mb-8 lg:mb-6 xl:mb-7 2xl:mb-8 text-center">
             <div className="flex mb-6 lg:mb-4 xl:mb-5 2xl:mb-6 justify-center">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#81D8D0]/20 animate-pulse" />
-                <Check className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-[#81D8D0] drop-shadow-md" />
+                <div className="absolute inset-0 rounded-full bg-zaria/20 animate-pulse" />
+                <Check className="h-16 w-16 lg:h-14 lg:w-14 xl:h-14 xl:w-14 2xl:h-16 2xl:w-16 text-zaria drop-shadow-md" />
               </div>
             </div>
             <h2 className="font-mono text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl mb-2 lg:mb-1.5 xl:mb-2 2xl:mb-2">Email Verificado</h2>
@@ -72,7 +72,7 @@ export default function VerificationSuccessPage() {
           <AnimatedSection animation="fadeSlideUp" delay={0.2} className="mb-6 lg:mb-4 xl:mb-5 2xl:mb-6">
             <Button
               asChild
-              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white cursor-pointer rounded-none transition-all duration-300"
+              className="w-full h-12 lg:h-10 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white cursor-pointer rounded-none transition-all duration-300"
             >
               <Link href="/auth/signin">Iniciar Sesión</Link>
             </Button>
@@ -93,7 +93,7 @@ export default function VerificationSuccessPage() {
               ¿Necesita ayuda?{" "}
               <Link
                 href="/contact"
-                className="font-medium text-[#81D8D0] hover:text-[#5fb5ae] transition-colors"
+                className="font-medium text-zaria hover:text-[#5fb5ae] transition-colors"
               >
                 Contáctenos
               </Link>

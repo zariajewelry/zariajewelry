@@ -174,7 +174,7 @@ export default function ResetPassword() {
             <AnimatedSection animation="fadeSlideUp" className="mb-2">
               <Link
                 href="/auth/signin"
-                className="inline-flex items-center text-sm text-gray-600 hover:text-[#81D8D0] mb-6 md:mb-7 xl:mb-6 2xl:mb-8 transition-colors"
+                className="inline-flex items-center text-sm text-gray-600 hover:text-zaria mb-6 md:mb-7 xl:mb-6 2xl:mb-8 transition-colors"
               >
                 <ArrowLeft size={16} className="mr-2" />
                 Volver a inicio de sesión
@@ -195,7 +195,7 @@ export default function ResetPassword() {
                 {errors.token}
               </p>
               <Link href="/auth/forgot-password">
-                <Button className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none cursor-pointer transition-all duration-300">
+                <Button className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white rounded-none cursor-pointer transition-all duration-300">
                   Solicitar nuevo enlace
                 </Button>
               </Link>
@@ -237,7 +237,7 @@ export default function ResetPassword() {
           <AnimatedSection animation="fadeSlideUp" className="mb-2">
             <Link
               href="/auth/signin"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-[#81D8D0] mb-6 md:mb-7 xl:mb-6 2xl:mb-8 transition-colors"
+              className="inline-flex items-center text-sm text-gray-600 hover:text-zaria mb-6 md:mb-7 xl:mb-6 2xl:mb-8 transition-colors"
             >
               <ArrowLeft size={16} className="mr-2" />
               Volver a inicio de sesión
@@ -279,7 +279,7 @@ export default function ResetPassword() {
                       value={formState.password}
                       onChange={handleInputChange}
                       placeholder="Introduce tu nueva contraseña"
-                      className={`h-11 md:h-12 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 pr-10 ${
+                      className={`h-11 md:h-12 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 pr-10 ${
                         errors.password ? "border-red-500" : ""
                       }`}
                     />
@@ -436,7 +436,7 @@ export default function ResetPassword() {
                       value={formState.confirmPassword}
                       onChange={handleInputChange}
                       placeholder="Confirma tu nueva contraseña"
-                      className={`h-11 md:h-12 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-[#81D8D0] focus:ring focus:ring-[#81D8D0] focus:ring-opacity-50 pr-10 ${
+                      className={`h-11 md:h-12 xl:h-10 2xl:h-12 rounded-none border-gray-300 focus:border-zaria focus:ring focus:ring-zaria focus:ring-opacity-50 pr-10 ${
                         errors.confirmPassword ? "border-red-500" : ""
                       }`}
                     />
@@ -475,7 +475,7 @@ export default function ResetPassword() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none cursor-pointer transition-all duration-300"
+                  className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white rounded-none cursor-pointer transition-all duration-300"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
@@ -510,11 +510,11 @@ export default function ResetPassword() {
           ) : (
             <AnimatedSection
               animation="fadeIn"
-              className="text-center p-5 md:p-7 xl:p-6 2xl:p-8 border border-[#81D8D0]/20 bg-[#81D8D0]/5"
+              className="text-center p-5 md:p-7 xl:p-6 2xl:p-8 border border-zaria/20 bg-zaria/5"
             >
-              <div className="w-14 h-14 md:w-16 md:h-16 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 bg-[#81D8D0]/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <div className="w-14 h-14 md:w-16 md:h-16 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 bg-zaria/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                 <svg
-                  className="w-7 h-7 md:w-8 md:h-8 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 text-[#81D8D0]"
+                  className="w-7 h-7 md:w-8 md:h-8 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 text-zaria"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -536,7 +536,7 @@ export default function ResetPassword() {
                 sesión con tu nueva contraseña.
               </p>
               <Link href="/auth/signin">
-                <Button className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-[#81D8D0] text-white rounded-none transition-all duration-300">
+                <Button className="w-full h-11 md:h-12 xl:h-10 2xl:h-12 bg-black hover:bg-zaria text-white rounded-none transition-all duration-300">
                   Iniciar Sesión
                 </Button>
               </Link>
