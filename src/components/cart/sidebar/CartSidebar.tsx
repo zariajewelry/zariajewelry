@@ -125,7 +125,7 @@ export default function CartSidebar() {
 
             {/* Gift Bag */}
             {!isEmpty && (
-              <div className="border-t border-gray-100 flex-shrink-0">
+              <div className="border-t border-gray-100 flex-shrink-0 bg-gradient-to-b from-white/90 to-white/75">
                 <div className="px-6 sm:px-8 py-3 sm:py-5 lg:py-1.5 2xl:py-5">
                   <GiftBagContainer />
                 </div>

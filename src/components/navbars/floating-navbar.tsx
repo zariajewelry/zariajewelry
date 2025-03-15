@@ -14,9 +14,6 @@ import {
   FaGem,
   FaStar,
   FaGift,
-  FaUser,
-  FaShoppingCart,
-  FaHeart,
 } from "react-icons/fa";
 
 const MAIN_NAVIGATION = [
@@ -97,7 +94,7 @@ export default function FloatingNavbar() {
 
   const getNavLinkStyles = (isScrolled: boolean) =>
     cn(
-      "text-sm font-light transition-colors",
+      "text-[16px] font-light transition-colors",
       isScrolled
         ? "text-gray-800 hover:text-zaria"
         : "text-white hover:text-white/80"
@@ -128,10 +125,10 @@ export default function FloatingNavbar() {
         }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled ? "py-3" : "py-5"
+          scrolled ? "py-4" : "py-5"
         )}
       >
-        <div className="container mx-auto px-4  2xl:max-w-7xl">
+        <div className="container mx-auto px-4 2xl:max-w-7xl">
           <div className="flex items-center justify-between">
             {/* Lado izquierdo - Menú en móvil, links en desktop */}
             <div className="flex items-center">

@@ -31,21 +31,21 @@ export default function PromoCodeSection({
         aria-controls="promo-code-input"
       >
         <div className="flex items-center">
-          <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4 mr-1.5 sm:mr-2 text-gray-400">
-            <Percent className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4" />
+          <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-3 lg:h-4 2xl:w-4 2xl:h-4 mr-1.5 sm:mr-2 text-gray-400">
+            <Percent className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-4 lg:h-4 2xl:w-4 2xl:h-4" />
           </div>
           <div>
             <div className="flex items-center">
-              <span className="font-serif text-xs sm:text-xs lg:text-[9px] 2xl:text-xs tracking-wide">
+              <span className="font-serif text-xs sm:text-xs lg:text-[11px] 2xl:text-xs tracking-wide">
                 Código Promocional
               </span>
               {applied && (
-                <span className="ml-1.5 text-[9px] sm:text-[9px] lg:text-[7px] 2xl:text-[9px] text-zaria">
+                <span className="ml-1.5 text-[9px] sm:text-[9px] lg:text-[8.5px] 2xl:text-[9px] text-zaria">
                   • Aplicado
                 </span>
               )}
             </div>
-            <p className="text-[9px] sm:text-[9px] lg:text-[7px] 2xl:text-[9px] text-gray-400 leading-tight">
+            <p className="text-[9px] sm:text-[9px] lg:text-[8.5px] 2xl:text-[9px] text-gray-400 leading-tight">
               Añade un código para descuentos
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function PromoCodeSection({
             placeholder="Introduce tu código de promoción"
             disabled={applied}
             className={cn(
-              "text-[10px] lg:text-[9px] 2xl:text-xs h-8 sm:h-7 lg:h-8 2xl:h-8 mr-2 rounded-l border-gray-200 focus-visible:ring-zaria focus-visible:border-zaria",
+              "text-[10px] lg:text-[11px] 2xl:text-xs h-8 sm:h-7 lg:h-7.5 2xl:h-8 mr-2 rounded-l border-gray-200 focus-visible:ring-zaria focus-visible:border-zaria",
               applied && "bg-gray-50 text-gray-500"
             )}
           />
@@ -88,7 +88,7 @@ export default function PromoCodeSection({
             onClick={onApplyPromo}
             disabled={applied || !code}
             variant="outline"
-            className="h-8 sm:h-7 lg:h-8 2xl:h-8 rounded-l-none border-gray-200 hover:bg-zaria/10 hover:border-zaria hover:text-zaria transition-all duration-200 text-[10px] lg:text-[9px] 2xl:text-xs px-2 sm:px-3 lg:px-1 2xl:px-3 cursor-pointer"
+            className="h-8 sm:h-7 lg:h-7.5 2xl:h-8 rounded-l-none border-gray-200 hover:bg-zaria/10 hover:border-zaria hover:text-zaria transition-all duration-200 text-[10px] lg:text-[10px] 2xl:text-xs px-2 sm:px-3 lg:px-2 2xl:px-3 cursor-pointer"
           >
             Aplicar
           </Button>

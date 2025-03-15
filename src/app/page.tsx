@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input"
 
 
 import AnimatedSection from "@/components/customs/animated/Animated-section"
-import FloatingNavbar from "@/components/navbars/floating-navbar"
 import PromoCountdown from "@/components/promotions/promo-countdown"
 import FeaturedProducts from "@/components/products/featured-products"
 import Newsletter from "@/components/newsletters/newsletter"
@@ -79,7 +78,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Floating Navbar */}
-      <FloatingNavbar />
+      
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-[100vh] overflow-hidden">
