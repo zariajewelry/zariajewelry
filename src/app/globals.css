@@ -12,7 +12,9 @@
 @theme {
   --color-zaria: #81D8D0;
   --color-deathzone: #0009;
-
   
   --breakpoint-lg: 68rem;
+
+
+  --font-lato: var(--font-lato)
 }

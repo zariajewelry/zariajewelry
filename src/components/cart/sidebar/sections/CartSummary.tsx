@@ -19,7 +19,7 @@ export default function CartSidebarOrderSummary({
 }: OrderSummaryProps) {
   return (
     <>
-      <div className="space-y-1 md:space-y-1.5 lg:space-y-0.5 2xl:space-y-2 text-xs sm:text-sm lg:text-[11px] 2xl:text-sm">
+      <div className="space-y-1 md:space-y-1.5 lg:space-y-0.5 2xl:space-y-2 text-xs sm:text-sm lg:text-[12px] 2xl:text-sm">
         <div className="flex justify-between">
           <span className="text-gray-600">Subtotal</span>
           <span>{formatPrice(subtotal)}</span>
@@ -47,7 +47,7 @@ export default function CartSidebarOrderSummary({
       </div>
       <div className="flex justify-between font-medium mb-0 pt-3 border-t border-gray-200 mt-2">
         <span>Total</span>
-        <span className="text-base sm:text-lg lg:text-sm 2xl:text-lg">
+        <span className="text-base sm:text-lg lg:text-[16px] 2xl:text-lg">
           {formatPrice(total)}
         </span>
       </div>

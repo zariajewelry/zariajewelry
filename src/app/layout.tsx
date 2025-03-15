@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Lato } from "next/font/google";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
 import ReduxProvider from "@/components/providers/redux-provider";
@@ -16,6 +16,13 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const lato = Lato({
+  variable: "--font-lato",
+  weight: ["100", "300", "400", "700", "900"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -36,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-background antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lato.variable} bg-background antialiased`}
       >
         <ReduxProvider>
           <AuthProvider>

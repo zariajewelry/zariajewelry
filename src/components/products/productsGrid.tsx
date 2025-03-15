@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Heart, ShoppingBag, Star } from "lucide-react";
-
+import {  Heart, ShoppingBag } from "lucide-react";
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../customs/animated/Animated-section";
@@ -244,7 +244,7 @@ export default function ProductGrid({
         productos
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-8 mb-12">
         {paginatedProducts.map((product, index) => (
           <AnimatedSection
             key={product.id}
@@ -257,7 +257,7 @@ export default function ProductGrid({
               className="bg-white  overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-500 cursor-pointer relative isolate"
               onClick={() => (window.location.href = `/products/${product.id}`)}
             >
-              <div className="relative aspect-square overflow-hidden">
+              <div className="relative aspect-[3/4] overflow-hidden">
                 {/* Link principal que contiene las imágenes */}
                 <Link
                   href={`/products/${product.id}`}
@@ -299,53 +299,21 @@ export default function ProductGrid({
                   )}
                 </div>
 
-                {/* Panel de acciones rápidas - Estilo arquitectónico */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md py-3 px-4 
-    flex justify-between items-center opacity-0 translate-y-2 
-    group-hover:opacity-100 group-hover:translate-y-0 
-    transition-all duration-300 ease-out z-40"
-                >
-                  <Button
-                    size="sm"
-                    className="bg-black text-white text-xs rounded px-4 
-      hover:bg-black/90 hover:scale-[1.02] active:scale-[0.98] 
-      transition-all duration-200 cursor-pointer"
-                  >
-                    <ShoppingBag className="h-3 w-3 mr-1.5" strokeWidth={2.5} />
-                    Añadir
-                  </Button>
-                  <div className="flex gap-1.5">
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="text-gray-700 hover:text-zaria hover:bg-transparent p-1.5 h-8 w-8 
-        rounded transition-colors duration-200 cursor-pointer"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // Aquí va la lógica para añadir a favoritos
-                        console.log("Añadir a favoritos:", product.id);
-                      }}
-                    >
-                      <Heart
-                        className="h-5 w-5 stroke-red-500"
-                        strokeWidth={2}
-                      />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button className="bg-white text-black hover:bg-zaria hover:text-white rounded-none shadow-md mx-1 cursor-pointer">
+                      <ShoppingBag className="h-4 w-4 mr-2" />
+                      Añadir
                     </Button>
-                    <div className="flex items-center justify-center">
-                      <button
-                        className="text-gray-700 hover:text-[#81D8D0] transition-colors duration-200 cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          window.location.href = `/products/${product.id}`;
-                        }}
-                      >
-                        <ChevronRight className="h-5 w-5" strokeWidth={2} />
-                      </button>
-                    </div>
-                  </div>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      variant="outline"
+                      className="bg-white text-black hover:bg-zaria hover:text-white hover:border-zaria rounded-none shadow-md mx-1 cursor-pointer"
+                    >
+                      <Heart className="h-4 w-4" />
+                    </Button>
+                  </motion.div>
                 </div>
 
                 {/* Stock status - Con z-index más alto */}
@@ -360,35 +328,30 @@ export default function ProductGrid({
 
               {/* Información del producto - Estilo arquitectónico */}
               <div className="p-5">
-                <div className="flex justify-between items-start">
-                  <div className="flex-1 pr-2">
-                    <Link
-                      href={`/products/${product.id}`}
-                      className="block group-hover:text-black/80 transition-colors duration-300"
-                    >
-                      <h3 className="font-serif text-lg tracking-tight mb-1 leading-tight">
-                        {product.name}
-                      </h3>
-                    </Link>
-
-                    <p className="text-xs text-gray-500 font-normal">
-                      {product.material}
-                    </p>
-                  </div>
-
+                <div className="flex flex-col">
+                  <Link
+                    href={`/products/${product.id}`}
+                    className="block group-hover:text-black/80 transition-colors duration-300"
+                  >
+                    <h3 className="font-lato font-light text-xs tracking-tight mb-2 leading-tight">
+                      {product.name.toLocaleUpperCase()}
+                    </h3>
+                  </Link>
+                  
+                  {/* Price now below the product name */}
                   <div>
                     {product.originalPrice ? (
-                      <div className="text-right">
+                      <div className="flex items-center gap-2">
                         <span className="text-red-500 font-medium">
-                          {product.price.toLocaleString()}€
+                        ${product.price.toLocaleString()}
                         </span>
-                        <span className="text-gray-400 line-through text-xs block mt-0.5">
-                          {product.originalPrice.toLocaleString()}€
+                        <span className="text-gray-400 line-through text-xs">
+                        ${product.originalPrice.toLocaleString()}
                         </span>
                       </div>
                     ) : (
-                      <span className="font-medium">
-                        {product.price.toLocaleString()}€
+                      <span className="font-lato text-xs">
+                        ${product.price.toLocaleString()}
                       </span>
                     )}
                   </div>
