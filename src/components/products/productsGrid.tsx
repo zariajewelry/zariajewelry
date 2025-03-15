@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {  Heart, ShoppingBag } from "lucide-react";
+import {  Heart } from "lucide-react";
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../customs/animated/Animated-section";
+import { BsHandbag } from "react-icons/bs";
 
 // Mock product data
 const generateProducts = (count: number) => {
@@ -302,7 +303,7 @@ export default function ProductGrid({
                 <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button className="bg-white text-black hover:bg-zaria hover:text-white rounded-none shadow-md mx-1 cursor-pointer">
-                      <ShoppingBag className="h-4 w-4 mr-2" />
+                      <BsHandbag className="h-5 w-5 mr-1" />
                       Añadir
                     </Button>
                   </motion.div>

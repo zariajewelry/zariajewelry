@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight, Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -178,7 +178,7 @@ export default function ProductsPage() {
         <div className="flex flex-col md:flex-row gap-8">
           {/* Mobile Filters Toggle & Sort - Layout mejorado */}
           {isMobile && (
-            <div className="flex items-center gap-3  top-[60px] z-10 bg-white pb-4 w-full border-b border-gray-100">
+            <div className="h-16 flex justify-center items-center gap-3 sticky top-[56px] z-10 w-full bg-gradient-to-b from-white/90 to-white/75 backdrop-blur-lg">
               <Button
                 onClick={toggleMobileFilters}
                 variant="outline"
@@ -189,7 +189,7 @@ export default function ProductsPage() {
               </Button>
 
               <div className="flex-1 relative">
-                <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-2">
+                <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-2 ">
                   <svg
                     width="10"
                     height="6"
@@ -211,7 +211,7 @@ export default function ProductsPage() {
                 <select
                   value={activeFilters.sortBy}
                   onChange={(e) => handleFilterChange("sortBy", e.target.value)}
-                  className="h-9 w-full appearance-none text-sm border border-gray-200 rounded-md pl-3 pr-8 py-0 bg-white focus:border-zaria focus:ring-1 focus:ring-zaria shadow-sm"
+                  className="h-9 w-full bg-gradient-to-b from-white/90 to-white/75 backdrop-blur-lg  appearance-none text-sm border border-gray-200 rounded-md pl-3 pr-8 py-0 focus:border-zaria focus:ring-1 focus:ring-zaria shadow-sm"
                 >
                   <option value="" disabled>
                     Ordenar por
