@@ -17,6 +17,7 @@ import Newsletter from "@/components/newsletters/newsletter"
 import ArtisticDivider from "@/components/customs/Artistic-divider"
 import TestimonialSlider from "@/components/testimonial-slider"
 import CollectionShowcase from "@/components/collection-showcase"
+import ArtisanalCollectionSection from "@/components/parallax/ArtisanalColeccionParallaxSection"
 
 export default function Home() {
   const [showPromo, setShowPromo] = useState(false)
@@ -131,6 +132,8 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      <ArtisanalCollectionSection />
 
       {/* Brand Statement with Artistic Elements */}
       <section className="py-20 px-4 bg-white relative overflow-hidden">

@@ -27,6 +27,14 @@ enum PaymentStatus {
   REFUNDED
 }
 
+enum ImageType {
+  MAIN
+  HOVER
+  GALLERY
+  THUMBNAIL
+  DETAIL
+}
+
 model User {
   id                       String    @id @default(uuid())
   name                     String?
@@ -211,11 +219,19 @@ model ProductReview {
 }
 
 model ProductImage {
-  id        String  @id @default(uuid())
+  id        String    @id @default(uuid())
   url       String
   altText   String?
-  product   Product @relation(fields: [productId], references: [id])
+  type      ImageType @default(GALLERY)
+  order     Int       @default(0)
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
+
+  @@index([productId, type, order])
 }
 
 model WishlistItem {

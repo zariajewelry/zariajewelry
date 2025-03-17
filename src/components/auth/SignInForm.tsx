@@ -64,7 +64,7 @@ export default function SignInForm({
         animation="fadeSlideUp"
         className="mb-8 lg:mb-4 xl:mb-6 2xl:mb-8 text-center md:text-left"
       >
-        <h2 className="font-mono text-2xl lg:text-xl xl:text-xl 2xl:text-2xl mb-2 lg:mb-1 xl:mb-1.5 2xl:mb-2">
+        <h2 className="font-playfair text-2xl lg:text-xl xl:text-xl 2xl:text-2xl mb-2 lg:mb-1 xl:mb-1.5 2xl:mb-2">
           Iniciar Sesión
         </h2>
         <p className="text-gray-600 font-light text-sm lg:text-xs xl:text-xs 2xl:text-sm">

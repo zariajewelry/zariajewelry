@@ -1,30 +1,24 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
 import ReduxProvider from "@/components/providers/redux-provider";
 import CartSidebar from "@/components/cart/sidebar/CartSidebar";
 import FloatingNavbar from "@/components/navbars/floating-navbar";
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"], // Ajusta los pesos según necesites
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
-});
-
-const lato = Lato({
-  variable: "--font-lato",
-  weight: ["100", "300", "400", "700", "900"],
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Ajusta los pesos según necesites
 });
 
 export const metadata: Metadata = {
@@ -43,18 +37,16 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lato.variable} bg-background antialiased`}
+        className={`${playfairDisplay.variable} ${montserrat.variable} bg-zaria antialiased`}
       >
         <ReduxProvider>
           <AuthProvider>
             <Toaster position="top-center" />
-            
+
             <div>
               <FloatingNavbar />
-              
-              <main>
-                {children}
-              </main>
+
+              <main>{children}</main>
 
               <CartSidebar />
             </div>

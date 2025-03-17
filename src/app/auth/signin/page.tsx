@@ -69,7 +69,7 @@ export default function SignIn() {
         {/* Top section for logo */}
         <div className="pt-10 lg:pt-6 xl:pt-8 2xl:pt-20 px-6 lg:px-8 xl:px-10 2xl:px-12 flex justify-center items-center">
           <AnimatedSection animation="fadeSlideUp">
-            <h1 className="font-serif text-3xl lg:text-2xl xl:text-2xl 2xl:text-3xl">ZARIA</h1>
+            <h1 className="font-montserrat text-3xl lg:text-2xl xl:text-2xl 2xl:text-3xl">ZARIA</h1>
           </AnimatedSection>
         </div>
 

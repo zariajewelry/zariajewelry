@@ -10,14 +10,21 @@
 
 
 @theme {
-  --color-zaria: #81D8D0;
+  --color-zaria: #D9EBE7;
   --color-deathzone: #0009;
+  --color-productcard: #FBF7F6;
+  --color-productcard-sale-badge: #d54d4d;
+
+
   
   --breakpoint-lg: 68rem;
 
 
-  --font-lato: var(--font-lato)
-  
+  --font-montserrat: var(--font-montserrat), serif;
+  --font-playfair: var(--font-playfair), sans-serif;
 }
 
 
+.cormorant-text {
+  font-family: var(--cormorant), serif;
+}

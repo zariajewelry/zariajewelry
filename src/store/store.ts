@@ -4,6 +4,7 @@ import promoReducer from './slices/promoSlice';
 import shippingReducer from './slices/shippingSlice';
 import giftBagReducer from './slices/giftBagSlice';
 import uiReducer from './slices/uiSlice';
+import productFiltersReducer from './slices/productFiltersSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     promo: promoReducer,
     shipping: shippingReducer,
     giftBag: giftBagReducer,
+    productFilters: productFiltersReducer,
   },
 });
 
