@@ -1,14 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import AnimatedSection from "@/components/customs/animated/Animated-section";
 
 interface HeroBannerProps {
   title: string;
   tagline: string;
   description: string;
-  imageUrl: string;
-  imageAlt: string;
+  imageUrl?: string; 
+  imageAlt?: string; 
   height?: {
     mobile?: string;
     tablet?: string;
@@ -21,40 +20,37 @@ export default function HeroBanner({
   title,
   tagline,
   description,
-  imageUrl,
-  imageAlt,
   height = {
-    mobile: "h-[40vh]",
-    tablet: "md:h-[50vh]",
-    desktop: "lg:h-[60vh]",
+    mobile: "h-[30vh]",
+    tablet: "md:h-[35vh]",
+    desktop: "lg:h-[30vh]",
   },
   animationDelay = 0.1,
 }: HeroBannerProps) {
   return (
-      <div className={`relative ${height.mobile} ${height.tablet} ${height.desktop} overflow-hidden`}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60 z-10"></div>
-
-        <Image
-          src={imageUrl}
-          alt={imageAlt}
-          fill
-          priority
-          className="object-cover object-center scale-105 transition-transform duration-[25s] hover:scale-100"
-        />
-
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
+    <div className="relative">
+      {/* Línea negra superior */}
+      <div className="w-screen border-t border-black"></div>
+      
+      {/* Contenido del banner */}
+      <div className={`relative ${height.mobile} ${height.tablet} ${height.desktop} flex items-center justify-center`}>
+        <div className="z-20 flex flex-col items-center justify-center text-center px-4">
           <AnimatedSection animation="fadeSlideUp" delay={animationDelay}>
-            <span className="inline-block text-zaria text-sm tracking-widest uppercase mb-2">
+            <span className="inline-block text-zariablack font-realtime text-sm tracking-widest uppercase mb-3">
               {tagline}
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-4 max-w-3xl">
+            <h1 className="font-vollkorn text-4xl md:text-5xl lg:text-3xl text-black mb-5 max-w-3xl">
               {title}
             </h1>
-            <p className="text-white/80 max-w-xl mx-auto text-sm md:text-base">
+            <p className="text-zariablack max-w-xl mx-auto font-realtime text-sm md:text-sm font-normal">
               {description}
             </p>
           </AnimatedSection>
         </div>
       </div>
+      
+      {/* Línea negra inferior */}
+      <div className="w-screen border-b border-black"></div>
+    </div>
   );
 }

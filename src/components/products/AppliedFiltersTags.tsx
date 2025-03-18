@@ -1,10 +1,8 @@
-
 "use client";
 
 import React from "react";
 import { X } from "lucide-react";
 import { FilterState } from "@/types/products";
-
 
 interface AppliedFiltersTagsProps {
   searchQuery: string;
@@ -22,10 +20,10 @@ export default function AppliedFiltersTags({
   className = ""
 }: AppliedFiltersTagsProps) {
   return (
-    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-4 ${className}`}>
       {/* Búsqueda */}
       {searchQuery && (
-        <div className="inline-flex items-center bg-zaria/40 px-3 py-1 rounded-full text-sm">
+        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-archivo">
           <span>Búsqueda: {searchQuery}</span>
           <button
             onClick={onSearchClear}
@@ -40,7 +38,7 @@ export default function AppliedFiltersTags({
       {filters.categories.map((category) => (
         <div
           key={category}
-          className="inline-flex items-center bg-zaria/40 px-3 py-1 rounded-full text-sm"
+          className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-archivo"
         >
           <span>{category}</span>
           <button
@@ -61,7 +59,7 @@ export default function AppliedFiltersTags({
       {filters.materials.map((material) => (
         <div
           key={material}
-          className="inline-flex items-center bg-zaria/40 px-3 py-1 rounded-full text-sm"
+          className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-archivo"
         >
           <span>{material}</span>
           <button
@@ -80,7 +78,7 @@ export default function AppliedFiltersTags({
 
       {/* Rango de precio */}
       {(filters.priceRange[0] > 0 || filters.priceRange[1] < 5000) && (
-        <div className="inline-flex items-center bg-zaria/40 px-3 py-1 rounded-full text-sm">
+        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-archivo">
           <span>
             {filters.priceRange[0]}$ - {filters.priceRange[1]}$
           </span>
@@ -95,7 +93,7 @@ export default function AppliedFiltersTags({
 
       {/* Descuento */}
       {filters.discount && (
-        <div className="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full text-sm">
+        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-archivo">
           <span>En oferta</span>
           <button
             onClick={() => onFilterChange("discount", false)}

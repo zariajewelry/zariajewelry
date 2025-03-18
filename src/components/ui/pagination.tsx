@@ -1,7 +1,8 @@
+
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 interface PaginationProps {
   currentPage: number;
@@ -17,7 +18,6 @@ export default function Pagination({
   totalPages,
   onPageChange,
   className = "",
-  withLabels = true,
   maxVisiblePages = 5
 }: PaginationProps) {
   const getVisiblePages = () => {
@@ -60,48 +60,48 @@ export default function Pagination({
 
   return (
     <div className={`flex justify-center my-10 ${className}`}>
-      <div className="flex items-center gap-2">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="border-gray-200 hover:bg-zaria hover:text-white hover:border-zaria cursor-pointer"
-        >
-          {withLabels ? "Anterior" : "←"}
-        </Button>
+      <div className="flex items-center gap-4 font-archivo">
+        {currentPage > 1 && (
+          <button
+            onClick={() => onPageChange(currentPage - 1)}
+            className="flex items-center text-gray-700 hover:text-gray-500 transition-colors cursor-pointer"
+            aria-label="Página anterior"
+          >
+            <MoveLeft className="h-5 w-5" />
+          </button>
+        )}
 
         {visiblePages.map((page, i) => (
           typeof page === 'number' ? (
-            <Button
+            <button
               key={i}
-              variant={currentPage === page ? "default" : "outline"}
-              size="sm"
               onClick={() => onPageChange(page)}
-              className={
+              className={`text-lg ${
                 currentPage === page
-                  ? "bg-zaria hover:bg-zaria"
-                  : "border-gray-200 hover:bg-zaria hover:text-white hover:border-zaria cursor-pointer"
-              }
+                  ? "text-black font-archivo border-b-2 border-black"
+                  : "text-gray-500 font-archivo cursor-pointer"
+              }`}
+              aria-label={`Ir a página ${page}`}
+              aria-current={currentPage === page ? "page" : undefined}
             >
               {page}
-            </Button>
+            </button>
           ) : (
-            <span key={i} className="px-2 text-gray-400">
+            <span key={i} className="text-gray-400">
               {page}
             </span>
           )
         ))}
 
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="border-gray-200 hover:bg-zaria hover:text-white hover:border-zaria cursor-pointer"
-        >
-          {withLabels ? "Siguiente" : "→"}
-        </Button>
+        {currentPage < totalPages && (
+          <button
+            onClick={() => onPageChange(currentPage + 1)}
+            className="flex items-center text-gray-700 hover:text-gray-500 transition-colors cursor-pointer"
+            aria-label="Página siguiente"
+          >
+            <MoveRight className="h-5 w-5" />
+          </button>
+        )}
       </div>
     </div>
   );

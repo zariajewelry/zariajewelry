@@ -8,20 +8,66 @@
     logs: true;
 }
 
+@font-face {
+  font-family: 'RealtimeRounded';
+  src: url('/fonts/realtimeroundedtest-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RealtimeRounded';
+  src: url('/fonts/realtimeroundedtest-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RealtimeRounded';
+  src: url('/fonts/realtimeroundedtest-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RealtimeRounded';
+  src: url('/fonts/realtimeroundedtest-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RealtimeRounded';
+  src: url('/fonts/realtimeroundedtest-semibold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+body {
+  font-family: 'RealtimeRounded', sans-serif;
+}
+
+
 
 @theme {
-  --color-zaria: #D9EBE7;
+  --color-zariabg: #faf8f6;
+  --color-zariablack: #1d1d1d;
+  --color-zaria: #9cdfdf;
   --color-deathzone: #0009;
   --color-productcard: #FBF7F6;
   --color-productcard-sale-badge: #d54d4d;
+  --color-zaria-salmon: #CEA1A2;
+  --color-zaria-aquamarina: #7A9FAB;
 
 
   
   --breakpoint-lg: 68rem;
 
 
-  --font-montserrat: var(--font-montserrat), serif;
-  --font-playfair: var(--font-playfair), sans-serif;
+  --font-vollkorn: var(--font-vollkorn), serif;
+  --font-archivo: var(--font-archivo), sans-serif;
+  --font-garamond: var(--font-garamond), serif;
+  --font-realtime: 'RealtimeRounded', sans-serif;
 }
 
 

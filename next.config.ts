@@ -8,7 +8,11 @@ const nextConfig: NextConfig = {
   compress: true,
 
   images: {
-    domains: ['i.ibb.co', 'acdn-us.mitiendanube.com', 'ar.isadoraonline.com', 'www.ginifab.com', 'www.purposejewelry.org'], 
+    domains: ['i.ibb.co', 
+      'acdn-us.mitiendanube.com', 
+      'ar.isadoraonline.com', 
+      'www.ginifab.com', 
+      'www.wolfandmoon.com'], 
   },
 
   async headers() {

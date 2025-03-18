@@ -14,7 +14,7 @@ import LoadingState from "./LoadingState";
 
 
 
-const allProducts = generateProducts(40);
+const allProducts = generateProducts(80);
 
 interface ProductGridProps {
   searchQuery: string;
@@ -138,36 +138,38 @@ function ProductGrid({ searchQuery, filters, currentPage, onPageChange, clearFil
   }
 
   return (
-    <div className="bg-zaria">
-      <p className="font-playfair text-sm text-gray-500 mb-6">
-        Mostrando {paginatedProducts.length} de {filteredProducts.length}{" "}
-        productos
-      </p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-8 mb-12">
-        {paginatedProducts.map((product, index) => (
-          <AnimatedSection
-            key={`product-${product.id}`}
-            className="group"
-            animation="fadeSlideUp"
-            delay={index * 0.05}
-          >
-            <ProductCard product={product} index={index} />
-          </AnimatedSection>
-        ))}
-      </div>
-
-      {/* Paginación */}
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-          withLabels={true}
-          maxVisiblePages={5}
-        />
-      )}
+    <div className="bg-zariabg">
+    <p className="font-realtime text-sm text-gray-500 mb-3 sm:mb-6">
+      Mostrando {paginatedProducts.length} de {filteredProducts.length}{" "}
+      productos
+    </p>
+  
+    {/* Grid con líneas negras continuas */}
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-0 border-t border-l border-black mb-12">
+      {paginatedProducts.map((product, index) => (
+        <AnimatedSection
+          key={`product-${product.id}`}
+          className="group border-r border-b border-black"
+          animation="fadeIn"
+          delay={index < 8 ? index * 0.03 : 0} 
+          duration={0.4}
+        >
+          <ProductCard product={product} index={index} />
+        </AnimatedSection>
+      ))}
     </div>
+  
+    {/* Paginación */}
+    {totalPages > 1 && (
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+        withLabels={true}
+        maxVisiblePages={5}
+      />
+    )}
+  </div>
   );
 }
 
@@ -207,7 +209,7 @@ export function generateProducts(count: number) {
       images: [
         {
           id: `img-${i}-main`,
-          url: "https://www.purposejewelry.org/cdn/shop/files/Stone_B_Navy_5000x.jpg?v=1725431519",
+          url: "https://www.wolfandmoon.com/cdn/shop/files/matchbox-necklace-lifestyle-1.jpg?v=1731000284",
           altText: `${type} ${adjective}`,
           type: ImageType.MAIN,
           order: 0,

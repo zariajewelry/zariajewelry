@@ -1,24 +1,32 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Playfair_Display, Montserrat } from "next/font/google";
+import { Vollkorn, Archivo, EB_Garamond } from "next/font/google";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
 import ReduxProvider from "@/components/providers/redux-provider";
 import CartSidebar from "@/components/cart/sidebar/CartSidebar";
 import FloatingNavbar from "@/components/navbars/floating-navbar";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+
+const vollkorn = Vollkorn({
+  variable: "--font-vollkorn",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"], // Ajusta los pesos según necesites
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Ajusta los pesos según necesites
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const garamond = EB_Garamond({
+  variable: "--font-garamond",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <body
-        className={`${playfairDisplay.variable} ${montserrat.variable} bg-zaria antialiased`}
+        className={`${vollkorn.variable} ${archivo.variable} ${garamond.variable} bg-zaria antialiased`}
       >
         <ReduxProvider>
           <AuthProvider>

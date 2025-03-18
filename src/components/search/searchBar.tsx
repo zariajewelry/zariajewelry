@@ -4,7 +4,6 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Search, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useDebounce } from "@/hooks/common/useDebounce"
 
@@ -14,6 +13,11 @@ interface SearchBarProps {
   onChange: (value: string) => void
   className?: string
   debounceDelay?: number
+  autoFocus?: boolean
+  showSuggestions?: boolean
+  showSearchIcon?: boolean
+  showClearButton?: boolean
+  minimalStyle?: boolean
 }
 
 const popularSearches = [
@@ -27,44 +31,57 @@ const popularSearches = [
 ]
 
 export default function SearchBar({ 
-  placeholder = "Buscar...", 
+  placeholder, 
   value, 
   onChange, 
   className,
-  debounceDelay = 300
+  debounceDelay = 300,
+  autoFocus = false,
+  showSuggestions = false,
+  showSearchIcon = false,
+  showClearButton = true,
+  minimalStyle = true
 }: SearchBarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false)
   const [suggestions, setSuggestions] = useState<string[]>([])
   const searchRef = useRef<HTMLDivElement>(null)
   const [isTyping, setIsTyping] = useState(false)
   
-  // Usamos estado interno para el debounce
+  // Estado interno para el debounce
   const [internalValue, setInternalValue] = useState(value)
   const debouncedValue = useDebounce(internalValue, debounceDelay)
   
-  // Actualizar sugerencias cuando cambia el valor interno
+  // Enfoque automático
   useEffect(() => {
-    if (internalValue.length > 0) {
-      const filteredSuggestions = popularSearches.filter((search) => 
-        search.toLowerCase().includes(internalValue.toLowerCase())
-      )
-      setSuggestions(filteredSuggestions)
-    } else {
-      setSuggestions(popularSearches)
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
     }
-  }, [internalValue])
+  }, [autoFocus]);
   
-  // Propagar cambios debounceados hacia arriba
+  // Actualizar sugerencias
   useEffect(() => {
-    // Solo propagar si estamos escribiendo activamente
+    if (showSuggestions) {
+      if (internalValue.length > 0) {
+        const filteredSuggestions = popularSearches.filter((search) => 
+          search.toLowerCase().includes(internalValue.toLowerCase())
+        )
+        setSuggestions(filteredSuggestions)
+      } else {
+        setSuggestions(popularSearches)
+      }
+    }
+  }, [internalValue, showSuggestions])
+  
+  // Propagar cambios debounceados
+  useEffect(() => {
     if (isTyping && debouncedValue !== value) {
       onChange(debouncedValue)
     }
   }, [debouncedValue, onChange, value, isTyping])
   
-  // Sincronizar con value externo (solo cuando no estamos escribiendo)
+  // Sincronizar con value externo
   useEffect(() => {
-    // Especialmente importante para reseteos (value="")
     if (!isTyping && value !== internalValue) {
       setInternalValue(value)
     }
@@ -75,7 +92,6 @@ export default function SearchBar({
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setIsFocused(false)
-        // Al perder foco, ya no estamos escribiendo
         setIsTyping(false)
       }
     }
@@ -87,54 +103,92 @@ export default function SearchBar({
   const handleFocus = () => setIsFocused(true)
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsTyping(true) // Marcar que estamos escribiendo
+    setIsTyping(true)
     setInternalValue(e.target.value)
   }
   
   const handleClear = () => {
     setInternalValue("")
-    setIsTyping(false) // Ya no estamos escribiendo
+    setIsTyping(false)
     onChange("")
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }
   
   const handleSuggestionClick = (suggestion: string) => {
     setInternalValue(suggestion)
-    setIsTyping(false) // Ya no estamos escribiendo
+    setIsTyping(false)
     onChange(suggestion)
     setIsFocused(false)
   }
 
+  // Estilos del input: añadido caret-transparent para inputs vacíos
+  const inputStyles = minimalStyle 
+  ? `w-full bg-transparent border-none outline-none shadow-none focus:ring-0 focus:outline-none font-realtime px-0 py-1 pl-6 ${!internalValue ? 'caret-transparent' : ''}`
+  : "rounded-full border-gray-200 focus:border-zaria focus:ring-0 text-base";
+
+  const paddingClasses = () => {
+    if (minimalStyle) return "px-0";
+    let padding = "";
+    padding += showSearchIcon ? "pl-10 " : "";
+    padding += showClearButton ? "pr-10" : "";
+    return padding;
+  };
+
   return (
     <div className="relative" ref={searchRef}>
       <div className="relative">
-        <Input
-          type="text"
-          placeholder={placeholder}
-          value={internalValue}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={() => {
-            
-            setTimeout(() => setIsTyping(false), 100)
-          }}
-          className={cn("pl-10 pr-10 rounded-full border-gray-200 focus:border-zaria focus:ring-0 placeholder:text-gray-400", className)}
-        />
-        <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        {internalValue && (
-          <Button
+        {minimalStyle ? (
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder={placeholder}
+            value={internalValue}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={() => setTimeout(() => setIsTyping(false), 100)}
+            className={cn(inputStyles, paddingClasses(), className)}
+          />
+        ) : (
+          <Input
+            ref={inputRef}
+            type="text"
+            placeholder={placeholder}
+            value={internalValue}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={() => setTimeout(() => setIsTyping(false), 100)}
+            className={cn(inputStyles, paddingClasses(), className)}
+          />
+        )}
+        
+        {showSearchIcon && (
+          <Search 
+            className={cn(
+              "h-4 w-4 absolute top-1/2 transform -translate-y-1/2 text-gray-400",
+              minimalStyle ? "left-0" : "left-3"
+            )} 
+          />
+        )}
+        
+        {showClearButton && internalValue && (
+          <button
             type="button"
-           variant="ghost"
-            size="sm"
             onClick={handleClear}
-            className="absolute right-1 top-1/2  transform -translate-y-1/2 h-7 w-7 p-0  cursor-pointer"
+            className={cn(
+              "absolute top-1/2 transform -translate-y-1/2 cursor-pointer", 
+              minimalStyle ? "right-0" : "right-2"
+            )}
+            aria-label="Borrar búsqueda"
           >
             <X className="h-4 w-4 text-gray-400" />
-          </Button>
+          </button>
         )}
       </div>
 
-      {isFocused && suggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white shadow-lg rounded-md z-50 max-h-60 overflow-auto">
+      {showSuggestions && isFocused && suggestions.length > 0 && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white shadow-lg border border-black z-50 max-h-60 overflow-auto">
           <div className="p-3">
             <p className="text-xs text-gray-500 mb-2">Sugerencias populares</p>
             <ul className="space-y-1">
@@ -143,7 +197,7 @@ export default function SearchBar({
                   <button
                     type="button"
                     onClick={() => handleSuggestionClick(suggestion)}
-                    className="flex items-center w-full p-2 text-sm text-left hover:bg-gray-50 rounded"
+                    className="flex items-center w-full p-2 text-sm text-left hover:bg-black/5"
                   >
                     <Search className="h-3.5 w-3.5 mr-2 text-gray-400" />
                     {suggestion}

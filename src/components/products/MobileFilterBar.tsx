@@ -25,7 +25,7 @@ export default function FloatingFilterBar({
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (window.scrollY <= 150) {
+    if (window.scrollY <= 50) {
       setIsVisible(false);
     }
 
@@ -48,9 +48,9 @@ export default function FloatingFilterBar({
         isScrollingRef.current = false;
 
         const distanceToBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-        const isNearBottom = distanceToBottom < 100; // 
+        const isNearBottom = distanceToBottom < 100;
 
-        if (currentScrollY > 150 && !isNearBottom) {
+        if (currentScrollY > 50 && !isNearBottom) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
@@ -69,7 +69,7 @@ export default function FloatingFilterBar({
   }, []);
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 100, scale: 0.9 },
+    hidden: { opacity: 0, y: 40, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
@@ -78,13 +78,13 @@ export default function FloatingFilterBar({
         type: "spring",
         stiffness: 300,
         damping: 24,
-        duration: 0.4
+        duration: 0.3
       }
     },
     exit: {
       opacity: 0,
-      y: 40,
-      scale: 0.95,
+      y: 20,
+      scale: 0.98,
       transition: {
         duration: 0.2,
         ease: "easeOut"
@@ -93,7 +93,7 @@ export default function FloatingFilterBar({
   };
 
   const selectorVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
@@ -107,23 +107,17 @@ export default function FloatingFilterBar({
     exit: {
       opacity: 0,
       y: 10,
-      scale: 0.9,
+      scale: 0.98,
       transition: {
         duration: 0.15
       }
     }
   };
 
-  const filterButtonVariants = {
+  const buttonVariants = {
     rest: { scale: 1 },
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 }
-  };
-
-  const sortButtonVariants = {
-    rest: { scale: 1 },
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 }
+    hover: { scale: 1.03 },
+    tap: { scale: 0.97 }
   };
 
   return (
@@ -146,51 +140,58 @@ export default function FloatingFilterBar({
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="bg-white backdrop-blur-lg bg-opacity-95 rounded-xl shadow-lg p-3 mb-3 w-[90%] max-w-sm pointer-events-auto"
+                  className="bg-zariabg border border-black mb-3 w-[90%] max-w-sm pointer-events-auto"
                 >
-                  <SortSelector
-                    value={sortBy}
-                    onChange={(val) => {
-                      onSortChange(val);
-                      setIsExpanded(false);
-                    }}
-                    showLabel={true}
-                    compact={true}
-                    className="w-full"
-                  />
+                  <div className="p-3 flex justify-center w-full bg-amber-400">
+                    <SortSelector
+                      value={sortBy}
+                      onChange={(val) => {
+                        onSortChange(val);
+                        setIsExpanded(false);
+                      }}
+                      showLabel={true}
+                      compact={false}
+                      className="w-full"
+                    />
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
 
             <div className="flex gap-3 pointer-events-auto">
+              {/* Botón de filtros */}
               <motion.button
-                variants={filterButtonVariants}
+                variants={buttonVariants}
                 initial="rest"
                 whileHover="hover"
                 whileTap="tap"
                 onClick={() => onToggleFilters()}
-                className="bg-gradient-to-b from-white/90 to-white/75 backdrop-blur-lg text-black h-12 w-12 rounded-full flex items-center justify-center shadow-xl shadow-gray-300/30 relative border border-white/30"
+                className="bg-zariabg border border-black h-12 w-12 flex items-center justify-center relative"
+                aria-label="Mostrar filtros"
               >
                 <SlidersHorizontal className="h-4 w-4" />
                 {activeFiltersCount > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 bg-black text-white text-[10px] h-5 w-5 rounded-full flex items-center justify-center"
+                    className="absolute -top-2 -right-2 bg-zaria-salmon text-white text-xs h-5 w-5 flex items-center justify-center"
                   >
                     {activeFiltersCount}
                   </motion.span>
                 )}
               </motion.button>
 
+              {/* Botón de ordenamiento */}
               <motion.button
-                variants={sortButtonVariants}
+                variants={buttonVariants}
                 initial="rest"
                 whileHover="hover"
                 whileTap="tap"
                 onClick={() => setIsExpanded(!isExpanded)}
-                className={`bg-gradient-to-b from-white/90 to-white/75 backdrop-blur-lg text-black h-12 w-12 rounded-full flex items-center justify-center shadow-xl shadow-gray-300/30 border border-white/30 ${isExpanded ? "ring-1 ring-offset-1 ring-[#1ca2d6]" : ""
-                  }`}
+                className={`bg-zariabg border border-black h-12 w-12 flex items-center justify-center
+                  ${isExpanded ? "bg-zariabg text-amber-400" : ""}`}
+                aria-label="Opciones de ordenamiento"
+                aria-expanded={isExpanded}
               >
                 <ArrowUpDown className="h-4 w-4" />
               </motion.button>
