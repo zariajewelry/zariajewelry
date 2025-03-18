@@ -27,6 +27,7 @@ export default function ProductsPage() {
     searchQuery,
     currentPage,
     handleFilterChange,
+    handleApplyAllFilters,
     handleSearch,
     handlePageChange,
     clearFilters,
@@ -87,6 +88,7 @@ export default function ProductsPage() {
             onClose={() => setShowMobileFilters(false)}
             activeFilters={activeFilters}
             onChange={handleFilterChange}
+            onApplyAllFilters={handleApplyAllFilters}
             onClear={clearFilters}
           />
         )}
@@ -158,10 +160,10 @@ export default function ProductsPage() {
                   animate={{ x: 0, boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)" }}
                   exit={{ x: "-100%", boxShadow: "0 0 0 rgba(0, 0, 0, 0)" }}
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                  className="fixed left-0 top-0 h-screen w-80 bg-white z-50 overflow-y-auto"
+                  className="2xl:w-[360px] fixed left-0 top-0 h-screen bg-white z-50 overflow-y-auto"
                 >
-                  <div className="p-5 border-b sticky top-0 bg-white z-10 flex items-center justify-between">
-                    <h2 className="font-lato text-xl">FILTROS</h2>
+                  <div className="p-5 border-b sticky top-0 bg-zariabg z-10 flex items-center justify-between">
+                    <h2 className="font-realtime text-[14px]">FILTROS</h2>
                     <button
                       onClick={() => setShowDesktopFilters(false)}
                       className="p-1 rounded-full hover:bg-gray-100"
@@ -172,20 +174,12 @@ export default function ProductsPage() {
                   </div>
 
                   <div className="p-5">
-                    {hasActiveFilters() && (
-                      <div className="flex justify-end mb-4">
-                        <button
-                          onClick={clearFilters}
-                          className="w-[120px] h-[26px] border border-zaria text-zaria text-sm cursor-pointer hover:bg-zaria/20 hover:text-black transition-colors duration-300"
-                        >
-                          Limpiar filtros
-                        </button>
-                      </div>
-                    )}
-
                     <ProductFilters
                       activeFilters={activeFilters}
                       onChange={handleFilterChange}
+                      onApplyAllFilters={handleApplyAllFilters}
+                      onClearFilters={clearFilters}
+                      hasActiveFilters={hasActiveFilters}
                     />
                   </div>
                 </motion.div>

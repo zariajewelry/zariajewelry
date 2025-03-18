@@ -14,6 +14,7 @@ export function useProductFilters() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Sincroniza los filtros desde la URL cuando cambia
   useEffect(() => {
     const categories = searchParams.getAll('category');
     const materials = searchParams.getAll('material');
@@ -47,12 +48,17 @@ export function useProductFilters() {
     dispatch(setReduxSearchQuery(search)); 
   }, [searchParams, dispatch]);
 
+  // Función para actualizar la URL con los filtros
   const updateUrl = useCallback((newFilters: FilterState, query: string, pageNumber: number = 1) => {
     const params = new URLSearchParams();
     
+    // Añade categorías (permite múltiples valores)
     newFilters.categories.forEach(cat => params.append('category', cat));
+    
+    // Añade materiales (permite múltiples valores)
     newFilters.materials.forEach(mat => params.append('material', mat));
     
+    // Añade rango de precio si es diferente al predeterminado
     if (newFilters.priceRange[0] > 0) {
       params.set('minPrice', newFilters.priceRange[0].toString());
     }
@@ -61,28 +67,34 @@ export function useProductFilters() {
       params.set('maxPrice', newFilters.priceRange[1].toString());
     }
     
+    // Añade disponibilidad (permite múltiples valores)
     newFilters.availability.forEach(avail => params.append('availability', avail));
     
+    // Añade descuento si está activo
     if (newFilters.discount) {
       params.set('discount', 'true');
     }
     
+    // Añade ordenamiento si es diferente al predeterminado
     if (newFilters.sortBy !== 'popular') {
       params.set('sort', newFilters.sortBy);
     }
     
+    // Añade término de búsqueda si existe
     if (query) {
       params.set('q', query);
     }
 
+    // Añade número de página si es mayor que 1
     if (pageNumber > 1) {
         params.set('page', pageNumber.toString());
     }
     
+    // Actualiza la URL sin recargar la página
     router.push(`/products?${params.toString()}`, { scroll: false });
   }, [router]);
 
-
+  // Función para cambiar un único filtro
   const handleFilterChange = useCallback((filterType: keyof FilterState, value: any) => {
     const newFilters = {
       ...activeFilters,
@@ -96,6 +108,16 @@ export function useProductFilters() {
     updateUrl(newFilters, searchQuery, 1);
   }, [activeFilters, searchQuery, dispatch, updateUrl]);
 
+  // NUEVA FUNCIÓN: Maneja múltiples cambios de filtro a la vez
+  const handleApplyAllFilters = useCallback((newFilters: FilterState) => {
+    setActiveFilters(newFilters);
+    dispatch(setFilters(newFilters));
+    setCurrentPage(1);
+    dispatch(setPage(1));
+    updateUrl(newFilters, searchQuery, 1);
+  }, [searchQuery, dispatch, updateUrl]);
+
+  // Función para cambiar el término de búsqueda
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
     setCurrentPage(1);
@@ -104,12 +126,13 @@ export function useProductFilters() {
     updateUrl(activeFilters, query, 1);
   }, [activeFilters, updateUrl, dispatch]);
 
+  // Función para cambiar el número de página
   const handlePageChange = useCallback((pageNumber: number) => {
     setCurrentPage(pageNumber);
     dispatch(setPage(pageNumber));
     updateUrl(activeFilters, searchQuery, pageNumber);
     
-    
+    // Desplaza la vista al contenedor de productos
     setTimeout(() => {
       const productsContainer = document.getElementById('products-container');
       if (productsContainer) {
@@ -121,6 +144,7 @@ export function useProductFilters() {
     }, 100);
   }, [activeFilters, searchQuery, dispatch, updateUrl]);
 
+  // Función para limpiar todos los filtros
   const clearFilters = useCallback(() => {
     setActiveFilters(DEFAULT_FILTERS);
     setSearchQuery("");
@@ -131,6 +155,7 @@ export function useProductFilters() {
     router.push('/products', { scroll: false });
   }, [dispatch, router]);
 
+  // Función para comprobar si hay filtros activos
   const hasActiveFilters = useCallback(() => {
     return (
       activeFilters.categories.length > 0 ||
@@ -148,6 +173,7 @@ export function useProductFilters() {
     searchQuery,
     currentPage,
     handleFilterChange,
+    handleApplyAllFilters, // Exportamos la nueva función
     handleSearch,
     handlePageChange,
     clearFilters,

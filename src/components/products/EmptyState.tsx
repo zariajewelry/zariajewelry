@@ -15,19 +15,27 @@ export default function EmptyState({
   onClearFilters
 }: EmptyStateProps) {
   return (
-    <div className="py-16 px-4 flex flex-col items-center justify-center text-center">
-      <div className="rounded-full p-5 mb-6 bg-zaria/20">
-        <SearchX className="h-10 w-10 text-zaria" />
+    <div className="py-20 px-6 flex flex-col items-center justify-center text-center bg-zariabg">
+      <div className="rounded-full p-6 mb-8 bg-zaria-aquamarina border border-black">
+        <SearchX className="h-12 w-12 text-black" strokeWidth={1} />
       </div>
-      <h3 className="text-lg font-medium text-gray-800 mb-2">{title}</h3>
-      <p className="text-sm text-gray-500 mb-6 max-w-md">{message}</p>
+      
+      <h3 className="text-xl font-realtime font-medium text-black mb-4">
+        {title}
+      </h3>
+      
+      <p className="text-sm font-realtime text-gray-700 mb-8 max-w-md leading-relaxed">
+        {message}
+      </p>
+      
       {onClearFilters && (
-        <button
+        <Button
           onClick={onClearFilters}
-          className="h-9 px-4 bg-white border border-zaria text-zaria cursor-pointer hover:bg-zaria/20 hover:text-black"
+          className="px-8 py-2.5 bg-amber-400 hover:bg-amber-500 border border-black text-black font-realtime transition-colors"
+          type="button"
         >
-          Limpiar todos los filtros
-        </button>
+          QUITAR TODOS LOS FILTROS
+        </Button>
       )}
     </div>
   );
