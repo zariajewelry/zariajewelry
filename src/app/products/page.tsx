@@ -160,13 +160,13 @@ export default function ProductsPage() {
                   animate={{ x: 0, boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)" }}
                   exit={{ x: "-100%", boxShadow: "0 0 0 rgba(0, 0, 0, 0)" }}
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                  className="2xl:w-[360px] fixed left-0 top-0 h-screen bg-white z-50 overflow-y-auto"
+                  className="w-[380px] 2xl:w-[360px] fixed left-0 top-0 h-screen bg-white z-50 overflow-y-auto"
                 >
                   <div className="p-5 border-b sticky top-0 bg-zariabg z-10 flex items-center justify-between">
                     <h2 className="font-realtime text-[14px]">FILTROS</h2>
                     <button
                       onClick={() => setShowDesktopFilters(false)}
-                      className="p-1 rounded-full hover:bg-gray-100"
+                      className="p-1 cursor-pointer"
                       aria-label="Cerrar panel de filtros"
                     >
                       <X className="h-5 w-5" />
@@ -180,6 +180,7 @@ export default function ProductsPage() {
                       onApplyAllFilters={handleApplyAllFilters}
                       onClearFilters={clearFilters}
                       hasActiveFilters={hasActiveFilters}
+                      onApply={() => setShowDesktopFilters(false)}
                     />
                   </div>
                 </motion.div>

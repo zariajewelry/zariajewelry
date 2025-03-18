@@ -21,7 +21,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
   return (
     <div className="bg-productcard overflow-hidden cursor-pointer relative isolate">
       {/* Contenedor de imagen con margen de 10px en los laterales y arriba */}
-      <div className="relative pt-[10px] px-[10px] overflow-hidden">
+      <div className="relative pt-[12px] px-[12px] overflow-hidden">
         <Link href={`/products/${product.id}`} className="block w-full h-full">
           <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#f5f5f7]">
             <Image

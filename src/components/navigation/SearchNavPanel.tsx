@@ -131,7 +131,7 @@ export default function SearchNavPanel({
                     transition={{ duration: 0.2 }}
                     className="flex items-center flex-1 justify-center px-4"
                   >
-                    <div className="flex items-center md:w-[420px] lg:w-[460px] 2xl:w-full max-w-xl border border-black p-2 bg-amber-400">
+                    <div className="flex items-center md:w-[420px] lg:w-[490px] 2xl:w-full max-w-xl border border-black p-2 bg-amber-400">
                       <Search
                         className="h-8 w-8 mr-3 flex-shrink-0"
                         strokeWidth={1}

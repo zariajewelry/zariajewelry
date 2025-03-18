@@ -35,8 +35,7 @@ export function UserDropdown({
         aria-haspopup="true"
         aria-label="Opciones de cuenta"
         className={cn(
-          "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center",
-          isScrolled ? "text-gray-800" : "text-white",
+          "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black",
           isOpen && "text-zaria"
         )}
       >

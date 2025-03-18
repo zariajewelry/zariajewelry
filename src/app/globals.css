@@ -47,6 +47,46 @@ body {
   font-family: 'RealtimeRounded', sans-serif;
 }
 
+@font-face {
+  font-family: 'UniversNextPro';
+  src: url('/fonts/univers-next-pro-light.ttf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UniversNextPro';
+  src: url('/fonts/univers-next-pro-regular.ttf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UniversNextPro';
+  src: url('/fonts/univers-next-pro-bold.ttf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UniversNextPro';
+  src: url('/fonts/univers-next-pro-medium.ttf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UniversNextPro';
+  src: url('/fonts/univers-next-pro-black') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+body {
+  font-family: 'UniversNextPro', sans-serif;
+}
+
 
 
 @theme {
@@ -68,6 +108,7 @@ body {
   --font-archivo: var(--font-archivo), sans-serif;
   --font-garamond: var(--font-garamond), serif;
   --font-realtime: 'RealtimeRounded', sans-serif;
+  --font-univers-next: 'UniversNextPro', sans-serif;
 }
 
 

@@ -42,7 +42,7 @@ export default function HeroBanner({
             <h1 className="font-vollkorn text-4xl md:text-5xl lg:text-3xl text-black mb-5 max-w-3xl">
               {title}
             </h1>
-            <p className="text-zariablack max-w-xl mx-auto font-realtime text-sm md:text-sm font-normal">
+            <p className="text-zariablack max-w-xl mx-auto font-realtime text-sm md:text-sm font-light">
               {description}
             </p>
           </AnimatedSection>

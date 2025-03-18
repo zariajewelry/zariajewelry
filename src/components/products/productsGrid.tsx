@@ -145,7 +145,7 @@ function ProductGrid({ searchQuery, filters, currentPage, onPageChange, clearFil
     </p>
   
     {/* Grid con líneas negras continuas */}
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-0 border-t border-l border-black mb-12">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-0 border-t border-l border-black mb-12">
       {paginatedProducts.map((product, index) => (
         <AnimatedSection
           key={`product-${product.id}`}
@@ -187,7 +187,15 @@ export function generateProducts(count: number) {
   const priceRanges = [
     [900, 1500], [1500, 2500], [2500, 4000], [4000, 5000],
   ];
+  const mainImageUrls = [
+    "https://www.wolfandmoon.com/cdn/shop/files/grapefruit-slice-necklace-lifestyle-5.jpg?v=1684847284",
+    "https://www.wolfandmoon.com/cdn/shop/files/matchbox-necklace-lifestyle-1.jpg?v=1731000284",
+    "https://www.wolfandmoon.com/cdn/shop/products/dove-necklace-lifestyle-1.jpg?v=1646330610",
+    "https://www.wolfandmoon.com/cdn/shop/files/mini-grapefruit-slice-hoops-lifestyle-4.jpg?v=1684851500",
+    "https://www.wolfandmoon.com/cdn/shop/files/mini-nina-hoops-offwhite-lifestyle-1.jpg?v=1698870399"
 
+  ];
+  
   return Array.from({ length: count }).map((_, i) => {
     const type = types[Math.floor(Math.random() * types.length)];
     const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
@@ -198,7 +206,7 @@ export function generateProducts(count: number) {
     const discountPercentage = hasDiscount ? Math.floor(Math.random() * 30) + 10 : 0;
     const originalPrice = hasDiscount ? Math.floor(price / (1 - discountPercentage / 100)) : price;
     const isNew = Math.random() > 0.8;
-
+    const mainImageUrl = mainImageUrls[Math.floor(Math.random() * mainImageUrls.length)];
 
     return {
       id: `product-${i}`,
@@ -209,7 +217,7 @@ export function generateProducts(count: number) {
       images: [
         {
           id: `img-${i}-main`,
-          url: "https://www.wolfandmoon.com/cdn/shop/files/matchbox-necklace-lifestyle-1.jpg?v=1731000284",
+          url: mainImageUrl,
           altText: `${type} ${adjective}`,
           type: ImageType.MAIN,
           order: 0,
@@ -218,7 +226,7 @@ export function generateProducts(count: number) {
         // Segunda imagen condicional
         {
           id: `img-${i}-hover`,
-          url: "https://acdn-us.mitiendanube.com/stores/001/810/105/products/vv-pulsera-ga-plata-madreperla-1b-cbbb4f38a53cee3f2517374911293645-1024-1024.webp",
+          url: "https://www.wolfandmoon.com/cdn/shop/products/moon-and-star-hoops-lifestyle-1-1500.jpg?v=1620153947",
           altText: `${type} ${adjective} - Vista alternativa`,
           type: ImageType.HOVER,
           order: 1,

@@ -10,11 +10,7 @@ import CartButton from "../buttons/cart-button";
 import { useOnClickOutside } from "@/hooks/use-click-outside";
 import { UserDropdown } from "./user-navbar-dropdown";
 import SearchOverlay from "./search-overlay-navbar";
-import {
-  FaGem,
-  FaStar,
-  FaGift,
-} from "react-icons/fa";
+import { FaGem, FaStar, FaGift } from "react-icons/fa";
 
 const MAIN_NAVIGATION = [
   { href: "/products", label: "Colecciones" },
@@ -94,10 +90,10 @@ export default function FloatingNavbar() {
 
   const getNavLinkStyles = (isScrolled: boolean) =>
     cn(
-      "text-[16px] font-light transition-colors",
+      "text-[16px] font-realtime font-light transition-colors text-black",
       isScrolled
         ? "text-gray-800 hover:text-zaria"
-        : "text-white hover:text-white/80"
+        : ""
     );
 
   return (
@@ -106,9 +102,7 @@ export default function FloatingNavbar() {
         initial={{ y: 0 }}
         animate={{
           y: 0,
-          backgroundColor: scrolled
-            ? "rgba(255, 255, 255, 0.9)"
-            : "transparent",
+          backgroundColor: "bg-zariabg",
           backdropFilter: scrolled ? "blur(10px)" : "none",
           boxShadow: scrolled ? "0 2px 10px rgba(0, 0, 0, 0.05)" : "none",
         }}
@@ -124,13 +118,13 @@ export default function FloatingNavbar() {
           boxShadow: { delay: 0.05 },
         }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled ? "py-4" : "py-5"
+          "sticky top-0 z-50 transition-all duration-300",
+          scrolled ? "bg-zariabg shadow-md py-3" : "bg-zariabg py-5"
         )}
       >
         <div className="container mx-auto px-4 2xl:max-w-7xl">
-          <div className="flex items-center justify-between">
-            {/* Lado izquierdo - Menú en móvil, links en desktop */}
+          <div className="flex items-center justify-between w-full relative">
+            {/* Izquierda: Nombre ZARIA en escritorio, menú y búsqueda en móvil */}
             <div className="flex items-center">
               {isMobile ? (
                 <div className="flex items-center space-x-4">
@@ -141,25 +135,37 @@ export default function FloatingNavbar() {
                     aria-label="Abrir menú"
                     className={cn(
                       "transition-colors cursor-pointer hover:text-zaria",
-                      scrolled ? "text-gray-800" : "text-white"
+                      scrolled ? "text-gray-800" : "text-gray-800"
                     )}
                   >
                     <Menu className="h-6 w-6" />
                   </button>
-
-                  {/* Botón de búsqueda para móvil */}
                   <button
                     onClick={() => setSearchOpen(true)}
                     aria-label="Buscar"
                     className={cn(
-                      "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center",
-                      scrolled ? "text-gray-800" : "text-white"
+                      "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black",
                     )}
                   >
                     <Search className="h-5 w-5" />
                   </button>
                 </div>
               ) : (
+                <Link href="/">
+                  <h1
+                    className={cn(
+                      "font-realtime text-2xl text-black tracking-wider transition-colors cursor-pointer"
+                    )}
+                  >
+                    ZARIA
+                  </h1>
+                </Link>
+              )}
+            </div>
+
+            {/* Centro: Enlaces de navegación solo en escritorio */}
+            {!isMobile && (
+              <div className="flex justify-center flex-1">
                 <div className="flex items-center space-x-8">
                   {MAIN_NAVIGATION.map((item) => (
                     <Link
@@ -171,24 +177,10 @@ export default function FloatingNavbar() {
                     </Link>
                   ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
 
-            {/* Logo centrado - Posicionamiento absoluto para alineación perfecta */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
-              <Link href="/">
-                <h1
-                  className={cn(
-                    "font-serif text-2xl tracking-wider transition-colors cursor-pointer",
-                    scrolled ? "text-black" : "text-white"
-                  )}
-                >
-                  ZARIA
-                </h1>
-              </Link>
-            </div>
-
-            {/* Iconos a la derecha */}
+            {/* Derecha: Iconos */}
             <div className="flex items-center space-x-4">
               {!isMobile && (
                 <>
@@ -197,8 +189,7 @@ export default function FloatingNavbar() {
                       <button
                         aria-label="Mi cuenta"
                         className={cn(
-                          "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center",
-                          scrolled ? "text-gray-800" : "text-white"
+                          "relative transition-colors cursor-pointer flex items-center justify-center text-black"
                         )}
                       >
                         <UserRound
@@ -218,8 +209,8 @@ export default function FloatingNavbar() {
                     onClick={() => setSearchOpen(true)}
                     aria-label="Buscar"
                     className={cn(
-                      "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center",
-                      scrolled ? "text-gray-800" : "text-white"
+                      "relative transition-colors cursor-pointer flex items-center justify-center text-black"
+                     
                     )}
                   >
                     <Search className="h-5 w-5" />
@@ -229,26 +220,39 @@ export default function FloatingNavbar() {
               <button
                 aria-label="Lista de deseos"
                 className={cn(
-                  "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center", // Añadido a todos los botones
-                  scrolled ? "text-gray-800" : "text-white"
+                  "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black",
+                 
                 )}
               >
                 <Heart className="h-5 w-5" />
               </button>
-
               <CartButton
                 className={cn(
-                  "flex items-center justify-center",
-                  scrolled ? "text-gray-800" : "text-white"
+                  "flex items-center justify-center text-black",
+               
                 )}
               />
             </div>
+
+            {/* Nombre ZARIA en móvil, posicionado en el centro */}
+            {isMobile && (
+              <div className="absolute left-1/2 transform -translate-x-1/2">
+                <Link href="/">
+                  <h1
+                    className={cn(
+                      "font-realtime text-2xl text-black tracking-wider transition-colors cursor-pointer"
+                    )}
+                  >
+                    ZARIA
+                  </h1>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </motion.header>
 
       {/* Mobile Menu */}
-      {/* Mobile Menu - Versión Compacta */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -504,7 +508,7 @@ export default function FloatingNavbar() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.7 }}
-                        className="col-span-2" // Ocupa ambas columnas
+                        className="col-span-2"
                       >
                         <Link
                           href="#wishlist"
