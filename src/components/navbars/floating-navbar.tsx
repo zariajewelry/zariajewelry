@@ -90,10 +90,8 @@ export default function FloatingNavbar() {
 
   const getNavLinkStyles = (isScrolled: boolean) =>
     cn(
-      "text-[16px] font-realtime font-light transition-colors text-black",
-      isScrolled
-        ? "text-gray-800 hover:text-zaria"
-        : ""
+      "text-[14px] font-univers-next font-normal transition-colors text-black",
+      isScrolled ? "text-gray-800 hover:text-zaria" : ""
     );
 
   return (
@@ -102,7 +100,7 @@ export default function FloatingNavbar() {
         initial={{ y: 0 }}
         animate={{
           y: 0,
-          backgroundColor: "bg-zariabg",
+          backgroundColor: "bg-zaria-crema border border-black",
           backdropFilter: scrolled ? "blur(10px)" : "none",
           boxShadow: scrolled ? "0 2px 10px rgba(0, 0, 0, 0.05)" : "none",
         }}
@@ -119,7 +117,7 @@ export default function FloatingNavbar() {
         }}
         className={cn(
           "sticky top-0 z-50 transition-all duration-300",
-          scrolled ? "bg-zariabg shadow-md py-3" : "bg-zariabg py-5"
+          scrolled ? "bg-zariabg shadow-md py-3" : "bg-zaria-crema py-5"
         )}
       >
         <div className="container mx-auto px-4 2xl:max-w-7xl">
@@ -144,7 +142,7 @@ export default function FloatingNavbar() {
                     onClick={() => setSearchOpen(true)}
                     aria-label="Buscar"
                     className={cn(
-                      "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black",
+                      "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
                     )}
                   >
                     <Search className="h-5 w-5" />
@@ -164,6 +162,7 @@ export default function FloatingNavbar() {
             </div>
 
             {/* Centro: Enlaces de navegación solo en escritorio */}
+            {/* Centro: Enlaces de navegación solo en escritorio */}
             {!isMobile && (
               <div className="flex justify-center flex-1">
                 <div className="flex items-center space-x-8">
@@ -171,9 +170,36 @@ export default function FloatingNavbar() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={getNavLinkStyles(scrolled)}
+                      className={cn(
+                        getNavLinkStyles(scrolled),
+                        "group relative px-1 py-1.5 flex items-center"
+                      )}
                     >
-                      {item.label}
+                      <span className="relative z-10">{item.label}</span>
+
+                      {/* Flecha hacia abajo */}
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="ml-1.5 transition-transform group-hover:translate-y-0.5"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M6 9l6 6 6-6"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+
+                      {/* Borde inferior estático */}
+                      <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-black/20" />
+
+                      {/* Borde inferior animado en hover */}
+                      <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                     </Link>
                   ))}
                 </div>
@@ -210,7 +236,6 @@ export default function FloatingNavbar() {
                     aria-label="Buscar"
                     className={cn(
                       "relative transition-colors cursor-pointer flex items-center justify-center text-black"
-                     
                     )}
                   >
                     <Search className="h-5 w-5" />
@@ -220,17 +245,13 @@ export default function FloatingNavbar() {
               <button
                 aria-label="Lista de deseos"
                 className={cn(
-                  "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black",
-                 
+                  "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
                 )}
               >
                 <Heart className="h-5 w-5" />
               </button>
               <CartButton
-                className={cn(
-                  "flex items-center justify-center text-black",
-               
-                )}
+                className={cn("flex items-center justify-center text-black")}
               />
             </div>
 

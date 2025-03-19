@@ -19,9 +19,9 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
   const hoverImage = getHoverImage(product);
 
   return (
-    <div className="bg-productcard overflow-hidden cursor-pointer relative isolate">
+    <div className="bg-productcard cursor-pointer relative isolate">
       {/* Contenedor de imagen con margen de 10px en los laterales y arriba */}
-      <div className="relative pt-[12px] px-[12px] overflow-hidden">
+      <div className="relative pt-[15px] px-4 overflow-hidden">
         <Link href={`/products/${product.id}`} className="block w-full h-full">
           <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#f5f5f7]">
             <Image
@@ -67,7 +67,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         <motion.div
-          className="absolute top-[20px] right-[14px] z-40 cursor-pointer"
+          className="absolute top-[23px] right-[20px] z-40 cursor-pointer"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -104,7 +104,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Estado de stock */}
         {!product.isInStock && (
-          <div className="absolute inset-0 top-[10px] left-[10px] right-[10px] bg-black/30 backdrop-blur-[2px] flex items-center justify-center z-30">
+          <div className="absolute inset-0 top-[15px] left-[15px] right-[15px] bg-black/30 backdrop-blur-[2px] flex items-center justify-center z-30">
             <span className="text-black px-5 py-2 border text-xs sm:text-sm tracking-wide font-archivo font-medium">
               Próximamente
             </span>
@@ -118,7 +118,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
           href={`/products/${product.id}`}
           className="block group-hover:text-black/80 transition-colors duration-300"
         >
-          <h3 className="font-archivo font-light text-[10px] lg:text-xs text-zariablack tracking-tight leading-tight text-left">
+          <h3 className="font-archivo font-light text-[10px] lg:text-xs text-zariablack hover:text-zaria-hover-aquamarina tracking-tight leading-tight text-left">
             {product.name.toLocaleUpperCase()}
           </h3>
         </Link>

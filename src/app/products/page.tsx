@@ -8,7 +8,6 @@ import ProductFilters from "@/components/products/products-filters";
 import ProductGrid from "@/components/products/productsGrid";
 import { useProductFilters } from "@/hooks/products/useProductFilters";
 import HeroBanner from "@/components/hero/HeroBanner";
-import SearchNavPanel from "@/components/navigation/SearchNavPanel";
 import MobileFilterBar from "@/components/products/MobileFilterBar";
 import AppliedFiltersTags from "@/components/products/AppliedFiltersTags";
 import SortSelector from "@/components/products/SortSelector";
@@ -45,11 +44,10 @@ export default function ProductsPage() {
       <div className="relative">
         <HeroBanner
           title="TIENDA"
-          tagline="Colección 2025"
-          description="Diseños exclusivos elaborados con los materiales más finos para momentos inolvidables"
+          description="Diseños exclusivos elaborados para momentos inolvidables"
         />
 
-        <SearchNavPanel
+        {/* <SearchNavPanel
           id="products-container"
           breadcrumbItems={[
             { label: "Inicio", href: "/" },
@@ -59,10 +57,10 @@ export default function ProductsPage() {
           onSearch={handleSearch}
           debounceDelay={400}
           isMobile={isMobile}
-        />
+        /> */}
       </div>
 
-      <div className="w-full mx-auto px-4 py-4 lg:py-0">
+      <div className="w-full mx-auto py-4 lg:py-0">
         {/* Mobile Filters Toggle & Sort */}
         {isMobile && (
           <MobileFilterBar
@@ -96,20 +94,20 @@ export default function ProductsPage() {
         {/* Desktop Unified Toolbar */}
         {/* Desktop Unified Toolbar with Border Lines */}
         {!isMobile && (
-          <div className="mb-6 -mx-4">
+          <div className="-mx-4">
             {/* Línea negra superior */}
             <div className="w-screen border-t border-black"></div>
 
             {/* Contenido de la barra de filtros */}
-            <div className="flex items-center justify-between py-2">
+            <div className="flex items-center justify-between py-2 px-4">
               <div className="flex-shrink-0 px-4">
                 <button
                   onClick={toggleDesktopFilters}
-                  className="flex items-center justify-center px-3 py-1 transition-colors cursor-pointer border border-black"
+                  className="flex items-center justify-center py-1 transition-colors cursor-pointer"
                   aria-label="Mostrar filtros"
                 >
-                  <span className="text-sm font-realtime text-black font-light">
-                    FILTROS
+                  <span className="text-sm font-univers-next text-black font-normal">
+                    Filtros
                   </span>
                   <Plus className="h-3 w-3 ml-1 relative top-[0.1px]" />
                 </button>
@@ -134,9 +132,6 @@ export default function ProductsPage() {
                 />
               </div>
             </div>
-
-            {/* Línea negra inferior */}
-            <div className="w-screen border-b border-black"></div>
           </div>
         )}
         {/* Añade el panel deslizante para filtros */}
@@ -163,7 +158,7 @@ export default function ProductsPage() {
                   className="w-[380px] 2xl:w-[360px] fixed left-0 top-0 h-screen bg-white z-50 overflow-y-auto"
                 >
                   <div className="p-5 border-b sticky top-0 bg-zariabg z-10 flex items-center justify-between">
-                    <h2 className="font-realtime text-[14px]">FILTROS</h2>
+                    <h2 className="font-montserrat text-[14px]">FILTROS</h2>
                     <button
                       onClick={() => setShowDesktopFilters(false)}
                       className="p-1 cursor-pointer"

@@ -33,13 +33,13 @@ export default function CustomBreadcrumbs({ items, className = "" }: CustomBread
             
             <BreadcrumbItem>
               {item.active ? (
-                <BreadcrumbPage className="text-sm md:text-sm tracking-wide text-gray-800 font-realtime font-medium">
+                <BreadcrumbPage className="text-sm md:text-sm tracking-wide text-gray-800 font-montserrat font-medium">
                   {item.label}
                 </BreadcrumbPage>
               ) : (
                 <BreadcrumbLink 
                   asChild={!!item.href}
-                  className="text-sm md:text-sm tracking-wide text-gray-500 hover:text-gray-700 font-realtime transition-colors"
+                  className="text-sm md:text-sm tracking-wide text-gray-500 hover:text-gray-700 font-montserrat transition-colors"
                 >
                   {item.href ? (
                     <Link href={item.href}>{item.label}</Link>

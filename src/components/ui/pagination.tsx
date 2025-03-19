@@ -59,7 +59,7 @@ export default function Pagination({
   const visiblePages = getVisiblePages();
 
   return (
-    <div className={`flex justify-center my-10 ${className}`}>
+    <div className={`flex justify-center my-6 ${className}`}>
       <div className="flex items-center gap-4 font-archivo">
         {currentPage > 1 && (
           <button

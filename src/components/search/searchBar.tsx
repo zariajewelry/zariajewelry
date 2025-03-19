@@ -125,7 +125,7 @@ export default function SearchBar({
 
   // Estilos del input: añadido caret-transparent para inputs vacíos
   const inputStyles = minimalStyle 
-  ? `w-full bg-transparent border-none outline-none shadow-none focus:ring-0 focus:outline-none font-realtime px-0 py-1 pl-6 ${!internalValue ? 'caret-transparent' : ''}`
+  ? `w-full bg-transparent border-none outline-none shadow-none focus:ring-0 focus:outline-none font-montserrat px-0 py-1 pl-6 ${!internalValue ? 'caret-transparent' : ''}`
   : "rounded-full border-gray-200 focus:border-zaria focus:ring-0 text-base";
 
   const paddingClasses = () => {

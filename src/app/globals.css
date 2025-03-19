@@ -98,6 +98,8 @@ body {
   --color-productcard-sale-badge: #d54d4d;
   --color-zaria-salmon: #CEA1A2;
   --color-zaria-aquamarina: #7A9FAB;
+  --color-zaria-crema: #F3E5D8;
+  --color-zaria-hover-aquamarina: #364664;
 
 
   
@@ -106,7 +108,7 @@ body {
 
   --font-vollkorn: var(--font-vollkorn), serif;
   --font-archivo: var(--font-archivo), sans-serif;
-  --font-garamond: var(--font-garamond), serif;
+  --font-montserrat: var(--font-montserrat), serif;
   --font-realtime: 'RealtimeRounded', sans-serif;
   --font-univers-next: 'UniversNextPro', sans-serif;
 }

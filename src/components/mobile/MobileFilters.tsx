@@ -49,7 +49,7 @@ function MobileFilters({
 
       <div className="fixed inset-y-0 right-0 w-full sm:w-96 bg-zariabg flex flex-col shadow-xl animate-slideInRight">
         <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="pl-2 text-xs font-realtime font-light tracking-widest text-black">
+          <h2 className="pl-2 text-xs font-montserrat font-light tracking-widest text-black">
             FILTROS
           </h2>
           <button

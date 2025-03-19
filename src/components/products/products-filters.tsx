@@ -238,7 +238,7 @@ function ProductFilters({
       onClick={() => toggleSection(section)}
       type="button"
     >
-      <h3 className="font-realtime text-sm font-medium tracking-wide">
+      <h3 className="font-montserrat text-sm font-medium tracking-wide">
         {title}
       </h3>
       <div className="flex items-center">
@@ -274,7 +274,7 @@ function ProductFilters({
                 />
                 <label
                   htmlFor={`category-${category}`}
-                  className="text-sm font-realtime cursor-pointer"
+                  className="text-sm font-montserratcursor-pointer"
                 >
                   {category}
                 </label>
@@ -300,10 +300,10 @@ function ProductFilters({
               aria-label="Rango de precio"
             />
             <div className="flex items-center justify-between">
-              <div className="px-3 py-1.5 bg-amber-400 border border-black text-sm font-realtime">
+              <div className="px-3 py-1.5 bg-amber-400 border border-black text-sm font-montserrat">
                 {localPriceRange[0]}$
               </div>
-              <div className="px-3 py-1.5 bg-amber-400 border border-black text-sm font-realtime">
+              <div className="px-3 py-1.5 bg-amber-400 border border-black text-sm font-montserrat">
                 {localPriceRange[1]}$
               </div>
             </div>
@@ -328,7 +328,7 @@ function ProductFilters({
                 />
                 <label
                   htmlFor={`material-${material}`}
-                  className="text-sm font-realtime cursor-pointer"
+                  className="text-sm font-montserrat cursor-pointer"
                 >
                   {material}
                 </label>
@@ -355,7 +355,7 @@ function ProductFilters({
                 />
                 <label
                   htmlFor={`availability-${item}`}
-                  className="text-sm font-realtime cursor-pointer"
+                  className="text-sm font-montserrat cursor-pointer"
                 >
                   {item}
                 </label>
@@ -380,7 +380,7 @@ function ProductFilters({
             />
             <label
               htmlFor="discount"
-              className="text-sm font-realtime cursor-pointer"
+              className="text-sm font-montserrat cursor-pointer"
             >
               En oferta
             </label>
@@ -394,7 +394,7 @@ function ProductFilters({
     onClick={handleApplyFilters}
     className={`w-full cursor-pointer ${
       hasChanges ? "bg-amber-400 hover:bg-amber-500" : "bg-gray-200"
-    } border border-black text-black font-realtime`}
+    } border border-black text-black font-montserrat`}
     disabled={!hasChanges}
   >
     APLICAR FILTROS
@@ -404,7 +404,7 @@ function ProductFilters({
   {hasActiveFilters() && (
     <Button
       onClick={onClearFilters}
-      className="w-full bg-amber-50 hover:bg-amber-100 border border-black text-black font-realtime cursor-pointer"
+      className="w-full bg-amber-50 hover:bg-amber-100 border border-black text-black font-montserrat cursor-pointer"
       type="button"
     >
       QUITAR FILTROS

@@ -42,7 +42,7 @@ export default function SortSelector({
       {!compact ? (
         <div className="flex items-center gap-2">
           {showLabel && (
-            <span className="text-sm text-black font-realtime">
+            <span className="text-sm text-black font-montserrat">
               Ordenar por:
             </span>
           )}
@@ -61,11 +61,11 @@ export default function SortSelector({
       ) : (
         <button
           onClick={toggleDropdown}
-          className="flex items-center justify-center px-3 py-1 gap-1 bg-productcard transition-all border border-black cursor-pointer"
+          className="flex items-center justify-center  py-1 gap-1 bg-productcard transition-all cursor-pointer"
           aria-label="Opciones de ordenamiento"
         >
-          <span className="text-sm font-realtime font-light text-black transition-colors">
-            ORDENAR
+          <span className="text-sm font-univers-next font-normal text-black transition-colors">
+            Ordenar
           </span>
           <ChevronDown
             className={`h-3 w-3 transition-transform ${

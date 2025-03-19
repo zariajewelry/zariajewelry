@@ -194,7 +194,7 @@ export default function SignInForm({
             type="submit"
             isLoading={isSubmitting}
             spinnerSize='lg'
-            className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-black/40 border text-white font-realtime cursor-pointer rounded-none transition-all duration-300"
+            className="w-full h-12 lg:h-9 xl:h-10 2xl:h-12 bg-black hover:bg-black/40 border text-white font-montserrat cursor-pointer rounded-none transition-all duration-300"
           >
             Iniciar Sesión
           </LoadingButton>

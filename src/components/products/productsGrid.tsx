@@ -139,27 +139,37 @@ function ProductGrid({ searchQuery, filters, currentPage, onPageChange, clearFil
 
   return (
     <div className="bg-zariabg">
-    <p className="font-realtime text-sm text-gray-500 mb-3 sm:mb-6">
-      Mostrando {paginatedProducts.length} de {filteredProducts.length}{" "}
-      productos
-    </p>
-  
-    {/* Grid con líneas negras continuas */}
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-0 border-t border-l border-black mb-12">
-      {paginatedProducts.map((product, index) => (
-        <AnimatedSection
-          key={`product-${product.id}`}
-          className="group border-r border-b border-black"
-          animation="fadeIn"
-          delay={index < 8 ? index * 0.03 : 0} 
-          duration={0.4}
-        >
-          <ProductCard product={product} index={index} />
-        </AnimatedSection>
-      ))}
+    <div 
+      className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-0 border-t border-black" 
+      id="products-container"
+    >
+      {paginatedProducts.map((product, index) => {
+        const isLastInRow = (index + 1) % 2 === 0;  
+        const isLastInDesktopRow = (index + 1) % 4 === 0; 
+        
+        return (
+          <div 
+            key={`product-container-${product.id}`}
+            className={`
+              border-b border-black 
+              ${!isLastInRow ? 'border-r sm:border-r border-black' : ''} 
+              ${(isLastInRow && !isLastInDesktopRow) ? 'lg:border-r border-black' : ''}
+            `}
+          >
+            <AnimatedSection
+              key={`product-${product.id}`}
+              className="group"
+              animation="fadeIn"
+              delay={index < 8 ? index * 0.03 : 0} 
+              duration={0.4}
+            >
+              <ProductCard product={product} index={index} />
+            </AnimatedSection>
+          </div>
+        );
+      })}
     </div>
   
-    {/* Paginación */}
     {totalPages > 1 && (
       <Pagination
         currentPage={currentPage}

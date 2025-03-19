@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Vollkorn, Archivo, EB_Garamond } from "next/font/google";
+import { Vollkorn, Archivo, Montserrat } from "next/font/google";
 import { AuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "sonner";
 import ReduxProvider from "@/components/providers/redux-provider";
@@ -22,11 +22,11 @@ const archivo = Archivo({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const garamond = EB_Garamond({
-  variable: "--font-garamond",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <body
-        className={`${vollkorn.variable} ${archivo.variable} ${garamond.variable} bg-zaria antialiased`}
+        className={`${vollkorn.variable} ${archivo.variable} ${montserrat.variable} bg-zariabg antialiased`}
       >
         <ReduxProvider>
           <AuthProvider>
@@ -53,7 +53,7 @@ export default function RootLayout({
 
             <div>
               <div className="absolut top-0 h-[30px] w-screen bg-zaria-salmon border-b"></div>
-              {/* <FloatingNavbar /> */}
+              <FloatingNavbar />
 
               <main>{children}</main>
 
