@@ -64,7 +64,7 @@ export default function SortSelector({
           className="flex items-center justify-center  py-1 gap-1 bg-productcard transition-all cursor-pointer"
           aria-label="Opciones de ordenamiento"
         >
-          <span className="text-sm font-univers-next font-normal text-black transition-colors">
+          <span className="text-sm font-univers-next font-normal text-black transition-colors hover:text-zaria-hover-aquamarina">
             Ordenar
           </span>
           <ChevronDown

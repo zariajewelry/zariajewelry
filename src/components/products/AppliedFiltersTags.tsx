@@ -23,7 +23,7 @@ export default function AppliedFiltersTags({
     <div className={`flex flex-wrap items-center gap-4 ${className}`}>
       {/* Búsqueda */}
       {searchQuery && (
-        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-montserrat">
+        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-univers-next">
           <span>Búsqueda: {searchQuery}</span>
           <button
             onClick={onSearchClear}
@@ -38,7 +38,7 @@ export default function AppliedFiltersTags({
       {filters.categories.map((category) => (
         <div
           key={category}
-          className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-montserrat"
+          className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-univers-next"
         >
           <span>{category}</span>
           <button
@@ -59,7 +59,7 @@ export default function AppliedFiltersTags({
       {filters.materials.map((material) => (
         <div
           key={material}
-          className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-montserrat"
+          className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-univers-next"
         >
           <span>{material}</span>
           <button
@@ -78,7 +78,7 @@ export default function AppliedFiltersTags({
 
       {/* Rango de precio */}
       {(filters.priceRange[0] > 0 || filters.priceRange[1] < 5000) && (
-        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-montserrat">
+        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-univers-next">
           <span>
             {filters.priceRange[0]}$ - {filters.priceRange[1]}$
           </span>
@@ -93,7 +93,7 @@ export default function AppliedFiltersTags({
 
       {/* Descuento */}
       {filters.discount && (
-        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-montserrat">
+        <div className="inline-flex items-center border-b border-black px-1 py-0.5 text-sm font-univers-next">
           <span>En oferta</span>
           <button
             onClick={() => onFilterChange("discount", false)}

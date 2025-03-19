@@ -13,9 +13,11 @@ import SearchOverlay from "./search-overlay-navbar";
 import { FaGem, FaStar, FaGift } from "react-icons/fa";
 
 const MAIN_NAVIGATION = [
-  { href: "/products", label: "Colecciones" },
-  { href: "#new", label: "Novedades" },
-  { href: "#gifts", label: "Regalos" },
+  { href: "/", label: "Home" },
+  { href: "/products", label: "Shop", hasSubmenu: true },
+  { href: "#gifts", label: "Regalos", hasSubmenu: true },
+  { href: "#new", label: "Recien llegados" },
+  { href: "#contact", label: "Contacto" },
 ];
 
 const MOBILE_NAVIGATION = [
@@ -90,7 +92,7 @@ export default function FloatingNavbar() {
 
   const getNavLinkStyles = (isScrolled: boolean) =>
     cn(
-      "text-[14px] font-univers-next font-normal transition-colors text-black",
+      "text-[14px] font-univers-next font-light transition-colors text-black",
       isScrolled ? "text-gray-800 hover:text-zaria" : ""
     );
 
@@ -100,7 +102,7 @@ export default function FloatingNavbar() {
         initial={{ y: 0 }}
         animate={{
           y: 0,
-          backgroundColor: "bg-zaria-crema border border-black",
+          backgroundColor: "bg-zariabg",
           backdropFilter: scrolled ? "blur(10px)" : "none",
           boxShadow: scrolled ? "0 2px 10px rgba(0, 0, 0, 0.05)" : "none",
         }}
@@ -116,147 +118,39 @@ export default function FloatingNavbar() {
           boxShadow: { delay: 0.05 },
         }}
         className={cn(
-          "sticky top-0 z-50 transition-all duration-300",
-          scrolled ? "bg-zariabg shadow-md py-3" : "bg-zaria-crema py-5"
+          "sticky top-0 z-50 transition-all duration-300 border-t border-b h-[60px] flex items-center",
+          scrolled ? "bg-zariabg shadow-md" : "bg-zariabg"
         )}
       >
-        <div className="container mx-auto px-4 2xl:max-w-7xl">
-          <div className="flex items-center justify-between w-full relative">
-            {/* Izquierda: Nombre ZARIA en escritorio, menú y búsqueda en móvil */}
-            <div className="flex items-center">
-              {isMobile ? (
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={toggleMobileMenu}
-                    aria-expanded={mobileMenuOpen}
-                    aria-controls="mobile-menu"
-                    aria-label="Abrir menú"
-                    className={cn(
-                      "transition-colors cursor-pointer hover:text-zaria",
-                      scrolled ? "text-gray-800" : "text-gray-800"
-                    )}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </button>
-                  <button
-                    onClick={() => setSearchOpen(true)}
-                    aria-label="Buscar"
-                    className={cn(
-                      "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
-                    )}
-                  >
-                    <Search className="h-5 w-5" />
-                  </button>
-                </div>
-              ) : (
-                <Link href="/">
-                  <h1
-                    className={cn(
-                      "font-realtime text-2xl text-black tracking-wider transition-colors cursor-pointer"
-                    )}
-                  >
-                    ZARIA
-                  </h1>
-                </Link>
-              )}
-            </div>
-
-            {/* Centro: Enlaces de navegación solo en escritorio */}
-            {/* Centro: Enlaces de navegación solo en escritorio */}
-            {!isMobile && (
-              <div className="flex justify-center flex-1">
-                <div className="flex items-center space-x-8">
-                  {MAIN_NAVIGATION.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className={cn(
-                        getNavLinkStyles(scrolled),
-                        "group relative px-1 py-1.5 flex items-center"
-                      )}
-                    >
-                      <span className="relative z-10">{item.label}</span>
-
-                      {/* Flecha hacia abajo */}
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="ml-1.5 transition-transform group-hover:translate-y-0.5"
-                        stroke="currentColor"
-                      >
-                        <path
-                          d="M6 9l6 6 6-6"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-
-                      {/* Borde inferior estático */}
-                      <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-black/20" />
-
-                      {/* Borde inferior animado en hover */}
-                      <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Derecha: Iconos */}
-            <div className="flex items-center space-x-4">
-              {!isMobile && (
-                <>
-                  {isAuthenticated ? (
-                    <Link href="/account">
-                      <button
-                        aria-label="Mi cuenta"
-                        className={cn(
-                          "relative transition-colors cursor-pointer flex items-center justify-center text-black"
-                        )}
-                      >
-                        <UserRound
-                          className="h-5 w-5"
-                          style={{ marginTop: "-1px" }}
-                        />
-                      </button>
-                    </Link>
-                  ) : (
-                    <UserDropdown
-                      isOpen={userDropdownOpen}
-                      toggleOpen={() => setUserDropdownOpen(!userDropdownOpen)}
-                      isScrolled={scrolled}
-                    />
+        {/* CONTENEDOR PRINCIPAL */}
+        <div className="w-full px-4">
+          {isMobile ? (
+            <div className="flex items-center justify-between w-full relative">
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={toggleMobileMenu}
+                  aria-expanded={mobileMenuOpen}
+                  aria-controls="mobile-menu"
+                  aria-label="Abrir menú"
+                  className={cn(
+                    "transition-colors cursor-pointer hover:text-zaria",
+                    scrolled ? "text-gray-800" : "text-gray-800"
                   )}
-                  <button
-                    onClick={() => setSearchOpen(true)}
-                    aria-label="Buscar"
-                    className={cn(
-                      "relative transition-colors cursor-pointer flex items-center justify-center text-black"
-                    )}
-                  >
-                    <Search className="h-5 w-5" />
-                  </button>
-                </>
-              )}
-              <button
-                aria-label="Lista de deseos"
-                className={cn(
-                  "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
-                )}
-              >
-                <Heart className="h-5 w-5" />
-              </button>
-              <CartButton
-                className={cn("flex items-center justify-center text-black")}
-              />
-            </div>
+                >
+                  <Menu className="h-6 w-6" />
+                </button>
+                <button
+                  onClick={() => setSearchOpen(true)}
+                  aria-label="Buscar"
+                  className={cn(
+                    "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
+                  )}
+                >
+                  <Search className="h-5 w-5" />
+                </button>
+              </div>
 
-            {/* Nombre ZARIA en móvil, posicionado en el centro */}
-            {isMobile && (
+              {/* Center: ZARIA Logo */}
               <div className="absolute left-1/2 transform -translate-x-1/2">
                 <Link href="/">
                   <h1
@@ -268,8 +162,106 @@ export default function FloatingNavbar() {
                   </h1>
                 </Link>
               </div>
-            )}
-          </div>
+
+              <div className="flex items-center space-x-4">
+                <button
+                  aria-label="Lista de deseos"
+                  className={cn(
+                    "relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
+                  )}
+                >
+                  <Heart className="h-5 w-5" />
+                </button>
+                <CartButton
+                  className={cn("flex items-center justify-center text-black")}
+                />
+              </div>
+            </div>
+          ) : (
+            /* DESKTOP LAYOUT - NUEVO Y MEJORADO */
+            <div className="grid grid-cols-3 items-center w-full">
+
+              <div className="flex items-center">
+                <Link href="/">
+                  <h1 className="font-realtime text-2xl text-black tracking-wider transition-colors cursor-pointer">
+                    ZARIA
+                  </h1>
+                </Link>
+              </div>
+
+              <div className="flex justify-center">
+                <div className="flex items-center space-x-8 gap-20">
+                  {MAIN_NAVIGATION.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className={cn(
+                        getNavLinkStyles(scrolled),
+                        "group relative px-4 py-1.5 flex items-center whitespace-nowrap"
+                      )}
+                    >
+                      <span className="relative z-10">{item.label}</span>
+
+                      {item.hasSubmenu && (
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="ml-1.5 transition-transform group-hover:translate-y-0.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M6 9l6 6 6-6"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )}                  
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* 3. DERECHA: Iconos */}
+              <div className="flex justify-end items-center space-x-5">
+                {isAuthenticated ? (
+                  <Link href="/account">
+                    <button
+                      aria-label="Mi cuenta"
+                      className="relative transition-colors cursor-pointer flex items-center justify-center text-black"
+                    >
+                      <UserRound className="h-5 w-5" style={{ marginTop: "-1px" }} />
+                    </button>
+                  </Link>
+                ) : (
+                  <UserDropdown
+                    isOpen={userDropdownOpen}
+                    toggleOpen={() => setUserDropdownOpen(!userDropdownOpen)}
+                    isScrolled={scrolled}
+                  />
+                )}
+                <button
+                  onClick={() => setSearchOpen(true)}
+                  aria-label="Buscar"
+                  className="relative transition-colors cursor-pointer flex items-center justify-center text-black"
+                >
+                  <Search className="h-5 w-5" />
+                </button>
+                <button
+                  aria-label="Lista de deseos"
+                  className="relative hover:text-zaria transition-colors cursor-pointer flex items-center justify-center text-black"
+                >
+                  <Heart className="h-5 w-5" />
+                </button>
+                <CartButton
+                  className="flex items-center justify-center text-black"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </motion.header>
 
@@ -286,7 +278,7 @@ export default function FloatingNavbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50"
           >
-            {/* Fondo premium con efecto de cristal */}
+            {/* Código del menú móvil sin cambios */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -296,7 +288,6 @@ export default function FloatingNavbar() {
               onClick={toggleMobileMenu}
             />
 
-            {/* Panel principal - Más compacto */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -383,7 +374,7 @@ export default function FloatingNavbar() {
                       transition={{ delay: 0.3 }}
                       className="bg-white/60 backdrop-blur-sm rounded-xl shadow-sm border border-gray-100 overflow-hidden"
                     >
-                      {MOBILE_NAVIGATION.slice(0, 3).map((item, index) => {
+                      {MOBILE_NAVIGATION.slice(0, 5).map((item, index) => {
                         // Iconos principales
                         let icon;
                         if (item.href === "/products")
@@ -392,6 +383,8 @@ export default function FloatingNavbar() {
                           icon = <FaStar className="text-base text-zaria" />;
                         else if (item.href === "#gifts")
                           icon = <FaGift className="text-base text-zaria" />;
+                        else
+                          icon = <FaGem className="text-base text-zaria" />;
 
                         return (
                           <motion.div
@@ -566,6 +559,7 @@ export default function FloatingNavbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      
       {/* Panel de Búsqueda */}
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>

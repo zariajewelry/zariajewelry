@@ -2,8 +2,6 @@
 
 import React, { useCallback, memo, useState, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { FilterState } from "@/types/products";
@@ -11,10 +9,10 @@ import { FilterState } from "@/types/products";
 interface ProductFiltersProps {
   activeFilters: FilterState;
   onChange: (filterType: keyof FilterState, value: any) => void;
-  onApplyAllFilters?: (filters: FilterState) => void; 
+  onApplyAllFilters?: (filters: FilterState) => void;
   onApply?: () => void;
   onClearFilters?: () => void;
-  hasActiveFilters?: () => boolean; 
+  hasActiveFilters?: () => boolean;
 }
 
 // Datos estáticos
@@ -76,7 +74,6 @@ function ProductFilters({
       [section]: !prev[section as keyof typeof prev],
     }));
   }, []);
-
 
   useEffect(() => {
     setLocalCategories([...activeFilters.categories]);
@@ -157,13 +154,11 @@ function ProductFilters({
     setLocalDiscount((prev) => !prev);
   }, []);
 
-
   const handleApplyFilters = useCallback(() => {
     if (!hasChanges) {
       if (onApply) onApply();
       return;
     }
-
 
     if (onApplyAllFilters) {
       const updatedFilters: FilterState = {
@@ -234,11 +229,11 @@ function ProductFilters({
     section: string;
   }) => (
     <button
-      className="flex items-center justify-between w-full py-2 border-b border-black"
+      className="flex items-center justify-between w-full py-2 border-b border-gray-200"
       onClick={() => toggleSection(section)}
       type="button"
     >
-      <h3 className="font-montserrat text-sm font-medium tracking-wide">
+      <h3 className="font-vollkorn text-xs font-medium tracking-wide">
         {title}
       </h3>
       <div className="flex items-center">
@@ -252,10 +247,7 @@ function ProductFilters({
   );
 
   return (
-    <div
-      className="space-y-4 bg-zariabg md:border md:border-black p-6"
-      aria-label="Filtros de productos"
-    >
+    <div className="space-y-4 bg-zariabg p-6" aria-label="Filtros de productos">
       {/* El resto del JSX permanece igual */}
       {/* Categories */}
       <div>
@@ -269,12 +261,13 @@ function ProductFilters({
                   id={`category-${category}`}
                   checked={localCategories.includes(category)}
                   onCheckedChange={() => handleCategoryChange(category)}
-                  className="border-black data-[state=checked]:bg-amber-400 data-[state=checked]:border-black"
+                  className="w-3 h-3 rounded-sm border-black data-[state=checked]:bg-zaria-salmon data-[state=checked]:border-zaria-salmon"
                   aria-label={`Filtrar por categoría ${category}`}
+                  isIconChecked={false}
                 />
                 <label
                   htmlFor={`category-${category}`}
-                  className="text-sm font-montserratcursor-pointer"
+                  className="text-xs font-univers-next cursor-pointer"
                 >
                   {category}
                 </label>
@@ -300,10 +293,10 @@ function ProductFilters({
               aria-label="Rango de precio"
             />
             <div className="flex items-center justify-between">
-              <div className="px-3 py-1.5 bg-amber-400 border border-black text-sm font-montserrat">
+              <div className="px-3 py-1.5 min-w-17 text-center border border-black text-sm font-univers-next">
                 {localPriceRange[0]}$
               </div>
-              <div className="px-3 py-1.5 bg-amber-400 border border-black text-sm font-montserrat">
+              <div className="px-3 py-1.5 min-w-17 text-center border border-black text-sm font-univers-next">
                 {localPriceRange[1]}$
               </div>
             </div>
@@ -323,12 +316,13 @@ function ProductFilters({
                   id={`material-${material}`}
                   checked={localMaterials.includes(material)}
                   onCheckedChange={() => handleMaterialChange(material)}
-                  className="border-black data-[state=checked]:bg-amber-400 data-[state=checked]:border-black"
+                  className="w-3 h-3 rounded-sm border-black data-[state=checked]:bg-zaria-salmon data-[state=checked]:border-zaria-salmon"
                   aria-label={`Filtrar por material ${material}`}
+                  isIconChecked={false}
                 />
                 <label
                   htmlFor={`material-${material}`}
-                  className="text-sm font-montserrat cursor-pointer"
+                  className="text-xs font-univers-next cursor-pointer"
                 >
                   {material}
                 </label>
@@ -350,12 +344,13 @@ function ProductFilters({
                   id={`availability-${item}`}
                   checked={localAvailability.includes(item)}
                   onCheckedChange={() => handleAvailabilityChange(item)}
-                  className="border-black data-[state=checked]:bg-amber-400 data-[state=checked]:border-black"
+                  className="w-3 h-3 rounded-sm border-black data-[state=checked]:bg-zaria-salmon data-[state=checked]:border-zaria-salmon"
                   aria-label={`Filtrar por disponibilidad ${item}`}
+                  isIconChecked={false}
                 />
                 <label
                   htmlFor={`availability-${item}`}
-                  className="text-sm font-montserrat cursor-pointer"
+                  className="text-xs font-univers-next cursor-pointer"
                 >
                   {item}
                 </label>
@@ -375,12 +370,13 @@ function ProductFilters({
               id="discount"
               checked={localDiscount}
               onCheckedChange={handleDiscountChange}
-              className="border-black data-[state=checked]:bg-amber-400 data-[state=checked]:border-black"
+              className="w-3 h-3 rounded-sm border-black data-[state=checked]:bg-zaria-salmon data-[state=checked]:border-zaria-salmon"
               aria-label="Mostrar solo productos en oferta"
+              isIconChecked={false}
             />
             <label
               htmlFor="discount"
-              className="text-sm font-montserrat cursor-pointer"
+              className="text-xs font-univers-next cursor-pointer"
             >
               En oferta
             </label>
@@ -389,28 +385,28 @@ function ProductFilters({
       </div>
 
       {/* Apply Filters Button */}
-      <div className="pt-4 border-t border-black mt-6 space-y-2">
-  <Button
-    onClick={handleApplyFilters}
-    className={`w-full cursor-pointer ${
-      hasChanges ? "bg-amber-400 hover:bg-amber-500" : "bg-gray-200"
-    } border border-black text-black font-montserrat`}
-    disabled={!hasChanges}
-  >
-    APLICAR FILTROS
-  </Button>
-  
-  {/* Clear Filters Button */}
-  {hasActiveFilters() && (
-    <Button
-      onClick={onClearFilters}
-      className="w-full bg-amber-50 hover:bg-amber-100 border border-black text-black font-montserrat cursor-pointer"
-      type="button"
-    >
-      QUITAR FILTROS
-    </Button>
-  )}
-</div>
+      <div className="pt-4 border-t border-gray-200 mt-6 space-y-2">
+        <button
+          onClick={handleApplyFilters}
+          className={`w-full h-10 cursor-pointer ${
+            hasChanges ? "" : "bg-gray-200"
+          } border border-black hover:text-zaria-hover-aquamarina text-black font-univers-next text-sm font-normal`}
+          disabled={!hasChanges}
+        >
+          APLICAR FILTROS
+        </button>
+
+        {/* Clear Filters Button */}
+        {hasActiveFilters() && (
+          <button
+            onClick={onClearFilters}
+            className="w-full h-10 border border-black hover:text-zaria-hover-aquamarina text-black font-univers-next text-sm font-normal cursor-pointer"
+            type="button"
+          >
+            QUITAR FILTROS
+          </button>
+        )}
+      </div>
     </div>
   );
 }

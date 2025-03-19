@@ -106,7 +106,7 @@ export default function ProductsPage() {
                   className="flex items-center justify-center py-1 transition-colors cursor-pointer"
                   aria-label="Mostrar filtros"
                 >
-                  <span className="text-sm font-univers-next text-black font-normal">
+                  <span className="text-sm font-univers-next text-black font-normal hover:text-zaria-hover-aquamarina">
                     Filtros
                   </span>
                   <Plus className="h-3 w-3 ml-1 relative top-[0.1px]" />
@@ -155,10 +155,10 @@ export default function ProductsPage() {
                   animate={{ x: 0, boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)" }}
                   exit={{ x: "-100%", boxShadow: "0 0 0 rgba(0, 0, 0, 0)" }}
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                  className="w-[380px] 2xl:w-[360px] fixed left-0 top-0 h-screen bg-white z-50 overflow-y-auto"
+                  className="w-[380px] 2xl:w-[360px] fixed left-0 top-0 h-screen bg-zariabg z-50 overflow-y-auto"
                 >
-                  <div className="p-5 border-b sticky top-0 bg-zariabg z-10 flex items-center justify-between">
-                    <h2 className="font-montserrat text-[14px]">FILTROS</h2>
+                  <div className="p-5 border-b border-gray-200 sticky top-0 bg-zariabg z-10 flex items-center justify-between">
+                    <h2 className="font-vollkorn text-[14px]">FILTROS</h2>
                     <button
                       onClick={() => setShowDesktopFilters(false)}
                       className="p-1 cursor-pointer"
