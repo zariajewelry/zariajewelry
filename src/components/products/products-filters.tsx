@@ -247,7 +247,7 @@ function ProductFilters({
   );
 
   return (
-    <div className="space-y-4 bg-zariabg p-6" aria-label="Filtros de productos">
+    <div className="space-y-4 bg-zariabg px-6 2xl:py-6" aria-label="Filtros de productos">
       {/* El resto del JSX permanece igual */}
       {/* Categories */}
       <div>

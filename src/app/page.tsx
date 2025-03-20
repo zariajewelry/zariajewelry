@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useScroll, AnimatePresence } from "framer-motion"
 import { ChevronRight, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -17,7 +17,10 @@ import Newsletter from "@/components/newsletters/newsletter"
 import ArtisticDivider from "@/components/customs/Artistic-divider"
 import TestimonialSlider from "@/components/testimonial-slider"
 import CollectionShowcase from "@/components/collection-showcase"
-import ArtisanalCollectionSection from "@/components/parallax/ArtisanalColeccionParallaxSection"
+import FeaturedProductsShowcase from "@/components/home/FeaturedProductsShowCase"
+import HeroCarousel from "@/components/home/HomeCaroussel"
+import HomeBannerCarousel from "@/components/home/HomeBannerCarousel"
+
 
 export default function Home() {
   const [showPromo, setShowPromo] = useState(false)
@@ -25,8 +28,6 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
-  // Parallax effect for hero image
-  const heroImageY = useTransform(scrollY, [0, 500], [0, 150])
 
   // Close promo banner
   const closePromo = () => {
@@ -79,61 +80,10 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Floating Navbar */}
+      <HomeBannerCarousel />
+      <FeaturedProductsShowcase />
+
       
-
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[100vh] overflow-hidden">
-        <motion.div className="absolute inset-0 w-full h-full" style={{ y: heroImageY }}>
-          <Image
-            src="https://i.ibb.co/HDGGCYFS/zaria-auth-banner.png"
-            alt="Collar de lujo"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/20" />
-        </motion.div>
-
-        {/* Content with subtle initial animation */}
-        <div className="relative h-full flex flex-col justify-center items-center text-center px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-3xl"
-          >
-            <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-              Elegancia que <span className="italic">perdura</span> en el tiempo
-            </h2>
-            <p className="font-light text-white text-lg md:text-xl max-w-xl mx-auto mb-8 leading-relaxed">
-              Descubra nuestra colección de joyas atemporales, diseñadas para momentos inolvidables y conexiones
-              eternas.
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button className="bg-white text-black hover:bg-zaria hover:text-white border-0 rounded-none px-8 py-6 text-sm transition-all duration-300">
-                EXPLORAR COLECCIÓN
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-        >
-          <div className="w-[30px] h-[50px] rounded-full border-2 border-white flex items-start justify-center p-2">
-            <motion.div
-              className="w-1 h-3 bg-white rounded-full"
-              animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-            />
-          </div>
-        </motion.div>
-      </section>
-
-      <ArtisanalCollectionSection />
 
       {/* Brand Statement with Artistic Elements */}
       <section className="py-20 px-4 bg-white relative overflow-hidden">

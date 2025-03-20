@@ -52,7 +52,6 @@ export default function RootLayout({
             <Toaster position="top-center" />
 
             <div>
-              <div className="absolut top-0 h-[30px] w-screen bg-zaria-salmon"></div>
               <FloatingNavbar />
 
               <main>{children}</main>

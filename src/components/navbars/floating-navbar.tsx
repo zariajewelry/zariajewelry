@@ -118,8 +118,8 @@ export default function FloatingNavbar() {
           boxShadow: { delay: 0.05 },
         }}
         className={cn(
-          "sticky top-0 z-50 transition-all duration-300 border-t border-b h-[60px] flex items-center",
-          scrolled ? "bg-zariabg shadow-md" : "bg-zariabg"
+          "sticky top-0 z-50 transition-all duration-300 h-[60px] flex items-center",
+          scrolled ? "bg-zariabg shadow-md" : "bg-zariabg border-t border-b"
         )}
       >
         {/* CONTENEDOR PRINCIPAL */}
@@ -190,7 +190,7 @@ export default function FloatingNavbar() {
               </div>
 
               <div className="flex justify-center">
-                <div className="flex items-center space-x-8 gap-20">
+                <div className="flex items-center space-x-8 lg:gap-10 2xl:gap-20">
                   {MAIN_NAVIGATION.map((item) => (
                     <Link
                       key={item.label}
