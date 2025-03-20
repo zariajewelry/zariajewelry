@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import MobileFilters from "@/components/mobile/MobileFilters";
 import ProductFilters from "@/components/products/products-filters";
 import ProductGrid from "@/components/products/productsGrid";
@@ -12,6 +11,7 @@ import MobileFilterBar from "@/components/products/MobileFilterBar";
 import AppliedFiltersTags from "@/components/products/AppliedFiltersTags";
 import SortSelector from "@/components/products/SortSelector";
 import { AnimatePresence, motion } from "framer-motion";
+import { useScreenSize } from "@/hooks/use-mobile";
 
 export default function ProductsPage() {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
@@ -33,7 +33,7 @@ export default function ProductsPage() {
     hasActiveFilters,
   } = useProductFilters();
 
-  const isMobile = useIsMobile();
+  const { isMobile } = useScreenSize();
 
   const toggleMobileFilters = () => {
     setShowMobileFilters(!showMobileFilters);

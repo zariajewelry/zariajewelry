@@ -19,8 +19,7 @@ export default function FeaturedProductsCard({
   linkUrl,
 }: CategoryCardProps) {
   return (
-    <div className="bg-productcard relative isolate h-full flex flex-col">
-      {/* Contenedor de imagen con margen de 15px en los laterales y arriba */}
+    <div className="bg-zariabg relative isolate h-full flex flex-col">
       <div className="relative pt-[15px] px-[15px] overflow-hidden flex-grow">
         <div className="relative w-full h-full overflow-hidden bg-zariabg">
           <Image
@@ -34,13 +33,12 @@ export default function FeaturedProductsCard({
         </div>
       </div>
 
-      {/* Información de la categoría - alineada a la izquierda */}
-      <div className="p-4 bg-white">
-        <h3 className="font-vollkorn font-bold text-sm lg:text-lg text-zariablack tracking-tight leading-tight text-left mb-2">
+      <div className="px-5 py-0 pt-5 lg:p-5 bg-zariabg">
+        <h3 className="font-vollkorn font-semibold text-sm lg:text-lg text-zariablack tracking-widest leading-tight text-left mb-2 pt-2">
           {title.toLocaleUpperCase()}
         </h3>
         
-        <p className="text-xs lg:text-sm font-univers-next font-normal text-zariablack mb-4">
+        <p className="text-xs lg:text-sm font-univers-next font-normal text-zariablack mb-2">
           {description}
         </p>
         
@@ -48,6 +46,7 @@ export default function FeaturedProductsCard({
           whileHover={{ x: 5 }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          className="pb-2"
         >
           <Link 
             href={linkUrl}

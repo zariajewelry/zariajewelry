@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useScreenSize } from "@/hooks/use-mobile";
+
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -12,7 +13,7 @@ interface SearchOverlayProps {
 
 export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const isMobile = useIsMobile();
+  const { isMobile } = useScreenSize();
 
   useEffect(() => {
     if (isOpen && inputRef.current) {

@@ -1,22 +1,31 @@
 "use client"
 
+
 import { useState, useEffect } from "react"
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false)
+export function useScreenSize() {
+  const [screenSize, setScreenSize] = useState({
+    isMobile: false,
+    isTablet: false, 
+    isDesktop: false
+  })
 
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      setScreenSize({
+        isMobile: width < 768,
+        isTablet: width >= 768 && width < 1050,
+        isDesktop: width >= 1050
+      })
     }
 
-    checkIfMobile()
+    checkScreenSize()
 
-    window.addEventListener("resize", checkIfMobile)
+    window.addEventListener("resize", checkScreenSize)
 
-    return () => window.removeEventListener("resize", checkIfMobile)
+    return () => window.removeEventListener("resize", checkScreenSize)
   }, [])
 
-  return isMobile
+  return screenSize
 }
-

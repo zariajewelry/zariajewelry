@@ -5,12 +5,12 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
 import CartButton from "../buttons/cart-button";
 import { useOnClickOutside } from "@/hooks/use-click-outside";
 import { UserDropdown } from "./user-navbar-dropdown";
 import SearchOverlay from "./search-overlay-navbar";
 import { FaGem, FaStar, FaGift } from "react-icons/fa";
+import { useScreenSize } from "@/hooks/use-mobile";
 
 const MAIN_NAVIGATION = [
   { href: "/", label: "Home" },
@@ -32,7 +32,9 @@ export default function FloatingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const isMobile = useIsMobile();
+
+  const { isMobile, isTablet, isDesktop } = useScreenSize();
+
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isAuthenticated = false;
 
@@ -124,7 +126,7 @@ export default function FloatingNavbar() {
       >
         {/* CONTENEDOR PRINCIPAL */}
         <div className="w-full px-4">
-          {isMobile ? (
+          { isMobile || isTablet ? (
             <div className="flex items-center justify-between w-full relative">
               <div className="flex items-center space-x-4">
                 <button
@@ -180,10 +182,9 @@ export default function FloatingNavbar() {
           ) : (
             /* DESKTOP LAYOUT - NUEVO Y MEJORADO */
             <div className="grid grid-cols-3 items-center w-full">
-
               <div className="flex items-center">
                 <Link href="/">
-                  <h1 className="font-realtime text-2xl text-black tracking-wider transition-colors cursor-pointer">
+                  <h1 className="font-univers-next font-light text-2xl text-black tracking-wider transition-colors cursor-pointer">
                     ZARIA
                   </h1>
                 </Link>
@@ -219,7 +220,7 @@ export default function FloatingNavbar() {
                             strokeLinejoin="round"
                           />
                         </svg>
-                      )}                  
+                      )}
                     </Link>
                   ))}
                 </div>
@@ -233,7 +234,10 @@ export default function FloatingNavbar() {
                       aria-label="Mi cuenta"
                       className="relative transition-colors cursor-pointer flex items-center justify-center text-black"
                     >
-                      <UserRound className="h-5 w-5" style={{ marginTop: "-1px" }} />
+                      <UserRound
+                        className="h-5 w-5"
+                        style={{ marginTop: "-1px" }}
+                      />
                     </button>
                   </Link>
                 ) : (
@@ -256,9 +260,7 @@ export default function FloatingNavbar() {
                 >
                   <Heart className="h-5 w-5" />
                 </button>
-                <CartButton
-                  className="flex items-center justify-center text-black"
-                />
+                <CartButton className="flex items-center justify-center text-black" />
               </div>
             </div>
           )}
@@ -383,8 +385,7 @@ export default function FloatingNavbar() {
                           icon = <FaStar className="text-base text-zaria" />;
                         else if (item.href === "#gifts")
                           icon = <FaGift className="text-base text-zaria" />;
-                        else
-                          icon = <FaGem className="text-base text-zaria" />;
+                        else icon = <FaGem className="text-base text-zaria" />;
 
                         return (
                           <motion.div
@@ -559,7 +560,7 @@ export default function FloatingNavbar() {
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       {/* Panel de Búsqueda */}
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>

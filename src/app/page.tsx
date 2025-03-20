@@ -12,14 +12,17 @@ import { Input } from "@/components/ui/input"
 
 import AnimatedSection from "@/components/customs/animated/Animated-section"
 import PromoCountdown from "@/components/promotions/promo-countdown"
-import FeaturedProducts from "@/components/products/featured-products"
+import FeaturedProducts from "@/components/products/FeaturedProducts"
 import Newsletter from "@/components/newsletters/newsletter"
 import ArtisticDivider from "@/components/customs/Artistic-divider"
 import TestimonialSlider from "@/components/testimonial-slider"
 import CollectionShowcase from "@/components/collection-showcase"
 import FeaturedProductsShowcase from "@/components/home/FeaturedProductsShowCase"
-import HeroCarousel from "@/components/home/HomeCaroussel"
-import HomeBannerCarousel from "@/components/home/HomeBannerCarousel"
+import HomeStoryBanner from "@/components/home/banners/HomeStoryBanner"
+import HomeCategoriesGrid from "@/components/home/categories/HomeCategoriesGrid"
+import { ManTs } from "@/components/home/asd"
+import GiftBoxIcon from "@/components/home/GiftIcon"
+
 
 
 export default function Home() {
@@ -80,10 +83,12 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Floating Navbar */}
-      <HomeBannerCarousel />
+      {/* <HomeBannerCarousel /> */}
       <FeaturedProductsShowcase />
-
-      
+      <HomeStoryBanner />
+      <HomeCategoriesGrid />
+       {/* Featured Products */}
+       <FeaturedProducts />
 
       {/* Brand Statement with Artistic Elements */}
       <section className="py-20 px-4 bg-white relative overflow-hidden">
@@ -108,8 +113,11 @@ export default function Home() {
       {/* Collection Showcase - New Dynamic Layout */}
       <CollectionShowcase />
 
-      {/* Featured Products */}
-      <FeaturedProducts />
+     
+
+      <ManTs />
+
+      <GiftBoxIcon />
 
       {/* Craftsmanship Section with Parallax */}
       <section className="py-24 px-4 bg-[#f8f8f8] relative overflow-hidden">
