@@ -18,8 +18,8 @@ export default function CartSidebarItemList({
   moveToWishlist,
 }: CartItemListProps) {
   return (
-    <div className="px-6 sm:px-8 py-3 md:py-4 lg:py-2 2xl:py-6">
-      <ul className="space-y-4 md:space-y-5 lg:space-y-4 2xl:space-y-6">
+    <div className="py-3 md:py-4 lg:py-2 2xl:py-0">
+      <ul className="space-y-4 md:space-y-5 lg:space-y-4 2xl:space-y-0">
         {items.map((item) => (
           <CartSidebarItem
             key={item.id}

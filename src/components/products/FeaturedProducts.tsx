@@ -74,9 +74,9 @@ export default function FeaturedProducts() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center font-univers-next text-sm text-zariablack hover:text-zaria-hover-aquamarina transition-colors border-b border-black pb-0.5 hover:border-zaria-hover-aquamarina"
+            className="inline-flex items-center font-univers-next text-xs sm:text-sm text-zariablack hover:text-zaria-hover-aquamarina transition-colors border-b border-black pb-0.5 hover:border-zaria-hover-aquamarina"
           >
-            VER TODOS LOS PRODUCTOS <MoveRight className="h-4 w-4 ml-1" />
+            VER TODOS LOS PRODUCTOS <MoveRight className="w-3 h-3 sm:h-4 sm:w-4 ml-1" />
           </Link>
         </motion.div>
       </div>

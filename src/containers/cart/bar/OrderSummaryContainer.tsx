@@ -22,16 +22,12 @@ export default function OrderSummaryContainer() {
 
   // Función para formatear precios
   const formatPrice = (price: number) => {
-    return `${price.toFixed(2)}€`;
+    return `$ ${price.toFixed(2)}`;
   };
   
   return (
     <CartSidebarOrderSummary
       subtotal={subtotal}
-      discount={discount}
-      shipping={shipping}
-      tax={tax}
-      total={total}
       formatPrice={formatPrice}
     />
   );

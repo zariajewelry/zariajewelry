@@ -21,7 +21,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
   return (
     <div className="bg-productcard cursor-pointer relative isolate">
       {/* Contenedor de imagen con margen de 10px en los laterales y arriba */}
-      <div className="relative pt-[15px] px-4 overflow-hidden">
+      <div className="relative pt-[5px] px-[5px] md:pt-[15px] md:px-[15px] overflow-hidden">
         <Link href={`/products/${product.id}`} className="block w-full h-full">
           <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#f5f5f7]">
             <Image
@@ -104,7 +104,7 @@ function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Estado de stock */}
         {!product.isInStock && (
-          <div className="absolute inset-0 top-[15px] left-[15px] right-[15px] bg-black/30 backdrop-blur-[2px] flex items-center justify-center z-30">
+          <div className="absolute inset-0 top-[5px] left-[5px] right-[5px] md:top-[15px] md:left-[15px] md:right-[15px] bg-black/30 backdrop-blur-[2px] flex items-center justify-center z-30">
             <span className="text-black px-5 py-2 border text-xs sm:text-sm tracking-wide font-archivo font-medium">
               Próximamente
             </span>

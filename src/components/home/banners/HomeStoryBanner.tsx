@@ -6,7 +6,7 @@ import { MoveRight } from "lucide-react";
 
 export default function HomeStoryBanner() {
   return (
-    <section className="w-full h-[265px] bg-[#AFB972] flex items-center justify-center mt-7 lg:mt-0">
+    <section className="w-full h-[265px] bg-zaria-green flex items-center justify-center mt-7 lg:mt-0">
       <div className="max-w-3xl mx-auto text-center px-6">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
@@ -31,10 +31,9 @@ export default function HomeStoryBanner() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
+          whileHover={{ x: 5 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
           className="inline-block"
         >
           <Link href="/about">

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { MoveRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface CartActionsProps {
   onClose: () => void;
@@ -9,19 +10,33 @@ interface CartActionsProps {
 
 export default function CartActions({ onClose }: CartActionsProps) {
   return (
-    <div className="space-y-2 md:space-y-2 lg:space-y-1.5 2xl:space-y-3">
+    <div className="space-y-3">
+      {/* Botón de iniciar compra */}
       <Link href="/checkout" className="block w-full">
-        <Button className="w-full bg-black hover:bg-zaria text-white transition-colors duration-300 h-10 md:h-11 lg:h-10 2xl:h-12 text-xs sm:text-sm lg:text-[12px] 2xl:text-sm font-medium cursor-pointer">
-            INICIAR COMPRA
-        </Button>
+        <motion.button
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          className="w-full mb-3 h-9 text-zariablack font-univers-next font-normal text-sm tracking-wide border border-zariablack transition-all duration-300 hover:text-zaria-hover-aquamarina hover:border-zaria-hover-aquamarina cursor-pointer"
+        >
+          IR AL CARRITO
+        </motion.button>
       </Link>
-      <Button
-        variant="outline"
-        className="w-full border-gray-200 hover:bg-zaria/10 h-10 md:h-11 lg:h-10 2xl:h-12 lg:mb-2 text-xs sm:text-sm lg:text-[12px] 2xl:text-sm cursor-pointer"
+      
+      {/* Botón de continuar comprando */}
+      <motion.button
+        whileHover={{ x: 5 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
         onClick={onClose}
+        className="w-full mb-4 flex items-center justify-center font-univers-next text-sm text-zariablack hover:text-zaria-hover-aquamarina transition-colors group cursor-pointer"
       >
-        CONTINUAR COMPRANDO
-      </Button>
+        <span className="relative text-xs font-univers-next font-normal">
+          CONTINUAR COMPRANDO
+          <MoveRight className="inline-block h-3 w-3 ml-2 transition-transform group-hover:translate-x-1" />
+          <span className="absolute -bottom-[3px] left-0 w-full h-[1px] bg-zariablack group-hover:bg-zaria-hover-aquamarina transition-colors"></span>
+        </span>
+      </motion.button>
     </div>
   );
 }

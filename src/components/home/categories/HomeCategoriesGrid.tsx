@@ -3,25 +3,25 @@ import CategoryCard from "./HomeCategoryCard";
 const CATEGORIES = [
   {
     id: "bags",
-    title: "Bags",
+    title: "Anillos",
     imageUrl: "https://www.wolfandmoon.com/cdn/shop/files/valentines-edit-re-export-5_1728x.jpg?v=1739181840",
     linkUrl: "/products/category/bags",
   },
   {
     id: "necklaces",
-    title: "Necklaces",
+    title: "Aros",
     imageUrl: "https://www.wolfandmoon.com/cdn/shop/files/beach-day-hoops-set-lifestyle-2_1296x.jpg?v=1716932534",
     linkUrl: "/products/category/necklaces",
   },
   {
     id: "hoop-sets",
-    title: "Hoop Sets",
+    title: "Collares",
     imageUrl: "https://www.wolfandmoon.com/cdn/shop/files/pastries-group-model-3_1296x.jpg?v=1691508689",
     linkUrl: "/products/category/hoop-sets",
   },
   {
     id: "earrings",
-    title: "Earrings",
+    title: "Panuelos",
     imageUrl: "https://www.wolfandmoon.com/cdn/shop/files/heart-bag-redpink-model-4_a08c1a9c-706f-4a27-a012-936a61471d24_1296x.jpg?v=1739794780",
     linkUrl: "/products/category/earrings",
   },
