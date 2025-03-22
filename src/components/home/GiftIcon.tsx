@@ -10,7 +10,7 @@ const GiftBoxIcon: React.FC<GiftBoxIconProps> = ({ className = "" }) => {
       viewBox="0 0 89 92"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`gift-box ${className}`}
+      className={`${className}`}
       aria-hidden="true"
     >
       <g filter="url(#filter0_d_1_116)">

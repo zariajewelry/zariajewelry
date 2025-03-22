@@ -68,7 +68,7 @@ export default function CartSidebarItem({
 
               {/* Detalles del producto */}
               <div className="mt-0.5">
-                <p className="font-univers-next font-normal text-[10px] sm:text-[11px] text-zariablack leading-tight">
+                <p className="font-univers-next font-normal text-[10px] sm:text-[11px] text-zariablack/70 leading-tight">
                   {item.material}
                   {item.length ? `, ${item.length}` : ""}
                   <span className="mx-1 text-zariablack/30">•</span>

@@ -70,7 +70,9 @@ export default function CartSidebar() {
             {/* Header - Fijo en la parte superior */}
             <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-black">
               <h2 className="font-univers-next font-normal text-sm tracking-wider text-zariablack">
-                {isEmpty ? "Tu Carrito" : `Tu Carrito - (${cartItems.length}) items`}
+                {isEmpty
+                  ? "Tu Carrito"
+                  : `Tu Carrito - (${cartItems.length}) items`}
               </h2>
               <button
                 onClick={handleClose}
@@ -83,33 +85,33 @@ export default function CartSidebar() {
 
             {/* Estructura principal con flexbox */}
             {!isEmpty ? (
-  <div className="h-[calc(100%-60px)] flex flex-col">
-    {/* Contenedor scrollable para todo el contenido */}
-    <div className="flex-grow overflow-y-auto">
-      {/* Área de items - Ahora sin flex-1 */}
-      <div>
-        <CartItemListContainer onClose={handleClose} />
-      </div>
-      
-      {/* Área de resumen y acciones - Dentro del área scrollable */}
-      <div className="">
-        {/* Resumen del pedido */}
-        <div className="py-4 border-b border-black">
-          <OrderSummaryContainer />
-        </div>
+              <div className="h-[calc(100%-60px)] flex flex-col">
+                {/* Contenedor scrollable para todo el contenido */}
+                <div className="flex-grow overflow-y-auto">
+                  {/* Área de items - Ahora sin flex-1 */}
+                  <div>
+                    <CartItemListContainer onClose={handleClose} />
+                  </div>
 
-        {/* Botones de acción */}
-        <div className="px-6 py-6">
-          <CartActions onClose={handleClose} />
-        </div>
-      </div>
-    </div>
-  </div>
-) : (
-  <div className="flex-1 flex">
-    <EmptyCart onClose={handleClose} />
-  </div>
-)}
+                  {/* Área de resumen y acciones - Dentro del área scrollable */}
+                  <div className="">
+                    {/* Resumen del pedido */}
+                    <div className="py-4 border-b border-black">
+                      <OrderSummaryContainer />
+                    </div>
+
+                    {/* Botones de acción */}
+                    <div className="px-6 py-6">
+                      <CartActions onClose={handleClose} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex-1 flex">
+                <EmptyCart onClose={handleClose} />
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartItem } from '@/types/cart';
+import { CartItem, GiftWrapping } from '@/types/cart';
 
 interface CartState {
   items: CartItem[];
@@ -16,7 +16,7 @@ const initialState: CartState = {
       quantity: 1,
       material: "Oro Blanco",
       length: "45cm",
-      image: "/placeholder.svg?height=200&width=200&text=Collar+Eternity",
+      image: "https://acdn-us.mitiendanube.com/stores/001/810/105/products/vv-pulsera-ga-plata-nacarado-1b-78a3c49d2327e35aef17374911288953-1024-1024.webp",
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const initialState: CartState = {
       quantity: 1,
       material: "Oro Rosa",
       length: "40cm",
-      image: "/placeholder.svg?height=200&width=200&text=Collar+Celestial",
+      image: "https://acdn-us.mitiendanube.com/stores/001/810/105/products/vv-pulsera-ga-plata-nacarado-1b-78a3c49d2327e35aef17374911288953-1024-1024.webp",
     },
   ],
   loading: false,
@@ -58,10 +58,31 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
-    // En una aplicación real, aquí tendríamos acciones asíncronas para sincronizar con el backend
+    
+    // Nueva acción para asociar un envoltorio a un producto específico
+    applyGiftWrapping: (
+      state, 
+      action: PayloadAction<{ 
+        itemId: number; 
+        wrapping: GiftWrapping | null 
+      }>
+    ) => {
+      const { itemId, wrapping } = action.payload;
+      const item = state.items.find(item => item.id === itemId);
+      
+      if (item) {
+        item.selectedWrapping = wrapping;
+      }
+    }
   },
 });
 
-export const { addItem, updateQuantity, removeItem, clearCart } = cartSlice.actions;
+export const { 
+  addItem, 
+  updateQuantity, 
+  removeItem, 
+  clearCart, 
+  applyGiftWrapping 
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

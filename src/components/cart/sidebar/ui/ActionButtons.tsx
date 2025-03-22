@@ -12,7 +12,7 @@ export default function CartActions({ onClose }: CartActionsProps) {
   return (
     <div className="space-y-3">
       {/* Botón de iniciar compra */}
-      <Link href="/checkout" className="block w-full">
+      <Link href="/cart" className="block w-full">
         <motion.button
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}

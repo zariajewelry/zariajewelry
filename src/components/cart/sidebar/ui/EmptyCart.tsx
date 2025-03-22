@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 interface EmptyCartProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function EmptyCart({ onClose }: EmptyCartProps) {

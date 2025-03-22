@@ -1,72 +1,89 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GiftBag } from '@/types/cart';
+import { GiftWrapping } from '@/types/cart';
 
-interface GiftBagState {
-  bags: GiftBag[];
-  currentBagIndex: number;
+// Renombramos a GiftWrappingState para mayor claridad
+interface GiftWrappingState {
+  // Consideramos estas como opciones de productos disponibles
+  options: GiftWrapping[];
+  
+  // Para UI, mantener qué sección está abierta
   isOpen: boolean;
+  
+  // Stock provisional (en futuro vendrá de API)
+  stockByWrappingId: Record<number, number>;
 }
 
-const initialState: GiftBagState = {
-  bags: [
+const initialState: GiftWrappingState = {
+  options: [
     {
       id: 1,
-      name: "¡Quiero una bolsa elegante!",
+      name: "Bolsa elegante",
       description: "Bolsa premium con diseño sofisticado y lazo de satén",
       price: 0,
-      selected: false,
-      image:
-        "https://www.ginifab.com/custom_boxes/img/paper_bracelet_box_1.jpg",
+      image: "https://www.ginifab.com/custom_boxes/img/paper_bracelet_box_1.jpg",
+      // Removemos "selected" porque ahora es por producto en cartSlice
     },
     {
       id: 2,
-      name: "¡Quiero una caja de regalo!",
+      name: "Caja de regalo",
       description: "Caja forrada en tela con acabado sedoso",
       price: 380,
-      selected: false,
-      image:
-        "https://ar.isadoraonline.com/media/catalog/product/4/5/45389802_0_1_20230303210200.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=985&width=770&canvas=770:985",
+      image: "https://ar.isadoraonline.com/media/catalog/product/4/5/45389802_0_1_20230303210200.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=985&width=770&canvas=770:985",
     },
     {
       id: 3,
-      name: "¡Quiero un envoltorio especial!",
+      name: "Envoltorio especial",
       description: "Papel de seda y cinta personalizada ZARIA",
       price: 190,
-      selected: false,
-      image:
-        "https://ar.isadoraonline.com/media/catalog/product/4/5/45389802_0_1_20230303210200.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=985&width=770&canvas=770:985",
+      image: "https://ar.isadoraonline.com/media/catalog/product/4/5/45389802_0_1_20230303210200.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=985&width=770&canvas=770:985",
     },
   ],
-  currentBagIndex: 0,
   isOpen: false,
+  // Valores iniciales de stock (simulados)
+  stockByWrappingId: {
+    1: 100,
+    2: 50,
+    3: 75
+  }
 };
 
-export const giftBagSlice = createSlice({
-  name: 'giftBag',
+export const giftWrappingSlice = createSlice({
+  name: 'giftWrapping',
   initialState,
   reducers: {
-    toggleGiftBagSection: (state) => {
+    // Mantenemos solo la acción para abrir/cerrar el selector
+    toggleGiftWrappingSection: (state) => {
       state.isOpen = !state.isOpen;
     },
-    nextBag: (state) => {
-      state.currentBagIndex = (state.currentBagIndex + 1) % state.bags.length;
+    
+    // Añadimos acciones que simularán interacciones con API/BD
+    fetchGiftWrappingOptions: (state, action: PayloadAction<GiftWrapping[]>) => {
+      // Esto será útil cuando obtengas datos reales de tu API
+      state.options = action.payload;
     },
-    previousBag: (state) => {
-      state.currentBagIndex = state.currentBagIndex === 0 
-        ? state.bags.length - 1 
-        : state.currentBagIndex - 1;
+    
+    updateGiftWrappingStock: (state, action: PayloadAction<{id: number, stock: number}>) => {
+      // Para actualizar el stock cuando se consuma
+      const { id, stock } = action.payload;
+      state.stockByWrappingId[id] = stock;
     },
-    toggleGiftBag: (state, action: PayloadAction<number>) => {
-      const bagId = action.payload;
-      state.bags = state.bags.map(bag => ({
-        ...bag,
-        selected: bag.id === bagId ? !bag.selected : false
-      }));
+    
+    // Simulación de compra (para testing)
+    decrementStock: (state, action: PayloadAction<{id: number, quantity: number}>) => {
+      const { id, quantity } = action.payload;
+      if (state.stockByWrappingId[id]) {
+        state.stockByWrappingId[id] = Math.max(0, state.stockByWrappingId[id] - quantity);
+      }
     }
   },
 });
 
 // Exportar acciones
-export const { toggleGiftBagSection, nextBag, previousBag, toggleGiftBag } = giftBagSlice.actions;
+export const { 
+  toggleGiftWrappingSection, 
+  fetchGiftWrappingOptions,
+  updateGiftWrappingStock,
+  decrementStock
+} = giftWrappingSlice.actions;
 
-export default giftBagSlice.reducer;
+export default giftWrappingSlice.reducer;

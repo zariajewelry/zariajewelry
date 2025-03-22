@@ -8,6 +8,7 @@ export interface CartItem {
   material: string;
   length?: string;
   image: string;
+  selectedWrapping?: GiftWrapping | null;
 }
 
 
@@ -50,4 +51,21 @@ export interface CartSummary {
 export interface CartSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+
+export interface GiftWrapping {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
+export interface ShippingOption {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  estimatedDelivery: string;
 }
